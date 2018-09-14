@@ -124,7 +124,24 @@
 
 				<!--贵州地图-->
 				<div class="section2-chart">
-					<div id="mapchart"></div>
+					<div class="map-list">
+						<a href="javascript:;" ><i></i>亦资居委会党支部</a>
+						<a href="javascript:;"><i></i>亦资街道党工委</a>
+					</div>
+					<div class="map-box">
+						<div class="map" id="mapchart"></div>
+						<div class="map" id="map" style="display: none;">
+							<div class="map-wrap">
+								<img src="static/mapimg/0.png"/>
+							</div>
+							<div class="map-num">
+								<a href="javascript:;" style="left:1.8rem;top:15rem;" data-index="1">1</a>
+								<a href="javascript:;" style="left:1.65rem;top:19.15rem;" data-index="2">2</a>
+								<a href="javascript:;" style="left:1.6rem;top:24.25rem;" data-index="3">3</a>
+								<a href="javascript:;" style="left:6.95rem;top:16.65rem;" data-index="4">4</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -136,21 +153,19 @@
 					</div>
 					<div class="section-item-content">
 						<div class="section3-tab-btn">
-							<a href="javascript:;" class="active">服务人群</a>
-							<a href="javascript:;">服务单位</a>
-							<a href="javascript:;">夜市摊位</a>
-							<a href="javascript:;">创业街</a>
-							<a href="javascript:;">公益岗位</a>
-							<a href="javascript:;">夜市摊位</a>
-							<a href="javascript:;">创业街</a>
-							<a href="javascript:;">公益岗位</a>
+							<a href="javascript:;" class="active">党支部1</a>
+							<a href="javascript:;">党支部2</a>
+							<a href="javascript:;">党支部3</a>
+							<a href="javascript:;">党支部4</a>
+							<a href="javascript:;">党支部5</a>
+							
 						</div>
 
 						<div class="section3-tab-content">
-							<ul class="section3-top-list">
+							<ul class="section3-top-list ">
 								<li>
-									<span>1</span>
-									<span>党建学习主题</span>
+									<span class="sort">1</span>
+									<span class="theme">党建学习主题</span>
 									<p>
 										<span>候鸟党员</span>
 										<em>52580人</em>
@@ -165,8 +180,8 @@
 									</p>
 								</li>
 								<li>
-									<span>2</span>
-									<span>党建学习主题</span>
+									<span class="sort">1</span>
+									<span class="theme">党建学习主题</span>
 									<p>
 										<span>候鸟党员</span>
 										<em>52580人</em>
@@ -181,8 +196,8 @@
 									</p>
 								</li>
 								<li>
-									<span>3</span>
-									<span>党建学习主题</span>
+									<span class="sort">1</span>
+									<span class="theme">党建学习主题</span>
 									<p>
 										<span>候鸟党员</span>
 										<em>52580人</em>
@@ -197,8 +212,8 @@
 									</p>
 								</li>
 								<li>
-									<span>4</span>
-									<span>党建学习主题</span>
+									<span class="sort">1</span>
+									<span class="theme">党建学习主题</span>
 									<p>
 										<span>候鸟党员</span>
 										<em>52580人</em>
@@ -227,7 +242,7 @@
 				</div>
 
 				
-				<div class="section-item">
+				<div class="section-item  clearfix">
 					<div class="section-item-title">
 						<h2>党建线上互动实时动态</h2>
 						<p>Real time dynamic</p>
@@ -296,11 +311,101 @@
 			</div>
 		</div>
 	</div>
+	
+	<!--弹窗1-->
+	<div class="popup popup1">
+		<div class="img-box">
+			<img src="static/images/banner.png"/>
+		</div>
+		<div class="content">
+			<p>单位名称：1111111111111</p>
+			<p>单位地址：1111111111111</p>
+			<p>员工数量：1111111111111</p>
+			<p>是否有党群组织：<span style="color: #1E9FFF;">是</span></p>
+			<p>党组织介绍：1111111</p>
+		</div>
+	</div>
+		
+	<!--弹窗2-->
+	<div class="popup popup2">
+		<div class="img-box">
+			<img src="static/images/banner.png"/>
+		</div>
+		<div class="content">
+			<p>学习主题：1111111111111</p>
+			<p class="party clearfix">
+				<span>党支部人数：110人</span>
+				<span>流动党员人数：110人</span>
+				<span>学习完成率：95%</span>
+			</p>
+			<div class="section-item clearfix">
+				<h2>未学习</h2>
+				<div class="section-body">
+					<p>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+					</p>
+					<p>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+					</p>
+				</div>
+			</div>
+			<div class="section-item clearfix">
+				<h2>已学习</h2>
+				<div class="section-body">
+					<p>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+					</p>
+					<p>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 <script src="static/js/common.js"></script>
 <script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+	
+		$('.map-list a').click(function(){
+			var index = $(this).index();
+			$('.map-box .map').eq(index).show().siblings().hide();
+		})
+	
+	
+		// 地图切换
+		$('.map-num a').each(function(){
+			
+			$(this).hover(function(){
+				var index = $(this).attr('data-index');
+				$('.map-wrap img').attr('src','static/mapimg/'+index+'.png');
+			})
+		})
+	
+	
+	
 			$(function() {
 				// 就业创业共建单位
 				$.ajax({
@@ -331,8 +436,31 @@
 						}
 
 						$('#cygj').append(str);
+						$('#cygj li').on('click', function(){
+					    layer.open({
+					      type: 1,
+					      area: ['880px', '880px'],
+					      title:'xxxx党组织部',
+					      shade:0.2,
+					      shadeClose: true, //点击遮罩关闭
+					      content: $('.popup1')
+					    });
+					  });
 					}
 				});
+				
+				$('.section3-top-list li').on('click', function(){
+				    layer.open({
+				      type: 1,
+				      area: ['880px', '880px'],
+				      title:'xxxx党组织部',
+				      shade:0.2,
+				      shadeClose: true, //点击遮罩关闭
+				      content: $('.popup2')
+				    });
+				});
+			
+	
 
 				// 服务人群，公益性岗位，成功服务量
 				tongjiDom()
