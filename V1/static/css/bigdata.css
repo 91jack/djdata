@@ -294,8 +294,10 @@ ol li.active span {
 }
 .section3-tab-btn {
 	clear: both;
+	width:24.35rem;
 	height: 1.95rem;
 	margin: .5rem 0;
+	overflow-x: auto;
 }
 .section3-tab-btn a{
 	display: block;
@@ -330,13 +332,20 @@ ol li.active span {
 }
 
 .section3-tab-content ul{
-	display: none;
+	/*display: none;*/
 	transition: all .2s;
 }
 .section3-tab-content ul.active {
 	display: block;
 }
-
+.section3-top-list li{
+	height:2.5rem;
+	layout-grid-line: 2.5rem;
+}
+.section3-top-list li>span:first {
+	display: block;
+	background:#E58B26;
+}
 
 
 
