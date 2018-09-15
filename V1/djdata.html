@@ -139,6 +139,28 @@
 								<a href="javascript:;" style="left:1.65rem;top:19.15rem;" data-index="2">2</a>
 								<a href="javascript:;" style="left:1.6rem;top:24.25rem;" data-index="3">3</a>
 								<a href="javascript:;" style="left:6.95rem;top:16.65rem;" data-index="4">4</a>
+								<a href="javascript:;" style="left:5.5rem;top:23.6rem;" data-index="5">5</a>
+								<a href="javascript:;" style="left:8rem;top:24.6rem;" data-index="6">6</a>
+								
+								<a href="javascript:;" style="left:11rem;top:23.45rem;" data-index="7">7</a>
+								
+								<a href="javascript:;" style="left:9.15rem;top:19rem;" data-index="8">8</a>
+								<a href="javascript:;" style="left:7.95rem;top:21.4rem;" data-index="9">9</a>
+								<a href="javascript:;" style="left:7.8rem;top:10.7rem;" data-index="10">10</a>
+								
+								<a href="javascript:;" style="left:14.45rem;top:21.25rem;" data-index="11">11</a>
+								<a href="javascript:;" style="left:16.15rem;top:15.15rem;" data-index="12">12</a>
+								<a href="javascript:;" style="left:17rem;top:20.4rem;" data-index="13">13</a>
+								<a href="javascript:;" style="left:17rem;top:16rem;" data-index="13">13</a>
+								<a href="javascript:;" style="left:18.55rem;top:20rem;" data-index="14">14</a>
+								<a href="javascript:;" style="left:14.2rem;top:17rem;" data-index="14">14</a>
+								
+								<a href="javascript:;" style="left:12.5rem;top:13.5rem;" data-index="15">15</a>
+								<a href="javascript:;" style="left:16.8rem;top:11.4rem;" data-index="16">16</a>
+								<a href="javascript:;" style="left:14.65rem;top:8.3rem;" data-index="17">17</a>
+								<a href="javascript:;" style="left:16rem;top:1.35rem;" data-index="18">18</a>
+								<a href="javascript:;" style="left:13.8rem;top:3.95rem;" data-index="19">19</a>
+								<a href="javascript:;" style="left:16.8rem;top:13.4rem;" data-index="20">20</a>
 							</div>
 						</div>
 					</div>
@@ -383,12 +405,19 @@
 		</div>
 	</div>
 	
+	<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/common.js"></script>
-<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/scroll.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-	
+//	$(function(){
+//		$(".section-item-content").myScroll({
+//			speed:40, //数值越大，速度越慢
+//			rowHeight:40 //li的高度
+//		});
+//	});
+
 		$('.map-list a').click(function(){
 			var index = $(this).index();
 			$('.map-box .map').eq(index).show().siblings().hide();
@@ -397,7 +426,6 @@
 	
 		// 地图切换
 		$('.map-num a').each(function(){
-			
 			$(this).hover(function(){
 				var index = $(this).attr('data-index');
 				$('.map-wrap img').attr('src','static/mapimg/'+index+'.png');
@@ -436,6 +464,13 @@
 						}
 
 						$('#cygj').append(str);
+						$('#cygj').append(str);
+						
+						$(".section-item-list").myScroll({
+			speed:40, //数值越大，速度越慢
+			rowHeight:68 //li的高度
+		});
+						
 						$('#cygj li').on('click', function(){
 					    layer.open({
 					      type: 1,
@@ -467,7 +502,7 @@
 				// 10S钟刷新
 				setInterval(function() {
 					tongjiDom()
-				}, 5000)
+				}, 50000)
 
 				function tongjiDom() {
 					$.ajax({
@@ -734,7 +769,7 @@
 					}
 					mapdata = d;
 					//注册地图
-					echarts.registerMap('chongqing', data);
+					echarts.registerMap('guizhou', data);
 	
 					mapChart.setOption(option = {
 						backgroundColor: '#0C0026',
@@ -742,12 +777,13 @@
 							trigger: 'item',
 							padding: 10,
 							formatter: function(params) {
-								return params.name + '<br/>' + '户籍所在地 ： ' + params.value + '人' + '<br/>现居地 ： ' + params.data.num + '人';
+								return '居民人数:111人<br/>'+'流动人口:1111人<br/>'+'党员总数:111111111人<br/>流动党员:111111111人<br/>商家量:11家<br/>党员示范店:111家<br/>'
+								//return params.name + '<br/>' + '户籍所在地 ： ' + params.value + '人' + '<br/>现居地 ： ' + params.data.num + '人';
 							}
 						},
 							
 						geo: {
-							map: 'chongqing',
+							map: 'guizhou',
 							label: {
 								emphasis: {
 									show: true,
@@ -802,7 +838,7 @@
 								},
 								series:[{
 						                    type: 'map',
-						                    mapType: 'chongqing',
+						                    mapType: 'guizhou',
 						                    roam: false,
 						                    nameMap:{
 						                        'cq':'重庆'
@@ -1127,6 +1163,7 @@
 							},
 							data: ['党员', '无党派人士', '非党员的其他党派']
 						},
+						tooltip:{},
 						series: [{
 							name: '政治面貌',
 							type: 'pie',
@@ -1244,6 +1281,10 @@
 							},
 							data: ['男', '女']
 						},
+						tooltip: {
+				        trigger: 'item',
+				        formatter: "你in我近底价和覅基恩"
+				    },
 						series: [{
 							name: '大学毕业生',
 							type: 'pie',
@@ -1256,6 +1297,13 @@
 								align: 'left',
 								verticalAlign: 'bottom'
 							},
+							 itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+        },      
 							labelLine: {
 								normal: {
 									length: 0,
@@ -1556,7 +1604,7 @@
 
 			// 数字滚动增加特效
 			function updateNum(oldNum, newNum) {
-				//console.log(oldNum,newNum)
+				console.log(oldNum,newNum)
 				// 将数字转为字符串
 				var oldNum = oldNum.toString();
 				var newNum = newNum.toString();

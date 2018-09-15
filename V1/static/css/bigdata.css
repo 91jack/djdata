@@ -25,6 +25,8 @@ ul,ol,li{
 	background: #0C0026;
 	color: #fff;
 	overflow: hidden;
+	width:14.2rem
+	height:17rem
 }
 .container {
 	padding: 0 1.5rem;
@@ -139,10 +141,13 @@ ul,ol,li{
 	top:0;
 }
 #barchart {
-	width: 21.45rem;
-	height: 12rem;
+	width: 24rem;
+	height: 15.5rem;
 }
-
+#cygj {
+	height:10rem;
+	overflow: hidden;
+}
 
 .section2 {
 	width: 41.25rem;
@@ -341,12 +346,13 @@ ol li.active span {
 	display: block;
 	width: 1.5rem;
 	height:1.5rem;
-	background: #fff;
+	background: transparent;
 	position: absolute;	
 	top:0;
 	left:0;
 	z-index: 9999;
 	color: red;
+	font-size: 0;
 	/*width:6.95rem
 	height:16.65rem*/
 }
