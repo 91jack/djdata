@@ -16,7 +16,6 @@
 		<div class="container">
 			<div class="date"></div>
 			<div class="header-title">盘州市亦资街道党建大数据服务平台</div>
-			<!--<a href="./index.html" class="gohome"></a>-->
 		</div>
 		<div class="header-border-bottom"></div>
 	</div>
@@ -31,7 +30,17 @@
 						<p>Non public party building unit</p>
 					</div>
 					<div class="section-item-content">
-						<ul class="section-item-list" id="cygj"></ul>
+						<ul class="section-item-list" id="cygj">
+							<li><span style="background:#E58B26;">1</span><span>重庆红星美凯龙茶园店</span><span>53人</span></li>
+							<li><span style="background:#E58B26;">2</span><span>重庆永辉超市有限公司南岸区奥园城市天...</span><span>17人</span></li>
+							<li><span style="background:#E58B26;">3</span><span>重庆三力达电子有限公司</span><span>13人</span></li>
+							<li><span>4</span><span>重庆金恒物业管理有限公司南岸区分公司</span><span>12人</span></li>
+							<li><span>5</span><span>重庆神龙物业管理有限公司</span><span>10人</span></li>
+							<li><span>6</span><span>重庆帆禄昊机械制造有限公司</span><span>10人</span></li>
+							<li><span>7</span><span>重庆金恒物业管理有限公司南岸区分公司</span><span>12人</span></li>
+							<li><span>8</span><span>重庆神龙物业管理有限公司</span><span>10人</span></li>
+							<li><span>9</span><span>重庆帆禄昊机械制造有限公司</span><span>10人</span></li>
+						</ul>
 					</div>
 				</div>
 
@@ -405,18 +414,18 @@
 		</div>
 	</div>
 	
-	<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/common.js"></script>
 <script src="static/js/scroll.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-//	$(function(){
-//		$(".section-item-content").myScroll({
-//			speed:40, //数值越大，速度越慢
-//			rowHeight:40 //li的高度
-//		});
-//	});
+	$(function(){
+		$(".section-item-content").myScroll({
+			speed:40, //数值越大，速度越慢
+			rowHeight:40 //li的高度
+		});
+	});
 
 		$('.map-list a').click(function(){
 			var index = $(this).index();
@@ -435,13 +444,12 @@
 	
 	
 			$(function() {
-				// 就业创业共建单位
+				// 非公党建单位
 				$.ajax({
 					type: "get",
 					url: "http://tianwen.xnshequ.com/tongji_jiuye/cygj?jsoncallback=?",
 					dataType: "jsonp",
 					success: function(res) {
-						//console.log(res.data)
 						var str = '';
 						for(var i = 0; i < res.data.length; i++) {
 							str += "<li>"
@@ -450,14 +458,14 @@
 							} else {
 								str += "<span>" + (i + 1) + "</span>"
 							}
-
+							
+							// 字符串截取
 							if(res.data[i].cp_name.length > 18) {
 								var cp_name = res.data[i].cp_name.substr(0, 18) + '...';
 							} else {
 								var cp_name = res.data[i].cp_name
 							}
 
-							//console.log(cp_name)
 							str += "<span>" + cp_name + "</span>" +
 								"<span>" + res.data[i].num + "人</span>" +
 								"</li>"
@@ -467,9 +475,9 @@
 						$('#cygj').append(str);
 						
 						$(".section-item-list").myScroll({
-			speed:40, //数值越大，速度越慢
-			rowHeight:68 //li的高度
-		});
+							speed:40, //数值越大，速度越慢
+							rowHeight:68 //li的高度
+						});
 						
 						$('#cygj li').on('click', function(){
 					    layer.open({
@@ -751,12 +759,10 @@
 				//绘制贵州地图
 				mapFn()
 				
-				setInterval(function(){
-					mapFn();
-				},15000)
-				setInterval(function(){
-					mapScatterFn();
-				},1000)
+//				setInterval(function(){
+//					mapFn();
+//				},15000)
+				
 				
 				
 				var mapChart = echarts.init(document.getElementById('mapchart'));
@@ -798,8 +804,8 @@
 						
 					})
 				})
-				function mapFn(){
 				
+				function mapFn(){
 					$.ajax({
 						type: "get",
 						url: "http://tianwen.xnshequ.com/tongji_jiuye/map?jsoncallback=?",
@@ -819,106 +825,47 @@
 							}
 							
 							option = {
-								color:'red',
-								visualMap: {
-									min: 0,
-									max: 3500,
-									text: ['高', '低'],
-									realtime: false,
-									calculable: true,
-									itemWidth: 10,
-									inRange: {
-										color: ['#2751e3', '#52b2fe', '#35a4fe', '#52b2fe']
-										//color: ['#52b2fe','#35a4fe','#52b2fe','#2751e3']
-										//color: ['#50a3ba', '#eac736', '#d94e5d']
-									},
-									textStyle: {
-										color: '#fff'
+								series:[
+									{
+                    type: 'map',
+                    mapType: 'guizhou',
+                    roam: false,
+                    nameMap:{
+                        'guizhou':'贵州'
+                    },
+                    zoom: 1.2,
+                    itemStyle: {
+                        normal: {
+                            areaColor: '#52b2fe',
+                            borderColor: '#6ad7ff'
+                        },
+                        emphasis: {
+                            areaColor: 'darkorange'
+                        }
+                    },
+                    data: mapData,
+                    zlevel: 0,
+               		},
+									{
+										name: '用户坐标',
+										type: 'scatter',
+										coordinateSystem: 'geo',
+										data: [{name:'亦资街道党工委',value:[104.474329,25.708555,100]}],
+				            tooltip: {
+				            	trigger: 'item',
+				            	formatter: '{b}'
+				            },
+				            symbol:'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACyElEQVQ4T5WVX0hTcRTHv+fu7m7ebZHmn6E0UnwRIShfErZhL1H40osFRYpKQlhgRPVSBEEPJdFThFpiERVJsCLqfTMksN4FTfujTlPS5ubc3d2Je7e5u7uJ+Xv8ne/5/M45v/M7P0KRxU1NckyWzwA4CeAQgGpdRjQH5i/MHHCo6isaH98wu5N5I+r1doHoLoDyYocZ9sLMfN05NvbMqNsCcmOjFCsrGwTQsQMo30w0LFdV9dDoqKonkbVG/f6nYG7fFSwrJhp2BIPdW8BMmk+2hVkJliMu8JKC1GRB2XQ3Zu7Q0iduaXHGVHUWwL7tgFRuBUdUSH3VoD0iEvd+gtf0DI0rLCeTdRT1entANFAMZml2QbpYDSoVkXi4gOTHP7DfrwUkAfHL00CC89yYuYuifv8HMJ8wAzWY7YYHEAnqxDo2b30HkgzLQQds/bVQBsNQ3iyb3d5S1OdbAlBhtAgeG+yP6nWYXp9lBfGrM+D5hH6N8rtGpGbjiF+aNt/4nAbMjzsjsXZXQfDYwSsKxNayPGjJaAOQSGHj7KQ5Qt4WqCsF0q4PUl8NxOOlOjTxYA62OweQmtpAvNcUIaADFwFUGo8Sj5XqDqlv8fS2QJCu1UA8uhfQ8iFAGVmE8vK3OcJfGvA9gFajRSu6pUGGEliBGlwDryYh7LdBuukBlQi6NN47hdRU5sCcs34p5wFoTy4dTL0dtv46IKZC67+CIkVUkMsC9dNfbN7+kd82QGe2sWeyw4AqrZC63EgMLECotUNrH6qwgldVqBMRqJ8jsJ6qQDKwAo7mNXe6sbUjdnx6xbretMfAOWco9Dw3HHy+kV1Pmhz0sSMU0kqXmzbc1maJhcNDADr/IyCjZEh2uy8UjK+sYt3rbaf0gHXvAA4z0RVnMPjCqCuY2JqRm5tLoqJ4mtJfwOHMF6B14DyAr0wUcCjK62JfwD/IeBZykY1nKQAAAABJRU5ErkJggg==',
+										symbolSize:20,
 									}
-								},
-								series:[{
-						                    type: 'map',
-						                    mapType: 'guizhou',
-						                    roam: false,
-						                    nameMap:{
-						                        'cq':'重庆'
-						                    },
-						                    zoom: 1.2,
-						                    itemStyle: {
-						                        normal: {
-						                            areaColor: '#52b2fe',
-						                            borderColor: '#6ad7ff'
-						                        },
-						                        emphasis: {
-						                            areaColor: 'darkorange'
-						                        }
-						                    },
-						                    data: mapData,
-						                    zlevel: 0,
-						               }]
+								]
 							} 
 							mapChart.setOption(option)
 						}
 					});
 				}
 			
-				function mapScatterFn(){
-					var scatterData = [];
-					$.ajax({
-						type: "get",
-						url: "http://tianwen.xnshequ.com/tongji_jiuye/mpdynamic?jsoncallback=?",
-						dataType: "jsonp",
-						success: function(res) {
-							var users = res.data.users;
-							//console.log(users)
-							if(users.length > 0){
-								for(var i=0;i<users.length;i++){
-									scatterData.push({name:users[i].user_name,value:[users[i].lng,users[i].lat]})
-								}
-								
-								option.series[1] = {
-									name: '用户坐标',
-									type: 'effectScatter',
-									coordinateSystem: 'geo',
-									data: scatterData,
-								  	showEffectOn: 'render',
-						            rippleEffect: {
-						                brushType: 'stroke'
-						            },
-						            symbolSize: 10,
-						            hoverAnimation: true,
-						            label: {
-						                normal: {
-						                    formatter: '{b}',
-						                    position: 'right',
-						                    show: true,
-						                    color:'#fff',
-						                    
-						                }
-						            },
-						          
-						            tooltip: {
-						            	trigger: 'item',
-						            	formatter: '{b}'
-						            },
-						            itemStyle: {
-						                normal: {
-						                    color: 'red',
-						                    shadowBlur: 10,
-						                    shadowColor: '#333'
-						                }
-						            },
-						            zlevel: 10,
-						            z: 100
-								}
-								//mapChart.setOption(option)
-							}
-						}
-					})
-					
-					
-				}
-
+			
 				
 				
 

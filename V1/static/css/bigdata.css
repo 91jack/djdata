@@ -309,10 +309,10 @@ ol li.active span {
 
 /*地图*/
 #mapchart {
-	width: 41.25rem;
-	height: 26.45rem;
+	width: 55rem;
+	height:35rem;
 	position: absolute;
-	top: 6rem;
+	top: 5rem;
 	text-align: center;
 }
 
