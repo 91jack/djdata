@@ -406,7 +406,6 @@ ol li.active span {
 }
 
 .section3-tab-content ul{
-	/*display: none;*/
 	transition: all .2s;
 	clear: both;
 }
@@ -573,4 +572,27 @@ ol li.active span {
 	display: inline-block;
 	width:6rem;
 	text-align: left;
+}
+
+
+
+
+
+
+#s3list2 {
+	height:10rem;
+	overflow: hidden;
+}
+.s3 p {
+	height:2rem;
+	line-height: 2rem;
+	background: ;
+}
+.s3 p span {
+	display: inline-block;
+	width: 40%!important;
+	text-align: center;
+	background: none!important;
+	color:#fff!important;
+	transition: all .2s;
 }
