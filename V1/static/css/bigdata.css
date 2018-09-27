@@ -92,10 +92,10 @@ ul,ol,li{
 	font-size: 0.9rem;
 }
 
-.section-item-list {
+/*.section-item-list {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
-}
+}*/
 .section-item-list li {
 	height: 2rem;
 	font-size: 0.8rem;
@@ -144,14 +144,10 @@ ul,ol,li{
 	width: 24rem;
 	height: 15.5rem;
 }
-#cygj {
-	height:10rem;
-	overflow: hidden;
-}
+
 
 .section2 {
 	width: 41.25rem;
-	/*height: 39.05rem;*/
 	margin: 0 2.5rem;
 	float: left;
 }
@@ -373,26 +369,54 @@ ol li.active span {
 	margin: .5rem 0;
 	overflow-x: auto;
 }
-.section3-tab-btn a{
+.wrapper04 {
+	position: relative;
+	height: 1.95rem;
+	width: 100%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.wrapper04 .scroller {
+	position: absolute
+}
+
+.wrapper04 .scroller li {
+	/*height: 1.95rem;
+	color: #333;
+	float: left;
+	line-height: 1.95rem;
+	font-size: .4rem;
+	text-align: center;*/
 	display: block;
 	float: left;
 	width:4.4rem;
 	height: 1.95rem;
 	line-height: 1.95rem;
 	text-align: center;
-	margin-right:0.5rem;
 	background: #130c44;
 	border-radius: 1rem;
+	margin-right: 1rem
+	
+}
+
+.wrapper04 .scroller li a {
+	display: block;
 	color:#7b768c;
 	font-size: 0.8rem;
+	border-radius: 1rem;
 }
-.section3-tab-btn a.active {
+
+
+.wrapper04 .scroller li a.active {
 	background: #191762;
 	color:#fff;
 }
-.section3-tab-btn a:last-child {
+.wrapper04 .scroller li a:last-child {
 	margin-right: 0;
 }
+
+
 .section3-tab-content {
 	clear: both;
 }
@@ -578,7 +602,10 @@ ol li.active span {
 
 
 
-
+#s1list{
+	height:12rem;
+	overflow: hidden;
+}
 #s3list2 {
 	height:10rem;
 	overflow: hidden;
