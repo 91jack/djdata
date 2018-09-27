@@ -305,8 +305,8 @@ ol li.active span {
 
 /*地图*/
 #mapchart {
-	width: 55rem;
-	height:35rem;
+	width: 41.25rem;
+	height:33rem;
 	position: absolute;
 	top: 5rem;
 	text-align: center;
@@ -382,22 +382,9 @@ ol li.active span {
 }
 
 .wrapper04 .scroller li {
-	/*height: 1.95rem;
-	color: #333;
-	float: left;
-	line-height: 1.95rem;
-	font-size: .4rem;
-	text-align: center;*/
 	display: block;
 	float: left;
-	width:4.4rem;
-	height: 1.95rem;
-	line-height: 1.95rem;
-	text-align: center;
-	background: #130c44;
-	border-radius: 1rem;
-	margin-right: 1rem
-	
+	width:5rem;
 }
 
 .wrapper04 .scroller li a {
@@ -405,10 +392,17 @@ ol li.active span {
 	color:#7b768c;
 	font-size: 0.8rem;
 	border-radius: 1rem;
+	
+	width:4.4rem;
+	height: 1.95rem;
+	line-height: 1.95rem;
+	text-align: center;
+	background: #130c44;
+	border-radius: 1rem;
 }
 
 
-.wrapper04 .scroller li a.active {
+.wrapper04 .scroller li a.cur {
 	background: #191762;
 	color:#fff;
 }
@@ -477,6 +471,7 @@ ol li.active span {
 	height:1.25rem;
 	line-height: 1.25rem;
 	font-size:0.8rem;
+	text-align: center;
 }
 .section3-top-list li p em {
 	color: #3C9DD2;

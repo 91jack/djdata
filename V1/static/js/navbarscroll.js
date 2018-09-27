@@ -27,7 +27,7 @@
             var _obj_ul = _obj_scroller.children('ul');
             var _obj_li = _obj_ul.children('li');
             var _scroller_w = 0;
-            _obj_li.css({"margin-left":"0","margin-right":"10"});
+            _obj_li.css({"margin-left":"0","margin-right":"0"});
             for (var i = 0; i < _obj_li.length; i++) {
                 _scroller_w += _obj_li[i].offsetWidth;
             }

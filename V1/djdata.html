@@ -199,8 +199,8 @@
 								
 <div class="wrapper wrapper04" id="sass">
     <div class="scroller">
-        <ul class="clearfix">
-            <li class="cur"><a href="javascript:void(0)">全部科目</a></li>
+        <ul class="clearfix" id="nav">
+            <!--<li><a href="javascript:void(0)" class="cur">全部科目</a></li>
             <li><a href="javascript:void(0)">会计从业</a></li>
             <li><a href="javascript:void(0)">会计职称</a></li>
             <li><a href="javascript:void(0)">注会</a></li>
@@ -210,15 +210,16 @@
             <li><a href="javascript:void(0)">更多注会</a></li>
             <li><a href="javascript:void(0)">国际证书2</a></li>
             <li><a href="javascript:void(0)">更多4</a></li>
-            <li><a href="javascript:void(0)">更多5</a></li>
+            <li><a href="javascript:void(0)">更多5</a></li>-->
         </ul>
     </div>
 </div>
 							</div>
 
 							<div class="section3-tab-content">
-								<ul class="section3-top-list ">
-									<li>
+								
+								<ul class="section3-top-list">
+									<!--<li>
 										<span class="sort">1</span>
 										<span class="theme">党建学习主题</span>
 										<p>
@@ -282,7 +283,7 @@
 											<em>68%</em>
 										</p>
 									</li>
-								</ul>
+								</ul>-->
 								<!--<ul class="section-item-list jyfwrq active"></ul>
 							<ul class="section-item-list fwdw"></ul>
 							<ul class="section-item-list booth"></ul>
@@ -452,13 +453,13 @@
 			</div>
 		</div>
 
-		<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
 <script type="text/javascript" src="static/js/navbarscroll.js"></script>
-		<script src="static/js/common.js"></script>
-		<script src="static/js/scroll.js" type="text/javascript" charset="utf-8"></script>
-		<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="static/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/common.js"></script>
+<script src="static/js/scroll.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			// 非公党建单位-列表上下滚动
 			$("#s1list").myScroll({
@@ -466,7 +467,7 @@
 				rowHeight:40
 			});
 			
-			 $('.wrapper').navbarscroll();
+			
 			
 			$('.map-list a').click(function() {
 				var index = $(this).index();
@@ -1275,7 +1276,7 @@
 
 			// 数字滚动增加特效
 			function updateNum(oldNum, newNum) {
-				console.log(oldNum, newNum)
+				//console.log(oldNum, newNum)
 				// 将数字转为字符串
 				var oldNum = oldNum.toString();
 				var newNum = newNum.toString();
@@ -1373,8 +1374,39 @@ ajaxData(t3Url,function(res){
 
 //3.支部学习实时动态
 ajaxData(sbdUrl,function(res){
-	console.log(res)
+	console.log(res.data)
+	var str = ''
+	for(var i = 0;i<res.data.length;i++){
+		str +='<li><a href="javascript:void(0)">'+res.data[i].category_name+'</a></li>' 
+	}
+	$('#nav').html(str);
 	
+	
+	
+	$('.wrapper').navbarscroll();
+	
+	var listStr = '';
+	for(var i = 0;i<res.data.length;i++){
+		listStr +='<ul class="section3-top-list">'
+		for(var j=0;j<res.data[i].articles.length;j++){
+			listStr +='<li>'
+			+'<span class="sort">'+(j+1)+'</span>'
+			var title = ''
+			if(res.data[i].articles[j].title.length>10){
+				title = res.data[i].articles[j].title.substr(0,8)+'...'
+				listStr +='<span class="theme">'+title+'</span>'
+			}
+			
+			listStr +='<p><span>流动党员</span><em>'+res.data[i].articles[j].liudong_num+'人</em></p>'
+			+'<p><span>非流动党员</span><em>'+res.data[i].articles[j].feiliudong_num+'人</em></p>'
+			+'<p><span>完成率</span><em>'+res.data[i].articles[j].wancheng+'</em></p>'
+		+'</li>'
+		}
+		listStr +='</ul>';
+	}
+	
+	console.log(listStr)	
+	$('.section3-top-list').html(listStr)
 });
 
 //4.非公党建单位行业分类展示
