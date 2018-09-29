@@ -1304,12 +1304,12 @@ ajaxData(sbdUrl,function(res){
 		}
 		$('.scroller li a').eq(index).trigger("click");
 		$('.scroller li a').eq(index).bind('click',function(){
-			console.log($(this));
+			//console.log($(this));
 			//var index = $(this).parent().index();
 			sectionUl(index)
 		})
 		
-	},10000)
+	},2000)
 	
 	$('#section3Ul').hover(function(){
 		clearInterval(timer);
@@ -1319,7 +1319,7 @@ ajaxData(sbdUrl,function(res){
 	
 	
 	$('.scroller li a').click(function(){
-		console.log($(this));
+		//console.log($(this));
 		var index = $(this).parent().index();
 		sectionUl(index)
 	})
