@@ -92,10 +92,7 @@ ul,ol,li{
 	font-size: 0.9rem;
 }
 
-/*.section-item-list {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-}*/
+
 .section-item-list li {
 	height: 2rem;
 	font-size: 0.8rem;
@@ -142,7 +139,7 @@ ul,ol,li{
 }
 #barchart {
 	width: 24rem;
-	height: 15.5rem;
+	height: 12.5rem;
 }
 
 
@@ -331,7 +328,6 @@ ol li.active span {
 .map-num {
 	width:20.5rem;
 	height:27.5rem;
-/*	background: red;*/
 	position: absolute;
 	top:0;
 	left:50%;
@@ -349,8 +345,6 @@ ol li.active span {
 	z-index: 9999;
 	color: red;
 	font-size: 0;
-	/*width:6.95rem
-	height:16.65rem*/
 }
 	
 
@@ -401,7 +395,6 @@ ol li.active span {
 	border-radius: 1rem;
 }
 
-
 .wrapper04 .scroller li a.cur {
 	background: #191762;
 	color:#fff;
@@ -426,6 +419,7 @@ ol li.active span {
 .section3-tab-content ul{
 	transition: all .2s;
 	clear: both;
+	display: none;
 }
 .section3-tab-content ul.active {
 	display: block;
@@ -448,7 +442,7 @@ ol li.active span {
 	text-align: center;
 	font-size:0.8rem;
 	color: #100635;
-	background:#E58B26;
+	background:#3C9DD2;
 	float:left;
 	margin-top: 0.65rem;
 	margin-left: .5rem;
@@ -513,8 +507,6 @@ ol li.active span {
 	position: absolute;
 	z-index: 999;
 	top: 20%;
-	/*margin-top: -3rem;*/
-	/*left: 3rem;*/
 	font-size: 1rem;
 }
 
@@ -600,10 +592,17 @@ ol li.active span {
 #s1list{
 	height:12rem;
 	overflow: hidden;
+	margin: 1rem 0;
+}
+#s3list1 {
+	height:10rem;
+	overflow: hidden;
+	margin-bottom: 1rem;
 }
 #s3list2 {
 	height:10rem;
 	overflow: hidden;
+	margin-bottom: 1rem;
 }
 .s3 p {
 	height:2rem;
@@ -618,3 +617,4 @@ ol li.active span {
 	color:#fff!important;
 	transition: all .2s;
 }
+
