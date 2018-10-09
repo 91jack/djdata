@@ -217,34 +217,34 @@
 							<p>流动人口</p>
 						</div>
 						<div class="piechart">
-							<div id="piechart2"></div>
+							<div id="piechart2" style="width:13rem;height:12rem"></div>
 							<p>流动党员</p>
 						</div>
 						<div class="piechart">
-							<div id="piechart3"></div>
+							<div id="piechart3" style="width:13rem;height:12rem"></div>
 							<p>店铺</p>
 						</div>
 						<div class="piechart">
-							<div id="piechart4"></div>
-							<p>政治面貌<br/>人员</p>
+							<div id="piechart4" style="width:13rem;height:12rem"></div>
+							<p>政治面貌</p>
 						</div>
 						<div class="piechart">
-							<div id="piechart5"></div>
+							<div id="piechart5" style="width:13rem;height:12rem"></div>
 							<p>困难人员</p>
 						</div>
 
 						<div class="piechart">
-							<div id="piechart6"></div>
+							<div id="piechart6" style="width:13rem;height:12rem"></div>
 							<p>大学生</p>
 						</div>
 
 						<div class="piechart">
-							<div id="piechart7"></div>
+							<div id="piechart7" style="width:13rem;height:12rem"></div>
 							<p>性别</p>
 						</div>
 
 						<div class="piechart">
-							<div id="piechart8"></div>
+							<div id="piechart8" style="width:13rem;height:12rem"></div>
 							<p>就业</p>
 						</div>
 					</div>
@@ -262,7 +262,7 @@
 
 		<!--弹窗1-->
 		<div class="popup popup1">
-			<div class="img-box">
+			<!--<div class="img-box">
 				<img src="static/images/banner.png" />
 			</div>
 			<div class="content">
@@ -271,7 +271,7 @@
 				<p>员工数量：1111111111111</p>
 				<p>是否有党群组织：<span style="color: #1E9FFF;">是</span></p>
 				<p>党组织介绍：1111111</p>
-			</div>
+			</div>-->
 		</div>
 
 		<!--弹窗2-->
@@ -407,21 +407,54 @@ var mpdynamicUrl = host +'mpdynamic';
 ajaxData(cygjUrl,function(res){
 	var str = ''
 	for(var i = 0;i<res.data.length;i++){
-		str += '<li><span class="sort">'+(i+1)+'</span><span>'+res.data[i].name+'</span><span>'+res.data[i].total+'人</span></li>'
+		str += '<li cpid="'+res.data[i].cp_id+'"><span class="sort">'+(i+1)+'</span><span>'+res.data[i].name+'</span><span>'+res.data[i].total+'人</span></li>'
 	}
 	$('#cygj').html(str);
 	for(var i = 0;i<3;i++){
 		$('#cygj li').eq(i).children('.sort').css('background','#E58B26');
 	}
 	$('#cygj li').click(function(){
-		layer.open({
-			type: 1,
-			area: ['880px', '880px'],
-			title: 'xxxx党组织部',
-			shade: 0.2,
-			shadeClose: true, //点击遮罩关闭
-			content: $('.popup1')
+		console.log($(this).attr('cpid'))
+		$.ajax({
+			type:"get",
+			url:"http://gzps.xnshequ.com/tongji_bigdata/company",
+			data:{
+				cp_id:$(this).attr('cpid')
+			},
+			success:function(res){
+				console.log(res)
+				var popStr = '';
+				popStr +='<div class="img-box">'
+					+'<img src="static/images/banner.png" />'
+					+'</div>'
+					+'<div class="content">'
+						+'<p>单位名称：'+res.data.company_info.name+'</p>'
+						+'<p>单位地址：'+res.data.company_info.pro_name + res.data.company_info.city_name + res.data.company_info.area_name + res.data.company_info.street_name + res.data.company_info.shequ_name + res.data.company_info.xiaoqu_name + res.data.company_info.loudong_name+'</p>'
+						+'<p>员工数量：'+res.data.company_info.staff_num+'</p>'
+						
+						if(res.data.company_info.dangzuzhi == '1'){
+							popStr +='<p>是否有党群组织：<span style="color: #1E9FFF;">是</span></p>'
+						}else{
+							popStr +='<p>是否有党群组织：<span style="color: #FF0017;">否</span></p>'
+						}
+						
+						
+						popStr +='<p>党组织介绍：'+res.data.dzjianjie.description+'</p>'
+					+'</div>'
+				
+				$('.popup1').html(popStr);
+				
+				layer.open({
+					type: 1,
+					area: ['880px', '880px'],
+					title: res.data.company_info.name,
+					shade: 0.2,
+					shadeClose: true, //点击遮罩关闭
+					content: $('.popup1')
+				});
+			}
 		});
+
 	});
 	
 	// 非公党建单位-列表上下滚动
@@ -451,9 +484,7 @@ ajaxData(sbdUrl,function(res){
 		str +='<li><a href="javascript:void(0)">'+res.data[i].category_name+'</a></li>' 
 	}
 	$('#nav').html(str);
-	
-	
-	
+
 	$('.wrapper').navbarscroll();
 	
 	var listStr = '';
@@ -504,8 +535,6 @@ ajaxData(sbdUrl,function(res){
 		}
 		$('.scroller li a').eq(index).trigger("click");
 		$('.scroller li a').eq(index).bind('click',function(){
-			//console.log($(this));
-			//var index = $(this).parent().index();
 			sectionUl(index)
 		})
 		
@@ -519,7 +548,6 @@ ajaxData(sbdUrl,function(res){
 	
 	
 	$('.scroller li a').click(function(){
-		//console.log($(this));
 		var index = $(this).parent().index();
 		sectionUl(index)
 	})
@@ -535,6 +563,7 @@ function sectionUl(index){
 	
 	// 弹窗2
 	$('.section3-top-list li').on('click', function() {
+		
 		layer.open({
 			type: 1,
 			area: ['880px', '880px'],
@@ -548,7 +577,7 @@ function sectionUl(index){
 
 //4.非公党建单位行业分类展示
 ajaxData(jobcateUrl,function(res){
-	console.log(res)
+	//console.log(res)
 	var xData = [];
 	var barData = [];
 	xData = ['生产制造', '公共服务', '科技信息', '文化教育', '能源服务']
@@ -574,7 +603,7 @@ ajaxData(rtdynamicUrl,function(res){
 });
 //6.亦资街道基层党组织人力分布图
 ajaxData(gridUrl,function(res){
-	console.log(res);
+	//console.log(res);
 	
 	pieChart1Fn(res.data.liudongrenkou);
 	pieChart2Fn(res.data.liudongdangyuan);
@@ -586,16 +615,16 @@ ajaxData(gridUrl,function(res){
 	pieChart8Fn(res.data.getjob);
 
 	// 饼图轮播
-//	var n = 0;
-//	setInterval(function() {
-//		n++;
-//		$('.piechart-wrap').css({
-//			'transform': 'translateX(' + -13 * n + 'rem)'
-//		});
-//		if(n > 2) {
-//			n = 0;
-//		}
-//	}, 10000)
+	var n = 0;
+	setInterval(function() {
+		n++;
+		$('.piechart-wrap').css({
+			'transform': 'translateX(' + -13 * n + 'rem)'
+		});
+		if(n > 2) {
+			n = 0;
+		}
+	}, 10000)
 });
 
 //7.智慧亦资服务量
@@ -612,7 +641,7 @@ ajaxData(channelUrl,function(res){
 
 //8.贵州区域地图
 ajaxData(mapUrl,function(res){
-	console.log(res);
+//	console.log(res);
 	var mapData = [];
 
 	var list = res.data.list
@@ -653,7 +682,7 @@ ajaxData(mapUrl,function(res){
 					trigger: 'item',
 					padding: 10,
 					formatter: function(params) {
-						console.log(params)
+						//console.log(params)
 						return '[	' + params.name + '	]'
 						+ '<br/>居民人数 ： ' + params.data.jm_num + ' 人' 
 						+ '<br/>流动人口 ： ' + params.data.ld_num + ' 人'
@@ -685,7 +714,7 @@ ajaxData(mapUrl,function(res){
 });
 //9.用户登录实时地图显示
 ajaxData(mpdynamicUrl,function(res){
-	console.log(res)
+	//console.log(res)
 });
 
 
@@ -990,10 +1019,10 @@ function pieChart1Fn(obj) {
 		},
 		tooltip:{
 			 trigger: 'item',
-        	formatter: "{a} <br/>{b}: {c} ({d}%)"
+        	formatter: "{a} <br/>{b}: {d}%"
 		},
 		series: [{
-			name: '年龄',
+			name: '流动人口',
 			type: 'pie',
 			radius: ['40%', '55%'],
 			center: ['50%', '40%'],
@@ -1040,11 +1069,11 @@ function pieChart2Fn(obj) {
 			data: ['流动', '辖区']
 		},
 		tooltip:{
-			trigger: 'item',
-        	formatter: "{a} <br/>{b}: {c} ({d}%)"
+			 trigger: 'item',
+        	formatter: "{a} <br/>{b}: {d}%"
 		},
 		series: [{
-			name: '学历',
+			name: '流动党员',
 			type: 'pie',
 			radius: ['40%', '55%'],
 			center: ['50%', '40%'],
@@ -1078,8 +1107,8 @@ function pieChart2Fn(obj) {
 	pieChart2.setOption(pieOption2);
 }
 
-// 政治面貌
-function pieChart3Fn(zzmm) {
+// 店铺
+function pieChart3Fn(obj) {
 	var pieChart3 = echarts.init(document.getElementById('piechart3'));
 	var pieOption3 = {
 		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
@@ -1092,9 +1121,69 @@ function pieChart3Fn(zzmm) {
 			textStyle: {
 				color: '#fff',
 			},
-			data: ['党员', '无党派人士', '非党员的其他党派']
+			data: ['诚信','党员']
 		},
-		tooltip: {},
+		tooltip:{
+			 trigger: 'item',
+        	formatter: "{a} <br/>{b}: {d}%"
+		},
+		series: [{
+			name: '店铺',
+			type: 'pie',
+			radius: ['40%', '55%'],
+			center: ['50%', '40%'],
+			label: {
+				normal: {
+					position: 'outside',
+					formatter: '{d}%',
+					color: '#fff',
+
+				},
+			},
+			labelLine: {
+				normal: {
+					length: 0,
+					length2: 15,
+					lineStyle: {
+						color: '#fff',
+					},
+				}
+			},
+			minAngle: 20,
+			data: [{
+					value: obj['chengxin'],
+					name: '诚信'
+				},
+				{
+					value: obj['dangyuan'],
+					name: '党员'
+				}
+			]
+		}]
+	}
+	pieChart3.setOption(pieOption3);
+}
+
+// 政治面貌
+function pieChart4Fn(obj) {
+	var pieChart4 = echarts.init(document.getElementById('piechart4'));
+	var pieOption4 = {
+		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
+		legend: {
+			bottom: '0',
+			itemWidth: 10,
+			itemHeight: 10,
+			borderRadius: 10,
+			padding: [10, 20],
+			textStyle: {
+				color: '#fff',
+			},
+			data: ['党员', '其他党派', '无党派']
+		},
+		tooltip:{
+			 trigger: 'item',
+        	formatter: "{a} <br/>{b}: {d}%"
+		},
 		series: [{
 			name: '政治面貌',
 			type: 'pie',
@@ -1120,74 +1209,16 @@ function pieChart3Fn(zzmm) {
 			},
 			minAngle: 20,
 			data: [{
-					value: zzmm["dangyuan"],
+					value: obj["dangyuan"],
 					name: '党员'
 				},
 				{
-					value: zzmm["wudangpai"],
-					name: '无党派人士'
+					value: obj["qitadang"],
+					name: '其他党派'
 				},
 				{
-					value: zzmm["qitadang"],
-					name: '非党员的其他党派'
-				},
-			]
-		}]
-	}
-	pieChart3.setOption(pieOption3);
-}
-
-// 就业困难人员
-function pieChart4Fn(kunnan) {
-	var pieChart4 = echarts.init(document.getElementById('piechart4'));
-	var pieOption4 = {
-		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-		legend: {
-			bottom: '0',
-			itemWidth: 10,
-			itemHeight: 10,
-			borderRadius: 10,
-			padding: [10, 20],
-			textStyle: {
-				color: '#fff',
-			},
-			data: ['4050人员', '低保家庭', '零就业家庭']
-		},
-		series: [{
-			name: '就业困难人员',
-			type: 'pie',
-			radius: ['40%', '55%'],
-			center: ['50%', '40%'],
-			label: {
-				normal: {
-					//show: false,
-					position: 'outside',
-					formatter: '{d}%',
-					color: '#fff',
-
-				},
-			},
-			labelLine: {
-				normal: {
-					length: 0,
-					length2: 15,
-					lineStyle: {
-						color: '#fff',
-					},
-				}
-			},
-			minAngle: 20,
-			data: [{
-					value: kunnan["4050"],
-					name: '4050人员'
-				},
-				{
-					value: kunnan["dibao"],
-					name: '低保家庭'
-				},
-				{
-					value: kunnan["lingjiuye"],
-					name: '零就业家庭'
+					value: obj["wudangpai"],
+					name: '无党派'
 				},
 
 			]
@@ -1196,8 +1227,8 @@ function pieChart4Fn(kunnan) {
 	pieChart4.setOption(pieOption4);
 }
 
-// 大学毕业生
-function pieChart5Fn(daxue) {
+// 困难人员
+function pieChart5Fn(obj) {
 	var pieChart5 = echarts.init(document.getElementById('piechart5'));
 	var pieOption5 = {
 		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
@@ -1210,14 +1241,14 @@ function pieChart5Fn(daxue) {
 			textStyle: {
 				color: '#fff',
 			},
-			data: ['男', '女']
+			data: ['4050', '低保','零就业']
 		},
-		tooltip: {
-			trigger: 'item',
-			formatter: "你in我近底价和覅基恩"
+		tooltip:{
+			 trigger: 'item',
+        	formatter: "{a} <br/>{b}: {d}%"
 		},
 		series: [{
-			name: '大学毕业生',
+			name: '困难人员',
 			type: 'pie',
 			radius: ['40%', '55%'],
 			center: ['50%', '40%'],
@@ -1245,22 +1276,18 @@ function pieChart5Fn(daxue) {
 				}
 			},
 			minAngle: 20,
-			data: [{
-					value: daxue["nan"],
-					name: '男'
-				},
-				{
-					value: daxue["nv"],
-					name: '女'
-				},
+			data: [
+				{value: obj["4050"],name: '4050'},
+				{value: obj["dibao"],name: '低保'},
+				{value: obj["lingjiuye"],name: '零就业'},
 			]
 		}]
 	}
 	pieChart5.setOption(pieOption5);
 }
 
-// 性别
-function pieChart6Fn(sex) {
+// 大学生
+function pieChart6Fn(obj) {
 	var pieChart6 = echarts.init(document.getElementById('piechart6'));
 	var pieOption6 = {
 		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
@@ -1274,6 +1301,61 @@ function pieChart6Fn(sex) {
 				color: '#fff',
 			},
 			data: ['男', '女']
+		},
+		tooltip:{
+			 trigger: 'item',
+        	formatter: "{a} <br/>{b}: {d}%"
+		},
+		series: [{
+			name: '大学生',
+			type: 'pie',
+			radius: ['40%', '55%'],
+			center: ['50%', '40%'],
+			label: {
+				position: 'outside',
+				formatter: '{d}%',
+				color: '#fff',
+				align: 'left',
+				verticalAlign: 'bottom'
+			},
+			labelLine: {
+				normal: {
+					length: 0,
+					length2: 15,
+					lineStyle: {
+						color: '#fff',
+					},
+				}
+			},
+			minAngle: 20,
+			data: [
+				{value: obj["nan"],name: '男'},
+				{value: obj["nv"],name: '女'},
+			]
+		}]
+	}
+	pieChart6.setOption(pieOption6);
+}
+
+// 性别
+function pieChart7Fn(obj) {
+	var pieChart7 = echarts.init(document.getElementById('piechart7'));
+	var pieOption7 = {
+		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
+		legend: {
+			bottom: '0',
+			itemWidth: 10,
+			itemHeight: 10,
+			borderRadius: 10,
+			padding: [10, 20],
+			textStyle: {
+				color: '#fff',
+			},
+			data: ['男', '女']
+		},
+		tooltip:{
+			 trigger: 'item',
+        	formatter: "{a} <br/>{b}: {d}%"
 		},
 		series: [{
 			name: '性别',
@@ -1298,64 +1380,12 @@ function pieChart6Fn(sex) {
 			},
 			minAngle: 20,
 			data: [{
-					value: sex["nan"],
+					value: obj["nan"],
 					name: '男'
 				},
 				{
-					value: sex["nv"],
+					value: obj["nv"],
 					name: '女'
-				},
-			]
-		}]
-	}
-	pieChart6.setOption(pieOption6);
-}
-
-// 就业状态
-function pieChart7Fn(getjob) {
-	var pieChart7 = echarts.init(document.getElementById('piechart7'));
-	var pieOption7 = {
-		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-		legend: {
-			bottom: '0',
-			itemWidth: 10,
-			itemHeight: 10,
-			borderRadius: 10,
-			padding: [10, 20],
-			textStyle: {
-				color: '#fff',
-			},
-			data: ['失业中', '已就业']
-		},
-		series: [{
-			name: '就业状态',
-			type: 'pie',
-			radius: ['40%', '55%'],
-			center: ['50%', '40%'],
-			label: {
-				position: 'outside',
-				formatter: '{d}%',
-				color: '#fff',
-				align: 'left',
-				verticalAlign: 'bottom'
-			},
-			labelLine: {
-				normal: {
-					length: 0,
-					length2: 15,
-					lineStyle: {
-						color: '#fff',
-					},
-				}
-			},
-			minAngle: 20,
-			data: [{
-					value: getjob["shiye"],
-					name: '失业中'
-				},
-				{
-					value: getjob["jiuye"],
-					name: '已就业'
 				},
 			]
 		}]
@@ -1363,8 +1393,8 @@ function pieChart7Fn(getjob) {
 	pieChart7.setOption(pieOption7);
 }
 
-// 残疾
-function pieChart8Fn(canji) {
+// 就业
+function pieChart8Fn(obj) {
 	var pieChart8 = echarts.init(document.getElementById('piechart8'));
 	var pieOption8 = {
 		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
@@ -1377,10 +1407,14 @@ function pieChart8Fn(canji) {
 			textStyle: {
 				color: '#fff',
 			},
-			data: ['45岁及以上', '45岁以下']
+			data: ['失业', '就业']
+		},
+		tooltip:{
+			 trigger: 'item',
+        	formatter: "{a} <br/>{b}: {d}%"
 		},
 		series: [{
-			name: '残疾',
+			name: '就业',
 			type: 'pie',
 			radius: ['40%', '55%'],
 			center: ['50%', '40%'],
@@ -1402,12 +1436,12 @@ function pieChart8Fn(canji) {
 			},
 			minAngle: 20,
 			data: [{
-					value: canji["45gt"],
-					name: '45岁及以上'
+					value: obj["shiye"],
+					name: '失业'
 				},
 				{
-					value: canji["45lt"],
-					name: '45岁以下'
+					value: obj["jiuye"],
+					name: '就业'
 				},
 			]
 		}]
