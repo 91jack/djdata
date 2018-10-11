@@ -1,336 +1,287 @@
 <!doctype html>
 <html class="no-js">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>盘州市亦资街道党建大数据服务平台</title>
-		<link rel="stylesheet" type="text/css" href="static/css/bigdata.css" />
-		<link rel="stylesheet" type="text/css" href="static/layer/theme/default/layer.css" />
-	</head>
-	<body id="bigdata">
-		<!--顶部-->
-		<div class="header">
-			<div class="header-border-top"></div>
-			<div class="container">
-				<div class="date"></div>
-				<div class="header-title">盘州市亦资街道党建大数据服务平台</div>
-				<a href="./index.html" class="gohome"></a>
-			</div>
-			<div class="header-border-bottom"></div>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>盘州市亦资街道党建大数据服务平台</title>
+	<link rel="stylesheet" type="text/css" href="static/css/bigdata.css" />
+	<link rel="stylesheet" type="text/css" href="static/layer/theme/default/layer.css" />
+</head>
+<body id="bigdata">
+	<!--顶部-->
+	<div class="header">
+		<div class="header-border-top"></div>
+		<div class="container">
+			<div class="date"></div>
+			<div class="header-title">盘州市亦资街道党建大数据服务平台</div>
+			<a href="./index.html" class="gohome"></a>
 		</div>
+		<div class="header-border-bottom"></div>
+	</div>
 
-		<!--内容区域-->
-		<div class="bigdata-content">
-			<div class="container">
-				<div class="section1">
-					<div class="section-item">
-						<div class="section-item-title">
-							<h2>非公党建单位</h2>
-							<p>Non public party building unit</p>
-						</div>
-						<div class="section-item-content">
-							<div id="s1list">
-								<ul class="section-item-list" id="cygj"></ul>
-							</div>
-						</div>
-					</div>
-
-					<div class="section-item">
-						<div class="section-item-title">
-							<h2>非公党建单位行业分类</h2>
-							<p>Industry classification </p>
-						</div>
-						<div class="section-item-content barchart">
-							<!--柱状图-->
-							<div id="barchart"></div>
-						</div>
-					</div>
-				</div>
-
-				<div class="section2">
-					<!--顶部数据展示-->
-					<div class="section2-top-data">
-						<div class="item-level">
-							<div class="item-level-one">
-								<span>党员服务量</span>
-								<span><ol class="dangyuan1"></ol><em>人</em></span>
-							</div>
-
-							<!--<ul class="item-level-two">
-							<li data-title="线上登记库" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/hrlibs.html">
-								<span>线上登记库</span>
-								<span><b class="xsdjk"></b>人</span>
-							</li>
-							<li data-title="失业人员" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/sylist.html">
-								<span>失业人员</span>
-								<span><b class="shiye"></b>人</span>
-							</li>
-							<li data-title="低保户" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/dibaohu.html">
-								<span>低保户</span>
-								<span><b class="dibao"></b>人</span>
-							</li>
-							<li data-title="高校毕业生" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/gxbys.html">
-								<span>高校毕业生</span>
-								<span><b class="gaoxiao"></b>人</span>
-							</li>
-							<li data-title="就业困难人员" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/kunnan.html">
-								<span>就业困难人员</span>
-								<span><b class="kunnan"></b>人</span>
-							</li>
-						</ul>-->
-						</div>
-
-						<div class="item-level">
-							<div class="item-level-one">
-								<span>流动党员服务量</span>
-								<span><ol class="dangyuan2"></ol><em>人</em></span>
-							</div>
-
-							<!--<ul class="item-level-two">
-							<li data-title="夜市摊位数" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/booth.html">
-								<span>夜市摊位数</span>
-								<span><b class="yeshi"></b>人</span>
-							</li>
-							<li data-title="创业一条街" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/shops.html">
-								<span>创业一条街</span>
-								<span><b class="chuangye"></b>人</span>
-							</li>
-							<li data-title="定向帮扶" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/jpdxbf.html">
-								<span>定向帮扶</span>
-								<span><b class="dxbf"></b>人</span>
-							</li>
-						</ul>-->
-						</div>
-
-						<div class="item-level">
-							<div class="item-level-one">
-								<span>党建联建</span>
-								<span><ol class="dangyuan3"></ol><em>个</em></span>
-							</div>
-
-							<!--<ul class="item-level-two last">
-							<li data-title="线下成功就业人员" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/feedback.html">
-								<span>线下成功<br/>就业人员</span>
-								<span><b class="xianxia"></b>人</span>
-							</li>
-							<li data-title="线上自动配对成功人员" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/employed.html">
-								<span>线上自动配<br/>对成功人员</span>
-								<span><b class="xianshang"></b>人</span>
-							</li>
-						</ul>-->
-						</div>
-					</div>
-
-					<!--贵州地图-->
-					<div class="section2-chart">
-						<div class="map-list">
-							<a href="javascript:;"><i></i>亦资居委会党支部</a>
-							<a href="javascript:;"><i></i>亦资街道党工委</a>
-						</div>
-						<div class="map-box">
-							<div class="map" id="mapchart"></div>
-							<div class="map" id="map" style="display: none;">
-								<div class="map-wrap">
-									<img src="static/mapimg/0.png" />
-								</div>
-								<div class="map-num">
-									<a href="javascript:;" style="left:1.8rem;top:15rem;" data-index="1">1</a>
-									<a href="javascript:;" style="left:1.65rem;top:19.15rem;" data-index="2">2</a>
-									<a href="javascript:;" style="left:1.6rem;top:24.25rem;" data-index="3">3</a>
-									<a href="javascript:;" style="left:6.95rem;top:16.65rem;" data-index="4">4</a>
-									<a href="javascript:;" style="left:5.5rem;top:23.6rem;" data-index="5">5</a>
-									<a href="javascript:;" style="left:8rem;top:24.6rem;" data-index="6">6</a>
-
-									<a href="javascript:;" style="left:11rem;top:23.45rem;" data-index="7">7</a>
-
-									<a href="javascript:;" style="left:9.15rem;top:19rem;" data-index="8">8</a>
-									<a href="javascript:;" style="left:7.95rem;top:21.4rem;" data-index="9">9</a>
-									<a href="javascript:;" style="left:7.8rem;top:10.7rem;" data-index="10">10</a>
-
-									<a href="javascript:;" style="left:14.45rem;top:21.25rem;" data-index="11">11</a>
-									<a href="javascript:;" style="left:16.15rem;top:15.15rem;" data-index="12">12</a>
-									<a href="javascript:;" style="left:17rem;top:20.4rem;" data-index="13">13</a>
-									<a href="javascript:;" style="left:17rem;top:16rem;" data-index="13">13</a>
-									<a href="javascript:;" style="left:18.55rem;top:20rem;" data-index="14">14</a>
-									<a href="javascript:;" style="left:14.2rem;top:17rem;" data-index="14">14</a>
-
-									<a href="javascript:;" style="left:12.5rem;top:13.5rem;" data-index="15">15</a>
-									<a href="javascript:;" style="left:16.8rem;top:11.4rem;" data-index="16">16</a>
-									<a href="javascript:;" style="left:14.65rem;top:8.3rem;" data-index="17">17</a>
-									<a href="javascript:;" style="left:16rem;top:1.35rem;" data-index="18">18</a>
-									<a href="javascript:;" style="left:13.8rem;top:3.95rem;" data-index="19">19</a>
-									<a href="javascript:;" style="left:16.8rem;top:13.4rem;" data-index="20">20</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="section3">
-					<div class="section-item">
-						<div class="section-item-title">
-							<h2>支部学习实时动态</h2>
-							<p>Real time dynamic </p>
-						</div>
-						<div class="section-item-content" id="section3Ul">
-							<div class="section3-tab-btn">
-								<div class="wrapper wrapper04" id="sass">
-								    <div class="scroller">
-								        <ul class="clearfix" id="nav"></ul>
-								    </div>
-								</div>
-							</div>
-
-							<div class="section3-tab-content">
-								<div id="s3list1"></div>
-								<!--<ul class="section3-top-list"></ul>-->
-							</div>
-						</div>
-					</div>
-
-					<div class="section-item  clearfix">
-						<div class="section-item-title">
-							<h2>党建线上互动实时动态</h2>
-							<p>Real time dynamic</p>
-						</div>
-						<div class="section-item-content s3">
-							<p><span>用户名</span><span>时间</span></p>
-							<div id="s3list2">
-								<ul class="section-item-list section3-list"></ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="footerchart">
-			<div class="container">
-				<div class="section-item footer-left-item">
+	<!--内容区域-->
+	<div class="bigdata-content">
+		<div class="container">
+			<div class="section1">
+				<div class="section-item">
 					<div class="section-item-title">
-						<h2>亦资街道基层党建人力分布图</h2>
-						<p>Human distribution map </p>
+						<h2>非公党建单位</h2>
+						<p>Non public party building unit</p>
 					</div>
-					<div class="piechart-wrap">
-						<div class="piechart">
-							<div id="piechart1" style="width:13rem;height:12rem"></div>
-							<p>流动人口</p>
-						</div>
-						<div class="piechart">
-							<div id="piechart2" style="width:13rem;height:12rem"></div>
-							<p>流动党员</p>
-						</div>
-						<div class="piechart">
-							<div id="piechart3" style="width:13rem;height:12rem"></div>
-							<p>店铺</p>
-						</div>
-						<div class="piechart">
-							<div id="piechart4" style="width:13rem;height:12rem"></div>
-							<p>政治面貌</p>
-						</div>
-						<div class="piechart">
-							<div id="piechart5" style="width:13rem;height:12rem"></div>
-							<p>困难人员</p>
-						</div>
-
-						<div class="piechart">
-							<div id="piechart6" style="width:13rem;height:12rem"></div>
-							<p>大学生</p>
-						</div>
-
-						<div class="piechart">
-							<div id="piechart7" style="width:13rem;height:12rem"></div>
-							<p>性别</p>
-						</div>
-
-						<div class="piechart">
-							<div id="piechart8" style="width:13rem;height:12rem"></div>
-							<p>就业</p>
+					<div class="section-item-content">
+						<div id="s1list">
+							<ul class="section-item-list" id="cygj"></ul>
 						</div>
 					</div>
 				</div>
 
-				<div class="section-item footer-right-item">
+				<div class="section-item">
 					<div class="section-item-title">
-						<h2>智慧亦资服务量(月)</h2>
-						<p>Amount of use </p>
+						<h2>非公党建单位行业分类</h2>
+						<p>Industry classification </p>
 					</div>
-					<div id="linechart"></div>
+					<div class="section-item-content barchart">
+						<!--柱状图-->
+						<div id="barchart"></div>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<!--弹窗1-->
-		<div class="popup popup1">
-			<!--<div class="img-box">
-				<img src="static/images/banner.png" />
-			</div>
-			<div class="content">
-				<p>单位名称：1111111111111</p>
-				<p>单位地址：1111111111111</p>
-				<p>员工数量：1111111111111</p>
-				<p>是否有党群组织：<span style="color: #1E9FFF;">是</span></p>
-				<p>党组织介绍：1111111</p>
-			</div>-->
-		</div>
+			<div class="section2">
+				<!--顶部数据展示-->
+				<div class="section2-top-data">
+					<div class="item-level">
+						<div class="item-level-one">
+							<span>党员服务量</span>
+							<span><ol class="dangyuan1"></ol><em>人</em></span>
+						</div>
+					</div>
 
-		<!--弹窗2-->
-		<div class="popup popup2">
-			<div class="img-box">
-				<img src="static/images/banner.png" />
-			</div>
-			<div class="content">
-				<p>学习主题：1111111111111</p>
-				<p class="party clearfix">
-					<span>党支部人数：110人</span>
-					<span>流动党员人数：110人</span>
-					<span>学习完成率：95%</span>
-				</p>
-				<div class="section-item clearfix">
-					<h2>未学习</h2>
-					<div class="section-body">
-						<p>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-						</p>
-						<p>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-						</p>
+					<div class="item-level">
+						<div class="item-level-one">
+							<span>流动党员服务量</span>
+							<span><ol class="dangyuan2"></ol><em>人</em></span>
+						</div>
+					</div>
+
+					<div class="item-level">
+						<div class="item-level-one">
+							<span>党建联建</span>
+							<span><ol class="dangyuan3"></ol><em>个</em></span>
+						</div>
 					</div>
 				</div>
-				<div class="section-item clearfix">
-					<h2>已学习</h2>
-					<div class="section-body">
-						<p>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-						</p>
-						<p>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-							<span>战三</span>
-						</p>
+
+				<!--贵州地图-->
+				<div class="section2-chart">
+					<div class="map-list">
+						<a href="javascript:;"><i></i>亦资居委会党支部</a>
+						<a href="javascript:;"><i></i>亦资街道党工委</a>
+					</div>
+					<div class="map-box">
+						<div class="map" id="mapchart"></div>
+						<div class="map" id="map" style="display: none;">
+							<div class="map-wrap">
+								<img src="static/mapimg/0.png" />
+							</div>
+							<div class="map-num">
+								<a href="javascript:;" style="left:1.8rem;top:15rem;" data-index="1">1</a>
+								<a href="javascript:;" style="left:1.65rem;top:19.15rem;" data-index="2">2</a>
+								<a href="javascript:;" style="left:1.6rem;top:24.25rem;" data-index="3">3</a>
+								<a href="javascript:;" style="left:6.95rem;top:16.65rem;" data-index="4">4</a>
+								<a href="javascript:;" style="left:5.5rem;top:23.6rem;" data-index="5">5</a>
+								<a href="javascript:;" style="left:8rem;top:24.6rem;" data-index="6">6</a>
+
+								<a href="javascript:;" style="left:11rem;top:23.45rem;" data-index="7">7</a>
+
+								<a href="javascript:;" style="left:9.15rem;top:19rem;" data-index="8">8</a>
+								<a href="javascript:;" style="left:7.95rem;top:21.4rem;" data-index="9">9</a>
+								<a href="javascript:;" style="left:7.8rem;top:10.7rem;" data-index="10">10</a>
+
+								<a href="javascript:;" style="left:14.45rem;top:21.25rem;" data-index="11">11</a>
+								<a href="javascript:;" style="left:16.15rem;top:15.15rem;" data-index="12">12</a>
+								<a href="javascript:;" style="left:17rem;top:20.4rem;" data-index="13">13</a>
+								<a href="javascript:;" style="left:17rem;top:16rem;" data-index="13">13</a>
+								<a href="javascript:;" style="left:18.55rem;top:20rem;" data-index="14">14</a>
+								<a href="javascript:;" style="left:14.2rem;top:17rem;" data-index="14">14</a>
+
+								<a href="javascript:;" style="left:12.5rem;top:13.5rem;" data-index="15">15</a>
+								<a href="javascript:;" style="left:16.8rem;top:11.4rem;" data-index="16">16</a>
+								<a href="javascript:;" style="left:14.65rem;top:8.3rem;" data-index="17">17</a>
+								<a href="javascript:;" style="left:16rem;top:1.35rem;" data-index="18">18</a>
+								<a href="javascript:;" style="left:13.8rem;top:3.95rem;" data-index="19">19</a>
+								<a href="javascript:;" style="left:16.8rem;top:13.4rem;" data-index="20">20</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="section3">
+				<div class="section-item">
+					<div class="section-item-title">
+						<h2>支部学习实时动态</h2>
+						<p>Real time dynamic </p>
+					</div>
+					<div class="section-item-content" id="section3Ul">
+						<div class="section3-tab-btn">
+							<div class="wrapper wrapper04" id="sass">
+							    <div class="scroller">
+							        <ul class="clearfix" id="nav"></ul>
+							    </div>
+							</div>
+						</div>
+
+						<div class="section3-tab-content">
+							<div id="s3list1"></div>
+							<!--<ul class="section3-top-list"></ul>-->
+						</div>
+					</div>
+				</div>
+
+				<div class="section-item  clearfix">
+					<div class="section-item-title">
+						<h2>党建线上互动实时动态</h2>
+						<p>Real time dynamic</p>
+					</div>
+					<div class="section-item-content s3">
+						<p><span>用户名</span><span>时间</span></p>
+						<div id="s3list2">
+							<ul class="section-item-list section3-list"></ul>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<div class="footerchart">
+		<div class="container">
+			<div class="section-item footer-left-item">
+				<div class="section-item-title">
+					<h2>亦资街道基层党建人力分布图</h2>
+					<p>Human distribution map </p>
+				</div>
+				<div class="piechart-wrap">
+					<div class="piechart">
+						<div id="piechart1" style="width:13rem;height:12rem"></div>
+						<p>流动人口</p>
+					</div>
+					<div class="piechart">
+						<div id="piechart2" style="width:13rem;height:12rem"></div>
+						<p>流动党员</p>
+					</div>
+					<div class="piechart">
+						<div id="piechart3" style="width:13rem;height:12rem"></div>
+						<p>店铺</p>
+					</div>
+					<div class="piechart">
+						<div id="piechart4" style="width:13rem;height:12rem"></div>
+						<p>政治面貌</p>
+					</div>
+					<div class="piechart">
+						<div id="piechart5" style="width:13rem;height:12rem"></div>
+						<p>困难人员</p>
+					</div>
+
+					<div class="piechart">
+						<div id="piechart6" style="width:13rem;height:12rem"></div>
+						<p>大学生</p>
+					</div>
+
+					<div class="piechart">
+						<div id="piechart7" style="width:13rem;height:12rem"></div>
+						<p>性别</p>
+					</div>
+
+					<div class="piechart">
+						<div id="piechart8" style="width:13rem;height:12rem"></div>
+						<p>就业</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="section-item footer-right-item">
+				<div class="section-item-title">
+					<h2>智慧亦资服务量(月)</h2>
+					<p>Amount of use </p>
+				</div>
+				<div id="linechart"></div>
+			</div>
+		</div>
+	</div>
+
+	<!--弹窗1-->
+	<div class="popup popup1">
+		<!--<div class="img-box">
+			<img src="static/images/banner.png" />
+		</div>
+		<div class="content">
+			<p>单位名称：1111111111111</p>
+			<p>单位地址：1111111111111</p>
+			<p>员工数量：1111111111111</p>
+			<p>是否有党群组织：<span style="color: #1E9FFF;">是</span></p>
+			<p>党组织介绍：1111111</p>
+		</div>-->
+	</div>
+
+	<!--弹窗2-->
+	<div class="popup popup2">
+		<!--<div class="img-box">
+			<img src="static/images/banner.png" />
+		</div>
+		<div class="content">
+			<p>学习主题：1111111111111</p>
+			<p class="party clearfix">
+				<span>党支部人数：110人</span>
+				<span>流动党员人数：110人</span>
+				<span>学习完成率：95%</span>
+			</p>
+			<div class="section-item clearfix">
+				<h2>未学习</h2>
+				<div class="section-body">
+					<p>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+					</p>
+					<p>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+					</p>
+				</div>
+			</div>
+			<div class="section-item clearfix">
+				<h2>已学习</h2>
+				<div class="section-body">
+					<p>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+					</p>
+					<p>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+						<span>战三</span>
+					</p>
+				</div>
+			</div>
+		</div>-->
+	</div>
 
 <script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
@@ -354,24 +305,6 @@
 		})
 	})
 
-
-			// 弹窗
-//			$('.item-level-two li').each(function() {
-//				$(this).click(function() {
-//					layer.open({
-//						type: 2,
-//						title: $(this).attr('data-title'),
-//						shadeClose: true,
-//						shade: 0.8,
-//						offset: '10%',
-//						area: ['80%', '80%'],
-//						content: $(this).attr('data-href') //iframe的url
-//					});
-//				})
-//			})
-
-			
-			
 
 			
 var host = 	'http://gzps.xnshequ.com/tongji_bigdata/'	
@@ -423,7 +356,7 @@ ajaxData(cygjUrl,function(res){
 				cp_id:$(this).attr('cpid')
 			},
 			success:function(res){
-				console.log(res)
+				console.log(res);
 				var popStr = '';
 				popStr +='<div class="img-box">'
 					+'<img src="static/images/banner.png" />'
@@ -479,10 +412,12 @@ ajaxData(t3Url,function(res){
 });
 
 //3.支部学习实时动态
+var categoryId = 0;
 ajaxData(sbdUrl,function(res){
+	console.log(res)
 	var str = ''
 	for(var i = 0;i<res.data.length;i++){
-		str +='<li><a href="javascript:void(0)">'+res.data[i].category_name+'</a></li>' 
+		str +='<li><a href="javascript:void(0)" categoryid="'+res.data[i].category_id+'">'+res.data[i].category_name+'</a></li>' 
 	}
 	$('#nav').html(str);
 
@@ -492,7 +427,7 @@ ajaxData(sbdUrl,function(res){
 	for(var i = 0;i<res.data.length;i++){
 		listStr +='<ul class="section3-top-list">'
 		for(var j=0;j<res.data[i].articles.length;j++){
-			listStr +='<li>'
+			listStr +='<li aid="'+res.data[i].articles[j].a_id+'">'
 			if(j<3){
 				listStr +='<span class="sort" style="background:#E58B26">'+(j+1)+'</span>'
 			}else{
@@ -550,6 +485,8 @@ ajaxData(sbdUrl,function(res){
 	
 	$('.scroller li a').click(function(){
 		var index = $(this).parent().index();
+		categoryId = $(this).attr('categoryid');
+		
 		sectionUl(index)
 	})
 	
@@ -564,15 +501,88 @@ function sectionUl(index){
 	
 	// 弹窗2
 	$('.section3-top-list li').on('click', function() {
+		var aId = $(this).attr('aid');
 		
-		layer.open({
-			type: 1,
-			area: ['880px', '880px'],
-			title: 'xxxx党组织部',
-			shade: 0.2,
-			shadeClose: true, //点击遮罩关闭
-			content: $('.popup2')
+		console.log(categoryId);
+		console.log(aId);
+		$.ajax({
+			type:"get",
+			url:"http://gzps.xnshequ.com/tongji_bigdata/dangyuanxq",
+			data:{
+				$dz_id:categoryId,
+				$a_id:aId
+			},
+			success:function(res){
+				console.log(res);
+				var popStr = '';
+				popStr +='<div class="img-box">'
+					+'<img src="'+res.data.articles+'" />'
+					+'</div>'
+					
+				'<div class="content">'
+			'<p>学习主题：'+res.data.articles.title+'</p>'
+			'<p class="party clearfix">'
+				'<span>党支部人数：'110'人</span>'
+				'<span>流动党员人数：'110'人</span>'
+				'<span>学习完成率：'95%'</span>'
+			'</p>'
+//			<div class="section-item clearfix">
+//				<h2>未学习</h2>
+//				<div class="section-body">
+//					<p>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//					</p>
+//					<p>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//					</p>
+//				</div>
+//			</div>
+//			<div class="section-item clearfix">
+//				<h2>已学习</h2>
+//				<div class="section-body">
+//					<p>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//					</p>
+//					<p>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//						<span>战三</span>
+//					</p>
+//				</div>
+//			</div>
+		+'</div>'
+				
+				$('.popup2').html(popStr);
+				
+				layer.open({
+					type: 1,
+					area: ['880px', '880px'],
+					title: 'xxxx党组织部',
+					shade: 0,
+					shadeClose: true, //点击遮罩关闭
+					content: $('.popup2')
+				});
+			}
 		});
+		
 	});	
 }
 
