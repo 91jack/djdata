@@ -38,8 +38,8 @@
 
 					<div class="section-item">
 						<div class="section-item-title">
-							<h2>非公党建单位行业分类</h2>
-							<p>Industry classification </p>
+							<h2>诚信之家行业分类</h2>
+							<p>Honesty industry classification</p>
 						</div>
 						<div class="section-item-content barchart">
 							<!--柱状图-->
@@ -54,71 +54,22 @@
 						<div class="item-level">
 							<div class="item-level-one">
 								<span>单位覆盖量</span>
-								<span><ol class="dangyuan1"></ol><em>人</em></span>
+								<span><ol class="dangyuan1"></ol><em>家</em></span>
 							</div>
-
-							<!--<ul class="item-level-two">
-							<li data-title="线上登记库" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/hrlibs.html">
-								<span>线上登记库</span>
-								<span><b class="xsdjk"></b>人</span>
-							</li>
-							<li data-title="失业人员" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/sylist.html">
-								<span>失业人员</span>
-								<span><b class="shiye"></b>人</span>
-							</li>
-							<li data-title="低保户" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/dibaohu.html">
-								<span>低保户</span>
-								<span><b class="dibao"></b>人</span>
-							</li>
-							<li data-title="高校毕业生" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/gxbys.html">
-								<span>高校毕业生</span>
-								<span><b class="gaoxiao"></b>人</span>
-							</li>
-							<li data-title="就业困难人员" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/kunnan.html">
-								<span>就业困难人员</span>
-								<span><b class="kunnan"></b>人</span>
-							</li>
-						</ul>-->
 						</div>
 
 						<div class="item-level">
 							<div class="item-level-one">
 								<span>党员示范店</span>
-								<span><ol class="dangyuan2"></ol><em>人</em></span>
+								<span><ol class="dangyuan2"></ol><em>家</em></span>
 							</div>
-
-							<!--<ul class="item-level-two">
-							<li data-title="夜市摊位数" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/booth.html">
-								<span>夜市摊位数</span>
-								<span><b class="yeshi"></b>人</span>
-							</li>
-							<li data-title="创业一条街" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/shops.html">
-								<span>创业一条街</span>
-								<span><b class="chuangye"></b>人</span>
-							</li>
-							<li data-title="定向帮扶" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/jpdxbf.html">
-								<span>定向帮扶</span>
-								<span><b class="dxbf"></b>人</span>
-							</li>
-						</ul>-->
 						</div>
 
 						<div class="item-level">
 							<div class="item-level-one">
 								<span>新入驻诚信商家</span>
-								<span><ol class="dangyuan3"></ol><em>个</em></span>
+								<span><ol class="dangyuan3"></ol><em>家</em></span>
 							</div>
-
-							<!--<ul class="item-level-two last">
-							<li data-title="线下成功就业人员" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/feedback.html">
-								<span>线下成功<br/>就业人员</span>
-								<span><b class="xianxia"></b>人</span>
-							</li>
-							<li data-title="线上自动配对成功人员" data-href="http://tianwen.xnshequ.com/ssadmin/bigdata/employed.html">
-								<span>线上自动配<br/>对成功人员</span>
-								<span><b class="xianshang"></b>人</span>
-							</li>
-						</ul>-->
 						</div>
 					</div>
 
@@ -170,7 +121,7 @@
 				<div class="section3">
 					<div class="section-item">
 						<div class="section-item-title">
-							<h2>支部学习实时动态</h2>
+							<h2>诚信之家服务动态</h2>
 							<p>Real time dynamic </p>
 						</div>
 						<div class="section-item-content" id="section3Ul">
@@ -191,7 +142,7 @@
 
 					<div class="section-item  clearfix">
 						<div class="section-item-title">
-							<h2>党建线上互动实时动态</h2>
+							<h2>诚信之家居民实时互动动态</h2>
 							<p>Real time dynamic</p>
 						</div>
 						<div class="section-item-content s3">
@@ -209,8 +160,8 @@
 			<div class="container">
 				<div class="section-item footer-left-item">
 					<div class="section-item-title">
-						<h2>亦资街道基层党建人力分布图</h2>
-						<p>Human distribution map </p>
+						<h2>杜鹃居委会人力资源分布图</h2>
+						<p>Distribution map of human resources </p>
 					</div>
 					<div class="piechart-wrap">
 						<div class="piechart">
@@ -340,35 +291,21 @@
 <script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-	// 地图切换
-	$('.map-list a').click(function() {
-		var index = $(this).index();
-		$('.map-box .map').eq(index).show().siblings().hide();
+// 地图切换
+$('.map-list a').click(function() {
+	var index = $(this).index();
+	$('.map-box .map').eq(index).show().siblings().hide();
+})
+
+// 网格地图hover
+$('.map-num a').each(function() {
+	$(this).hover(function() {
+		var index = $(this).attr('data-index');
+		$('.map-wrap img').attr('src', 'static/mapimg/' + index + '.png');
 	})
-
-	// 网格地图hover
-	$('.map-num a').each(function() {
-		$(this).hover(function() {
-			var index = $(this).attr('data-index');
-			$('.map-wrap img').attr('src', 'static/mapimg/' + index + '.png');
-		})
-	})
+})
 
 
-			// 弹窗
-//			$('.item-level-two li').each(function() {
-//				$(this).click(function() {
-//					layer.open({
-//						type: 2,
-//						title: $(this).attr('data-title'),
-//						shadeClose: true,
-//						shade: 0.8,
-//						offset: '10%',
-//						area: ['80%', '80%'],
-//						content: $(this).attr('data-href') //iframe的url
-//					});
-//				})
-//			})
 
 			
 			
@@ -378,11 +315,11 @@ var host = 	'http://gzps.xnshequ.com/tongji_bigdata/'
 //1.党员示范店
 var cygjUrl = host +'party';
 
-//2.党员服务量，流动党员服务量，党建联建
-var t3Url = host +'t3';
+//2.统计总量
+var t3Url = host +'shopnum';
 
-//3.支部学习实时动态
-var sbdUrl = host +'sbd';
+//3.服务动态
+var sbdUrl = host +'fuwudt';
 
 //4.非公党建单位行业分类展示
 var jobcateUrl = host +'jobcate';
@@ -404,11 +341,16 @@ var mpdynamicUrl = host +'mpdynamic';
 
 
 /*数据渲染*/
-//1.非公党建单位
+//1.党员示范店
 ajaxData(cygjUrl,function(res){
 	var str = ''
 	for(var i = 0;i<res.data.length;i++){
-		str += '<li cpid="'+res.data[i].cp_id+'"><span class="sort">'+(i+1)+'</span><span>'+res.data[i].name+'</span><span>'+res.data[i].total+'人</span></li>'
+		str += '<li cpid="'+res.data[i].id+'">'
+			+'<span class="sort">'+(i+1)+'</span>'
+			+'<p><span>'+res.data[i].name.substr(0,6) +'</span>'
+			+'<span>'+res.data[i].fzr_name.substr(0,3)+'</span>'
+			+'<span>'+res.data[i].shequ_name+'</span>'
+			+'</p></li>'
 	}
 	$('#cygj').html(str);
 	for(var i = 0;i<3;i++){
@@ -445,14 +387,14 @@ ajaxData(cygjUrl,function(res){
 				
 				$('.popup1').html(popStr);
 				
-				layer.open({
-					type: 1,
-					area: ['880px', '880px'],
-					title: res.data.company_info.name,
-					shade: 0.2,
-					shadeClose: true, //点击遮罩关闭
-					content: $('.popup1')
-				});
+//				layer.open({
+//					type: 1,
+//					area: ['880px', '880px'],
+//					title: res.data.company_info.name,
+//					shade: 0.2,
+//					shadeClose: true, //点击遮罩关闭
+//					content: $('.popup1')
+//				});
 			}
 		});
 
@@ -466,56 +408,55 @@ ajaxData(cygjUrl,function(res){
 			
 });
 
-//2.党员服务量，流动党员服务量，党建联建
+//2.统计总量
 ajaxData(t3Url,function(res){
 	var oldNum1 = 11
-	$('.dangyuan1').html(updateNum(oldNum1, res.data.dyfwl));
+	$('.dangyuan1').html(updateNum(oldNum1, res.data.zong_num));
 	
 	var oldNum2 = 11
-	$('.dangyuan2').html(updateNum(oldNum2, res.data.lddyfwl));
+	$('.dangyuan2').html(updateNum(oldNum2, res.data.dangyuan_num));
 	
 	var oldNum3 = 11
-	$('.dangyuan3').html(updateNum(oldNum3, res.data.djlj));
+	$('.dangyuan3').html(updateNum(oldNum3, res.data.xinruzhu));
+	
+	var xData = [];
+	var barData = [];
+	xData = ['康养医疗', '特色美食', '酒店民宿', '酒店民宿', '其他']
+	barData = [res.data.yi, res.data.shi, res.data.zhu, res.data.gongyong,res.data.qita];
+	barChartFn(xData, barData)
 });
 
-//3.支部学习实时动态
+//3.服务动态
 ajaxData(sbdUrl,function(res){
 	var str = ''
-	for(var i = 0;i<res.data.length;i++){
-		str +='<li><a href="javascript:void(0)">'+res.data[i].category_name+'</a></li>' 
+	var category = [
+		{name:"康养医疗",ind:"yi"},
+		{name:"特色美食",ind:"shi"},
+		{name:"酒店民宿",ind:"zhu"},
+		{name:"出行规划",ind:"xing"},
+		{name:"农业基地",ind:"nongye"},
+		{name:"风景名胜",ind:"jingqu"},
+		{name:"公共服务",ind:"gonggong"},
+		
+	];
+	for(var i = 0;i<category.length;i++){
+		str +='<li><a href="javascript:void(0)">'+category[i].name+'</a></li>' 
 	}
 	$('#nav').html(str);
 
 	$('.wrapper').navbarscroll();
 	
 	var listStr = '';
-	for(var i = 0;i<res.data.length;i++){
-		listStr +='<ul class="section3-top-list">'
-		for(var j=0;j<res.data[i].articles.length;j++){
-			listStr +='<li>'
-			if(j<3){
-				listStr +='<span class="sort" style="background:#E58B26">'+(j+1)+'</span>'
-			}else{
-				listStr +='<span class="sort">'+(j+1)+'</span>'
-				
-			}
-			
-			var title = ''
-			if(res.data[i].articles[j].title.length>10){
-				title = res.data[i].articles[j].title.substr(0,8)+'...'
-				listStr +='<span class="theme">'+title+'</span>'
-			}
-			
-			listStr +='<p><span>流动党员</span><em>'+res.data[i].articles[j].liudong_num+'人</em></p>'
-			+'<p><span>辖区党员</span><em>'+res.data[i].articles[j].feiliudong_num+'人</em></p>'
-			+'<p><span>完成率</span><em>'+res.data[i].articles[j].wancheng+'</em></p>'
-		+'</li>'
-		}
-		listStr +='</ul>';
-	}
+	console.log(res)
+	listStrFn(res.data['yi'],listStr);
+	listStrFn(res.data['shi'],listStr);
+	listStrFn(res.data['zhu'],listStr);
+	listStrFn(res.data['xing'],listStr);
+	listStrFn(res.data['nongye'],listStr);
+	listStrFn(res.data['jingqu'],listStr);
+	listStrFn(res.data['gonggong'],listStr);
 	
 	
-	$('#s3list1').html(listStr);
 	
 	$('.scroller li a').eq(0).addClass('cur').parent().siblings().children('a').removeClass('cur');
 	$('.section3-tab-content ul').eq(0).show().siblings().hide();
@@ -528,18 +469,17 @@ ajaxData(sbdUrl,function(res){
 
 	var index = 0;
 	var timer = null;
-	timer = setInterval(function(){
-		index++;
-		//sectionUl(index);
-		if(index >$('.scroller li a').length ){
-			index = 0;
-		}
-		$('.scroller li a').eq(index).trigger("click");
-		$('.scroller li a').eq(index).bind('click',function(){
-			sectionUl(index)
-		})
-		
-	},2000)
+//	timer = setInterval(function(){
+//		index++;
+//		if(index >$('.scroller li a').length ){
+//			index = 0;
+//		}
+//		$('.scroller li a').eq(index).trigger("click");
+//		$('.scroller li a').eq(index).bind('click',function(){
+//			sectionUl(index)
+//		})
+//		
+//	},2000)
 	
 	$('#section3Ul').hover(function(){
 		clearInterval(timer);
@@ -555,6 +495,27 @@ ajaxData(sbdUrl,function(res){
 	
 	
 });
+
+
+function listStrFn(obj,listStr){
+	console.log(obj)
+	listStr +='<ul class="section-item-list">'
+	for(var j=0;j<obj.length;j++){
+		listStr +='<li>'
+		if(j<3){
+			listStr +='<span class="sort" style="background:#E58B26">'+(j+1)+'</span>'
+		}else{
+			listStr +='<span class="sort">'+(j+1)+'</span>'
+		}
+		
+//		listStr += '<p><span>'+obj[j].name+'</span>'
+//				+ '<span>'+obj[j].mstype+'</span>'
+//				+ '<span>'+obj[j].fzr_phone+'</span>'
+//				+'</p></li>'
+	}
+	listStr +='</ul>';
+	$('#s3list1').append(listStr);
+}
 
 function sectionUl(index){
 	$('.scroller li a').eq(index).addClass('cur').parent().siblings().children('a').removeClass('cur');
@@ -576,15 +537,7 @@ function sectionUl(index){
 	});	
 }
 
-//4.非公党建单位行业分类展示
-ajaxData(jobcateUrl,function(res){
-	//console.log(res)
-	var xData = [];
-	var barData = [];
-	xData = ['生产制造', '公共服务', '科技信息', '文化教育', '能源服务']
-	barData = [res.data.fwl_count, res.data.jsl_count, res.data.xsl_count, res.data.zjl_count, res.data.qtl_count];
-	barChartFn(xData, barData)
-});
+
 
 
 //5.党建线上互动实时动态
@@ -1242,7 +1195,7 @@ function pieChart5Fn(obj) {
 			textStyle: {
 				color: '#fff',
 			},
-			data: ['4050', '低保','零就业']
+			data: ['重点人群', '低保户','困难户','空巢老人']
 		},
 		tooltip:{
 			 trigger: 'item',
@@ -1278,9 +1231,11 @@ function pieChart5Fn(obj) {
 			},
 			minAngle: 20,
 			data: [
-				{value: obj["4050"],name: '4050'},
-				{value: obj["dibao"],name: '低保'},
-				{value: obj["lingjiuye"],name: '零就业'},
+				{value: obj["keyperson"],name: '重点人群'},
+				{value: obj["dibao"],name: '低保户'},
+				{value: obj["kunnan"],name: '困难户'},
+				{value: obj["kongchao"],name: '空巢老人'},
+				
 			]
 		}]
 	}
@@ -1301,7 +1256,7 @@ function pieChart6Fn(obj) {
 			textStyle: {
 				color: '#fff',
 			},
-			data: ['男', '女']
+			data: ['大专以上', '大专','大专以下']
 		},
 		tooltip:{
 			 trigger: 'item',
@@ -1330,8 +1285,9 @@ function pieChart6Fn(obj) {
 			},
 			minAngle: 20,
 			data: [
-				{value: obj["nan"],name: '男'},
-				{value: obj["nv"],name: '女'},
+				{value: obj["dazhuanys"],name: '大专以上'},
+				{value: obj["dazhuan"],name: '大专'},
+				{value: obj["dazhuanyx"],name: '大专以下'},
 			]
 		}]
 	}

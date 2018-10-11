@@ -614,8 +614,6 @@ ajaxData(rtdynamicUrl,function(res){
 });
 //6.亦资街道基层党组织人力分布图
 ajaxData(gridUrl,function(res){
-	//console.log(res);
-	
 	pieChart1Fn(res.data.liudongrenkou);
 	pieChart2Fn(res.data.liudongdangyuan);
 	pieChart3Fn(res.data.shop);
@@ -1252,7 +1250,7 @@ function pieChart5Fn(obj) {
 			textStyle: {
 				color: '#fff',
 			},
-			data: ['4050', '低保','零就业']
+			data: ['重点人群', '低保户','困难户','空巢老人']
 		},
 		tooltip:{
 			 trigger: 'item',
@@ -1288,9 +1286,11 @@ function pieChart5Fn(obj) {
 			},
 			minAngle: 20,
 			data: [
-				{value: obj["4050"],name: '4050'},
-				{value: obj["dibao"],name: '低保'},
-				{value: obj["lingjiuye"],name: '零就业'},
+				{value: obj["keyperson"],name: '重点人群'},
+				{value: obj["dibao"],name: '低保户'},
+				{value: obj["kunnan"],name: '困难户'},
+				{value: obj["kongchao"],name: '空巢老人'},
+				
 			]
 		}]
 	}
@@ -1311,7 +1311,7 @@ function pieChart6Fn(obj) {
 			textStyle: {
 				color: '#fff',
 			},
-			data: ['男', '女']
+			data: ['大专以上', '大专','大专以下']
 		},
 		tooltip:{
 			 trigger: 'item',
@@ -1340,8 +1340,9 @@ function pieChart6Fn(obj) {
 			},
 			minAngle: 20,
 			data: [
-				{value: obj["nan"],name: '男'},
-				{value: obj["nv"],name: '女'},
+				{value: obj["dazhuanys"],name: '大专以上'},
+				{value: obj["dazhuan"],name: '大专'},
+				{value: obj["dazhuanyx"],name: '大专以下'},
 			]
 		}]
 	}
@@ -1421,7 +1422,7 @@ function pieChart8Fn(obj) {
 			data: ['失业', '就业']
 		},
 		tooltip:{
-			 trigger: 'item',
+			trigger: 'item',
         	formatter: "{a} <br/>{b}: {d}%"
 		},
 		series: [{

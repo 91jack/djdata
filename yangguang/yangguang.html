@@ -342,11 +342,11 @@ ajaxData(cygjUrl,function(res){
 	for(var i = 0;i<res.data.length;i++){
 		str += '<li cpid="'+res.data[i].id+'">'
 			+'<span class="sort">'+(i+1)+'</span>'
-			+'<span>'+res.data[i].quyu_name +'</span>'
+			+'<p><span>'+res.data[i].quyu_name.substr(0,8) +'</span>'
 			+'<span>'+res.data[i].sqr_name+'</span>'
-			+'<span>'+res.data[i].leibie_name+'</span>'
-			+'<span>'+res.data[i].sq_name+'</span>'
-			+'</li>'
+			+'<span>'+res.data[i].leibie_name.substr(0,4)+'</span>'
+			+'<span>'+res.data[i].sq_name.substr(0,4)+'</span>'
+			+'</p></li>'
 	}
 	$('#cygj').html(str);
 	for(var i = 0;i<3;i++){
@@ -397,10 +397,10 @@ ajaxData(cygjUrl,function(res){
 	});
 	
 	// 非公党建单位-列表上下滚动
-	$("#s1list").myScroll({
-		speed:40, 
-		rowHeight:40
-	});
+//	$("#s1list").myScroll({
+//		speed:40, 
+//		rowHeight:40
+//	});
 			
 });
 
@@ -1180,7 +1180,7 @@ function pieChart5Fn(obj) {
 			textStyle: {
 				color: '#fff',
 			},
-			data: ['4050', '低保','零就业']
+			data: ['重点人群', '低保户','困难户','空巢老人']
 		},
 		tooltip:{
 			 trigger: 'item',
@@ -1216,9 +1216,11 @@ function pieChart5Fn(obj) {
 			},
 			minAngle: 20,
 			data: [
-				{value: obj["4050"],name: '4050'},
-				{value: obj["dibao"],name: '低保'},
-				{value: obj["lingjiuye"],name: '零就业'},
+				{value: obj["keyperson"],name: '重点人群'},
+				{value: obj["dibao"],name: '低保户'},
+				{value: obj["kunnan"],name: '困难户'},
+				{value: obj["kongchao"],name: '空巢老人'},
+				
 			]
 		}]
 	}
@@ -1239,7 +1241,7 @@ function pieChart6Fn(obj) {
 			textStyle: {
 				color: '#fff',
 			},
-			data: ['男', '女']
+			data: ['大专以上', '大专','大专以下']
 		},
 		tooltip:{
 			 trigger: 'item',
@@ -1268,8 +1270,9 @@ function pieChart6Fn(obj) {
 			},
 			minAngle: 20,
 			data: [
-				{value: obj["nan"],name: '男'},
-				{value: obj["nv"],name: '女'},
+				{value: obj["dazhuanys"],name: '大专以上'},
+				{value: obj["dazhuan"],name: '大专'},
+				{value: obj["dazhuanyx"],name: '大专以下'},
 			]
 		}]
 	}

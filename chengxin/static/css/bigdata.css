@@ -94,49 +94,44 @@ ul,ol,li{
 
 
 .section-item-list li {
-	height: 2rem;
+	height: 1.2rem;
 	font-size: 0.8rem;
 	position: relative;
 	cursor: pointer;
+	padding: 0.4rem 0;
 }
 
 .section-item-list li:nth-child(2n+1){
 	background: rgba(19,12,68,1);
 }
-.section-item-list li span:first-child {
+.section-item-list li>span:first-child {
 	display: inline-block;
 	width: 2rem;
 	height: 1.2rem;
+	float:left;
 	line-height: 1.2rem;
 	text-align: center;
 	background: #3C9DD2;
 	border-radius: 0.1rem;
 	color: #100635;
-	position: absolute;
-	top:.4rem;
-	left: .5rem;
+	margin-left: 0.5rem;
 }
-.section-item-list li span:nth-child(2) {
+.section-item-list li p {
+	width:18rem;
+	float:left;
+	margin-left: 0.5rem;
+}
+.section-item-list li p span {
 	display: inline-block;
-	width: 13rem;
-	overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    line-height: 2rem;
-    margin-left: 3rem;
+	width:30%;
+	margin-right: 0.5rem;
 }
 
 
-.section-item-list li span:last-child {
-	display: inline-block;
-	color: #3C9DD2;
-	position: absolute;
-	top:.4rem;
-	right:.5rem;
-}
 .section3-list li span:last-child {
 	top:0;
 }
+
 #barchart {
 	width: 24rem;
 	height: 12.5rem;
