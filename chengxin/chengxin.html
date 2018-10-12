@@ -228,7 +228,7 @@
 
 		<!--弹窗2-->
 		<div class="popup popup2">
-			<div class="img-box">
+			<!--<div class="img-box">
 				<img src="static/images/banner.png" />
 			</div>
 			<div class="content">
@@ -280,11 +280,11 @@
 						</p>
 					</div>
 				</div>
-			</div>
+			</div>-->
 		</div>
 
 <script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
+<script type="text/javascript" src="static/js/iscroll.min.js"></script>
 <script type="text/javascript" src="static/js/navbarscroll.js"></script>
 <script src="static/js/common.js"></script>
 <script src="static/js/scroll.js" type="text/javascript" charset="utf-8"></script>
@@ -377,8 +377,7 @@ ajaxData(cygjUrl,function(res){
 						}else{
 							popStr +='<p>是否属于党员示范店：<span style="color: #FF0017;">否</span></p>'
 						}
-						
-						
+
 						popStr +='<p>服务内容：'+res.data.content+'</p>'
 					+'</div>'
 				
@@ -398,10 +397,10 @@ ajaxData(cygjUrl,function(res){
 	});
 	
 	// 非公党建单位-列表上下滚动
-//	$("#s1list").myScroll({
-//		speed:40, 
-//		rowHeight:40
-//	});
+	$("#s1list").myScroll({
+		speed:40, 
+		rowHeight:40
+	});
 			
 });
 
@@ -444,7 +443,6 @@ ajaxData(sbdUrl,function(res){
 	$('.wrapper').navbarscroll();
 	
 	var listStr = '';
-	console.log(res)
 	listStrFn(res.data['yi'],listStr);
 	listStrFn(res.data['shi'],listStr);
 	listStrFn(res.data['zhu'],listStr);
@@ -464,40 +462,43 @@ ajaxData(sbdUrl,function(res){
 
 	var index = 0;
 	var timer = null;
-//	timer = setInterval(function(){
-//		index++;
-//		if(index >$('.scroller li a').length ){
-//			index = 0;
-//		}
-//		$('.scroller li a').eq(index).trigger("click");
-//		$('.scroller li a').eq(index).bind('click',function(){
-//			sectionUl(index)
-//		})
-//		
-//	},2000)
-	
+	timer = setInterval(move,2000)
+	function move(){
+		index++;
+		if(index >$('.scroller li a').length ){
+			index = 0;
+		}
+		$('.scroller li a').eq(index).trigger("click");
+		$('.scroller li a').eq(index).bind('click',function(){
+			sectionUl(index)
+		})
+		
+	}
 	$('#section3Ul').hover(function(){
 		clearInterval(timer);
 	},function(){
-		timer;
+		console.log(222)
+		timer = setInterval(move,2000)
 	})
 	
 	var index = 0;
 	sectionUl(index);
-	$('.scroller li a').click(function(){
-		index = $(this).parent().index();
-		sectionUl(index)
+	$('.scroller li a').map(function(){
+		$(this).click(function(e){
+			index = $(this).parent().index();
+			sectionUl(index)
+		})
 	})
+	
 	
 	
 });
 
 
 function listStrFn(obj,listStr){
-	console.log(obj)
 	listStr +='<ul class="section-item-list section3-ul">'
 	for(var j=0;j<obj.length;j++){
-		listStr +='<li>'
+		listStr +='<li data-id="'+obj[j].id+'">'
 		if(j<3){
 			listStr +='<span class="sort" style="background:#E58B26">'+(j+1)+'</span>'
 		}else{
@@ -512,25 +513,60 @@ function listStrFn(obj,listStr){
 	}
 	listStr +='</ul>';
 	$('#s3list1').append(listStr);
-	
-	
 }
 
 function sectionUl(index){
 	$('.scroller li a').eq(index).addClass('cur').parent().siblings().children('a').removeClass('cur');
 	$('.section3-tab-content ul').eq(index).show().siblings().hide();
-	
+			
 	// 弹窗2
-	$('.section3-ul li').on('click', function() {
-		layer.open({
-			type: 1,
-			area: ['880px', '880px'],
-			title: 'xxxx党组织部',
-			shade: 0,
-			shadeClose: true, //点击遮罩关闭
-			content: $('.popup2')
-		});
+	$('#s3list1 .section3-ul>li').on('click', function(e) {
+		console.log($(this))
+//		$.ajax({
+//			type:"get",
+//			url:"http://gzps.xnshequ.com/tongji_bigdata/partyxq",
+//			data:{
+//				id:$(this).attr('data-id')
+//			},
+//			success:function(res){
+//				console.log(res)
+//				var popStr = '';
+//				popStr +='<div class="img-box">'
+//					+'<img src="'+res.data.pics+'" />'
+//					+'</div>'
+//					+'<div class="content">'
+//						+'<p>店面名称：'+res.data.name+'</p>'
+//						+'<p>店主姓名：'+res.data.fzr_name +'</p>'
+//						+'<p>店面地址：'+res.data.address +'</p>'
+//						+'<p>所属支部：'+res.data.shequ_name+'</p>'
+//						+'<p>服务类别：'+res.data.type+'</p>'
+//						+'<p>服务电话：'+res.data.fzr_phone+'</p>'
+//						
+//						if(res.data.dangyuansf == '1'){
+//							popStr +='<p>是否属于党员示范店：<span style="color: #1E9FFF;">是</span></p>'
+//						}else{
+//							popStr +='<p>是否属于党员示范店：<span style="color: #FF0017;">否</span></p>'
+//						}
+//	
+//						popStr +='<p>服务内容：'+res.data.content+'</p>'
+//					+'</div>'
+//				
+//				$('.popup2').html(popStr);
+//				
+//				layer.open({
+//					type: 1,
+//					area: ['880px', '880px'],
+//					title: res.data.name,
+//					shade: 0,
+//					shadeClose: true, //点击遮罩关闭
+//					content: $('.popup2')
+//				});
+//				
+//			}
+//		});
+		
 	});	
+	
 }
 
 
@@ -566,7 +602,10 @@ ajaxData(gridUrl,function(res){
 
 	// 饼图轮播
 	var n = 0;
-	setInterval(function() {
+	var timer = null;
+	
+	timer = setInterval(moveFn, 10000);
+	function moveFn() {
 		n++;
 		$('.piechart-wrap').css({
 			'transform': 'translateX(' + -13 * n + 'rem)'
@@ -574,7 +613,15 @@ ajaxData(gridUrl,function(res){
 		if(n > 2) {
 			n = 0;
 		}
-	}, 10000)
+	}
+	
+	$('.piechart-wrap').hover(function(){
+		clearInterval(timer);
+	},function(){
+		timer = setInterval(moveFn, 10000);
+	})
+	
+	
 });
 
 //7.智慧亦资服务量

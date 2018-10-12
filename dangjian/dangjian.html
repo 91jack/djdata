@@ -625,7 +625,10 @@ ajaxData(gridUrl,function(res){
 
 	// 饼图轮播
 	var n = 0;
-	setInterval(function() {
+	var timer = null;
+	
+	timer = setInterval(moveFn, 10000);
+	function moveFn() {
 		n++;
 		$('.piechart-wrap').css({
 			'transform': 'translateX(' + -13 * n + 'rem)'
@@ -633,7 +636,13 @@ ajaxData(gridUrl,function(res){
 		if(n > 2) {
 			n = 0;
 		}
-	}, 10000)
+	}
+	
+	$('.piechart-wrap').hover(function(){
+		clearInterval(timer);
+	},function(){
+		timer = setInterval(moveFn, 10000);
+	})
 });
 
 //7.智慧亦资服务量

@@ -126,7 +126,9 @@ ul,ol,li{
 	width:30%;
 	margin-right: 0.5rem;
 }
-
+#s3list1 li p span  {
+	width:40%;
+}
 
 .section3-list li span:last-child {
 	top:0;
