@@ -483,10 +483,10 @@ ajaxData(sbdUrl,function(res){
 	})
 	
 	
+	var index = 0;
+	sectionUl(index);
 	$('.scroller li a').click(function(){
-		var index = $(this).parent().index();
-		categoryId = $(this).attr('categoryid');
-		
+		index = $(this).parent().index();
 		sectionUl(index)
 	})
 	

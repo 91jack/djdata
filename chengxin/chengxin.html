@@ -305,11 +305,6 @@ $('.map-num a').each(function() {
 	})
 })
 
-
-
-			
-			
-
 			
 var host = 	'http://gzps.xnshequ.com/tongji_bigdata/'	
 //1.党员示范店
@@ -345,7 +340,7 @@ var mpdynamicUrl = host +'mpdynamic';
 ajaxData(cygjUrl,function(res){
 	var str = ''
 	for(var i = 0;i<res.data.length;i++){
-		str += '<li cpid="'+res.data[i].id+'">'
+		str += '<li data-id="'+res.data[i].id+'">'
 			+'<span class="sort">'+(i+1)+'</span>'
 			+'<p><span>'+res.data[i].name.substr(0,6) +'</span>'
 			+'<span>'+res.data[i].fzr_name.substr(0,3)+'</span>'
@@ -357,54 +352,56 @@ ajaxData(cygjUrl,function(res){
 		$('#cygj li').eq(i).children('.sort').css('background','#E58B26');
 	}
 	$('#cygj li').click(function(){
-		console.log($(this).attr('cpid'))
+		console.log($(this).attr('data-id'))
 		$.ajax({
 			type:"get",
-			url:"http://gzps.xnshequ.com/tongji_bigdata/company",
+			url:"http://gzps.xnshequ.com/tongji_bigdata/partyxq",
 			data:{
-				cp_id:$(this).attr('cpid')
+				id:$(this).attr('data-id')
 			},
 			success:function(res){
 				console.log(res)
 				var popStr = '';
 				popStr +='<div class="img-box">'
-					+'<img src="static/images/banner.png" />'
+					+'<img src="'+res.data.pics+'" />'
 					+'</div>'
 					+'<div class="content">'
-						+'<p>单位名称：'+res.data.company_info.name+'</p>'
-						+'<p>单位地址：'+res.data.company_info.pro_name + res.data.company_info.city_name + res.data.company_info.area_name + res.data.company_info.street_name + res.data.company_info.shequ_name + res.data.company_info.xiaoqu_name + res.data.company_info.loudong_name+'</p>'
-						+'<p>员工数量：'+res.data.company_info.staff_num+'</p>'
+						+'<p>店面名称：'+res.data.name+'</p>'
+						+'<p>店主姓名：'+res.data.fzr_name +'</p>'
+						+'<p>店面地址：'+res.data.address +'</p>'
+						+'<p>所属支部：'+res.data.shequ_name+'</p>'
+						+'<p>服务类别：'+res.data.type+'</p>'
 						
-						if(res.data.company_info.dangzuzhi == '1'){
-							popStr +='<p>是否有党群组织：<span style="color: #1E9FFF;">是</span></p>'
+						if(res.data.dangyuansf == '1'){
+							popStr +='<p>是否属于党员示范店：<span style="color: #1E9FFF;">是</span></p>'
 						}else{
-							popStr +='<p>是否有党群组织：<span style="color: #FF0017;">否</span></p>'
+							popStr +='<p>是否属于党员示范店：<span style="color: #FF0017;">否</span></p>'
 						}
 						
 						
-						popStr +='<p>党组织介绍：'+res.data.dzjianjie.description+'</p>'
+						popStr +='<p>服务内容：'+res.data.content+'</p>'
 					+'</div>'
 				
 				$('.popup1').html(popStr);
 				
-//				layer.open({
-//					type: 1,
-//					area: ['880px', '880px'],
-//					title: res.data.company_info.name,
-//					shade: 0.2,
-//					shadeClose: true, //点击遮罩关闭
-//					content: $('.popup1')
-//				});
+				layer.open({
+					type: 1,
+					area: ['880px', '880px'],
+					title: res.data.name,
+					shade: 0.2,
+					shadeClose: true, //点击遮罩关闭
+					content: $('.popup1')
+				});
 			}
 		});
 
 	});
 	
 	// 非公党建单位-列表上下滚动
-	$("#s1list").myScroll({
-		speed:40, 
-		rowHeight:40
-	});
+//	$("#s1list").myScroll({
+//		speed:40, 
+//		rowHeight:40
+//	});
 			
 });
 
@@ -457,14 +454,12 @@ ajaxData(sbdUrl,function(res){
 	listStrFn(res.data['gonggong'],listStr);
 	
 	
-	
 	$('.scroller li a').eq(0).addClass('cur').parent().siblings().children('a').removeClass('cur');
 	$('.section3-tab-content ul').eq(0).show().siblings().hide();
 	$("#s3list1").myScroll({
 		speed:40, 
 		rowHeight:50
 	});	
-	
 	
 
 	var index = 0;
@@ -487,9 +482,10 @@ ajaxData(sbdUrl,function(res){
 		timer;
 	})
 	
-	
+	var index = 0;
+	sectionUl(index);
 	$('.scroller li a').click(function(){
-		var index = $(this).parent().index();
+		index = $(this).parent().index();
 		sectionUl(index)
 	})
 	
@@ -499,7 +495,7 @@ ajaxData(sbdUrl,function(res){
 
 function listStrFn(obj,listStr){
 	console.log(obj)
-	listStr +='<ul class="section-item-list">'
+	listStr +='<ul class="section-item-list section3-ul">'
 	for(var j=0;j<obj.length;j++){
 		listStr +='<li>'
 		if(j<3){
@@ -508,29 +504,29 @@ function listStrFn(obj,listStr){
 			listStr +='<span class="sort">'+(j+1)+'</span>'
 		}
 		
-//		listStr += '<p><span>'+obj[j].name+'</span>'
+		listStr += '<p><span>'+obj[j].name+'</span>'
 //				+ '<span>'+obj[j].mstype+'</span>'
-//				+ '<span>'+obj[j].fzr_phone+'</span>'
-//				+'</p></li>'
+				+ '<span>'+obj[j].fzr_phone+'</span>'
+				+'</p></li>'
+
 	}
 	listStr +='</ul>';
 	$('#s3list1').append(listStr);
+	
+	
 }
 
 function sectionUl(index){
 	$('.scroller li a').eq(index).addClass('cur').parent().siblings().children('a').removeClass('cur');
 	$('.section3-tab-content ul').eq(index).show().siblings().hide();
 	
-	
-	
 	// 弹窗2
-	$('.section3-top-list li').on('click', function() {
-		
+	$('.section3-ul li').on('click', function() {
 		layer.open({
 			type: 1,
 			area: ['880px', '880px'],
 			title: 'xxxx党组织部',
-			shade: 0.2,
+			shade: 0,
 			shadeClose: true, //点击遮罩关闭
 			content: $('.popup2')
 		});

@@ -465,6 +465,12 @@ ol li.active span {
 .section3-top-list li p em {
 	color: #3C9DD2;
 }
+.section3-ul li {
+	clear: both;
+}
+.section3-ul li span:last-child{
+	width:50%
+}
 
 .footerchart {
 	clear: both;
