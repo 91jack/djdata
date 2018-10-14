@@ -295,7 +295,7 @@ ol li.active span {
 /*地图*/
 #mapchart {
 	width: 41.25rem;
-	height:33rem;
+	height:27.5rem;
 	position: absolute;
 	top: 5rem;
 	text-align: center;
@@ -306,6 +306,7 @@ ol li.active span {
 	height:27.5rem;
 	position: absolute;
 	top: 5rem;
+	display: none;
 }
 .map-wrap {
 	width: 41.25rem;
@@ -590,6 +591,12 @@ ol li.active span {
 	height:10rem;
 	overflow: hidden;
 	margin-bottom: 1rem;
+}
+#s3list1 p {
+	width:21rem;
+}
+#s3list1 p span:last-child {
+	float:right;
 }
 #s3list2 {
 	height:10rem;

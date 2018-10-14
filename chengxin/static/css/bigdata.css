@@ -25,8 +25,6 @@ ul,ol,li{
 	background: #0C0026;
 	color: #fff;
 	overflow: hidden;
-	width:14.2rem
-	height:17rem
 }
 .container {
 	padding: 0 1.5rem;
@@ -127,9 +125,7 @@ ul,ol,li{
 	float:left;
 	margin-right: 0.5rem;
 }
-/*#s3list1 li p span  {
-	width:40%;
-}*/
+
 
 .section3-list li span:last-child {
 	top:0;
@@ -137,7 +133,7 @@ ul,ol,li{
 
 #barchart {
 	width: 24rem;
-	height: 12.5rem;
+	height: 14rem;
 }
 
 
@@ -145,6 +141,7 @@ ul,ol,li{
 	width: 41.25rem;
 	margin: 0 2.5rem;
 	float: left;
+	position: relative;
 }
 .section2-top-data {
 	position: relative;
@@ -271,12 +268,17 @@ ol li.active span {
 	line-height: 1.5rem;
 }
 
+/*地图*/
 .section2-chart {
-	position: relative;
+	width: 41.25rem;
+	height:26.45rem;
+	position: absolute;
+	top: 5rem;
 }
+
 .map-list {
 	position: absolute;
-	top:5rem;
+	top:0;
 	left:0;
 	z-index: 99;
 }
@@ -297,21 +299,23 @@ ol li.active span {
 	margin-top:.5rem;
 	float:left;
 }
+.map-box {
+	position: relative;
+	width: 41.25rem;
+	height:26.45rem;
+}
 
-/*地图*/
 #mapchart {
 	width: 41.25rem;
 	height:26.45rem;
-	position: absolute;
-	top: 5rem;
-	text-align: center;
+	
 }
 
 #map {
 	width: 41.25rem;
 	height:27.5rem;
-	position: absolute;
-	top: 5rem;
+	/*position: absolute;
+	top: 5rem;*/
 }
 .map-wrap {
 	width: 41.25rem;

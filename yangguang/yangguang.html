@@ -101,7 +101,7 @@
 						<a href="javascript:;"><i></i>亦资街道党工委</a>
 					</div>
 					<div class="map-box">
-						<div class="map" id="mapchart"></div>
+						<div class="map" id="mapchart" style="width: 41.25rem;height:27.5rem;"></div>
 						<div class="map" id="map" style="display: none;">
 							<div class="map-wrap">
 								<img src="static/mapimg/0.png" />
@@ -407,10 +407,10 @@ ajaxData(sbdUrl,function(res){
 	
 	$('.scroller li a').eq(0).addClass('cur').parent().siblings().children('a').removeClass('cur');
 	$('.section3-tab-content ul').eq(0).show().siblings().hide();
-	$("#s3list1").myScroll({
-		speed:40, 
-		rowHeight:50
-	});	
+//	$("#s3list1").myScroll({
+//		speed:40, 
+//		rowHeight:50
+//	});	
 	
 	
 
@@ -423,7 +423,7 @@ ajaxData(sbdUrl,function(res){
 		}
 		$('.scroller li a').eq(index).trigger("click");
 		$('.scroller li a').eq(index).bind('click',function(){
-			sectionUl(index)
+			sectionUl()
 		})
 		
 	},2000)
@@ -457,7 +457,7 @@ function listStrFn(obj,listStr){
 		}
 		
 		listStr += '<p><span>'+obj[j].name.substr(0,6)+'</span>'
-				+ '<span>'+obj[j].num+'</span>'
+				+ '<span>'+obj[j].num+'件</span>'
 				+'</p></li>'
 	}
 	listStr +='</ul>';
@@ -466,10 +466,10 @@ function listStrFn(obj,listStr){
 
 function sectionUl(){
 	// 弹窗2
-	$('.section3-top-list li').on('click', function() {
+	$('.section3-ul li').on('click', function() {
 		$.ajax({
 			type:"get",
-			url:"http://gzps.xnshequ.com/tongji_bigdata/partyxq",
+			url:"http://gzps.xnshequ.com/tongji_bigdata/wanggedtxq",
 			data:{
 				type:$(this).attr('data-type'),
 				id:$(this).attr('data-id')
@@ -477,42 +477,42 @@ function sectionUl(){
 			success:function(res){
 				console.log(res)
 				var popStr = '';
-				popStr +='<div class="content">'
-				+'<p>事项名称：'+res.data.sq_name+'</p>'
-				+'<p>事项编号：'+res.data.sq_number+'</p>'
-				+'<p>接件部门：'+res.data.bumen_name+'</p>'
-				+'<p>事项类型：'+res.data.leibie_name+'</p>'
-				+'<p class="party clearfix">'
-				+	'<span>已处理：'+res.data.ybl_num+'人</span>'
-				+	'<span>未处理：'+res.data.wbj_num+'人</span>'
-				+	'<span>完成率：'+res.data.centage+'</span>'
-				+'</p>'
-				+'<div class="section-item clearfix">'
-				+	'<h2>未学习</h2>'    
-				+	'<div class="section-body">'
-				+	'<p>'
-				
-				for(var i=0;i<res.data.weixuexi.length;i++){
-					popStr+='<span>'+res.data.weixuexi[i].real_name+'</span>'
-				}
-				
-				
-				popStr+='</p>'	
-				+	'</div>'
-				+'</div>'
-				+'<div class="section-item clearfix">'
-				+	'<h2>未学习</h2>'    
-				+	'<div class="section-body">'
-				+	'<p>'
-				
-				for(var i=0;i<res.data.yixuexi.length;i++){
-					popStr+='<span>'+res.data.yixuexi[i].real_name+'</span>'
-				}
-	
-				popStr+='</p>'
-				+	'</div>'
-				+'</div>'
-				+'</div>'
+//				popStr +='<div class="content">'
+//				+'<p>事项名称：'+res.data.sq_name+'</p>'
+//				+'<p>事项编号：'+res.data.sq_number+'</p>'
+//				+'<p>接件部门：'+res.data.bumen_name+'</p>'
+//				+'<p>事项类型：'+res.data.leibie_name+'</p>'
+//				+'<p class="party clearfix">'
+//				+	'<span>已处理：'+res.data.ybl_num+'人</span>'
+//				+	'<span>未处理：'+res.data.wbj_num+'人</span>'
+//				+	'<span>完成率：'+res.data.centage+'</span>'
+//				+'</p>'
+//				+'<div class="section-item clearfix">'
+//				+	'<h2>未学习</h2>'    
+//				+	'<div class="section-body">'
+//				+	'<p>'
+//				
+//				for(var i=0;i<res.data.weixuexi.length;i++){
+//					popStr+='<span>'+res.data.weixuexi[i].real_name+'</span>'
+//				}
+//				
+//				
+//				popStr+='</p>'	
+//				+	'</div>'
+//				+'</div>'
+//				+'<div class="section-item clearfix">'
+//				+	'<h2>未学习</h2>'    
+//				+	'<div class="section-body">'
+//				+	'<p>'
+//				
+//				for(var i=0;i<res.data.yixuexi.length;i++){
+//					popStr+='<span>'+res.data.yixuexi[i].real_name+'</span>'
+//				}
+//	
+//				popStr+='</p>'
+//				+	'</div>'
+//				+'</div>'
+//				+'</div>'
 				
 				$('.popup2').html(popStr);
 				

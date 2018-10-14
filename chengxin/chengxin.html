@@ -1,12 +1,12 @@
 <!doctype html>
 <html class="no-js">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-	<title>盘州市亦资街道诚信之家大数据服务平台</title>
-	<link rel="stylesheet" type="text/css" href="static/css/bigdata.css" />
-	<link rel="stylesheet" type="text/css" href="static/layer/theme/default/layer.css" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>盘州市亦资街道诚信之家大数据服务平台</title>
+<link rel="stylesheet" type="text/css" href="static/css/bigdata.css" />
+<link rel="stylesheet" type="text/css" href="static/layer/theme/default/layer.css" />
 </head>
 <body id="bigdata">
 	<!--顶部-->
@@ -240,9 +240,9 @@
 <script type="text/javascript" src="static/js/iscroll.min.js"></script>
 <script type="text/javascript" src="static/js/navbarscroll.js"></script>
 <script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="static/js/common.js"></script>
 <script src="static/js/scroll.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/common.js"></script>
 <script type="text/javascript">
 // 地图切换
 $('.map-list a').click(function() {
@@ -688,9 +688,7 @@ $.getJSON('./static/js/guizhou.json', function(data) {
 })
 ajaxData(mapUrl,function(res){
 	var mapData = [];
-
 	var list = res.data.list
-
 	for(var i = 0; i < list.length; i++) {
 		mapData.push({
 			name: list[i].name,
@@ -701,17 +699,16 @@ ajaxData(mapUrl,function(res){
 			cp_num: list[i].cp_num*1
 		})
 	}
-	
 	option = {
 		series: [
 			{
 				type: 'map',
 				mapType: 'guizhou',
-				roam: false,
+				//roam: false,
 				nameMap: {
 					'guizhou': '贵州'
 				},
-				zoom: 1.2,
+				zoom: 1.5,
 				itemStyle: {
 					normal: {
 						areaColor: '#52b2fe',

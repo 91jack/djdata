@@ -241,10 +241,10 @@
 <script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="static/js/iscroll.min.js"></script>
 <script type="text/javascript" src="static/js/navbarscroll.js"></script>
+<script src="static/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/scroll.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/common.js"></script>
-<script src="static/js/scroll.js" type="text/javascript" charset="utf-8"></script>
-<script src="static/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 // 地图切换
 $('.map-list a').click(function() {
@@ -508,9 +508,6 @@ function sectionUl(){
 	// 弹窗2
 	$('.section3-top-list li').on('click', function() {
 		var aId = $(this).attr('aid');
-		
-		console.log(categoryId);
-		console.log(aId);
 		$.ajax({
 			type:"get",
 			url:"http://gzps.xnshequ.com/tongji_bigdata/dangyuanxq",
@@ -548,7 +545,7 @@ function sectionUl(){
 				+	'</div>'
 				+'</div>'
 				+'<div class="section-item clearfix">'
-				+	'<h2>未学习</h2>'    
+				+	'<h2>已学习</h2>'    
 				+	'<div class="section-body">'
 				+	'<p>'
 				
@@ -665,83 +662,6 @@ function channelFn(){
 			lineChartFn(xlineData, linejobData, linehelpData, linetrainData);
 	});
 }
-
-//8.贵州区域地图
-ajaxData(mapUrl,function(res){
-	var mapData = [];
-
-	var list = res.data.list
-
-	for(var i = 0; i < list.length; i++) {
-		mapData.push({
-			name: list[i].name,
-			jm_num: list[i].jm_num*1,
-			ld_num: list[i].ld_num*1,
-			dy_num: list[i].dy_num*1,
-			lddy_num: list[i].lddy_num*1,
-			cp_num: list[i].cp_num*1
-		})
-	}
-	
-	option = {
-		series: [
-			{
-				type: 'map',
-				mapType: 'guizhou',
-				roam: false,
-				nameMap: {
-					'guizhou': '贵州'
-				},
-				zoom: 1.2,
-				itemStyle: {
-					normal: {
-						areaColor: '#52b2fe',
-						borderColor: '#6ad7ff'
-					},
-					emphasis: {
-						areaColor: 'darkorange'
-					}
-				},
-				data: mapData,
-				zlevel: 0,
-				tooltip: {
-					trigger: 'item',
-					padding: 10,
-					formatter: function(params) {
-						//console.log(params)
-						return '[	' + params.name + '	]'
-						+ '<br/>居民人数 ： ' + params.data.jm_num + ' 人' 
-						+ '<br/>流动人口 ： ' + params.data.ld_num + ' 人'
-						+ '<br/>党员总数 ： ' + params.data.dy_num + ' 人' 
-						+ '<br/>流动党员 ： ' + params.data.lddy_num + ' 人'
-						+ '<br/>非公党建单位数量 ： ' + params.data.cp_num + ' 个' 
-					}
-				},
-			},
-			{
-				name: '用户坐标',
-				type: 'scatter',
-				coordinateSystem: 'geo',
-				data: [{
-					name: '亦资街道党工委',
-					value: [104.474329, 25.708555, 100]
-				}],
-				tooltip: {
-					trigger: 'item',
-					formatter: '{b}'
-				},
-				symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACyElEQVQ4T5WVX0hTcRTHv+fu7m7ebZHmn6E0UnwRIShfErZhL1H40osFRYpKQlhgRPVSBEEPJdFThFpiERVJsCLqfTMksN4FTfujTlPS5ubc3d2Je7e5u7uJ+Xv8ne/5/M45v/M7P0KRxU1NckyWzwA4CeAQgGpdRjQH5i/MHHCo6isaH98wu5N5I+r1doHoLoDyYocZ9sLMfN05NvbMqNsCcmOjFCsrGwTQsQMo30w0LFdV9dDoqKonkbVG/f6nYG7fFSwrJhp2BIPdW8BMmk+2hVkJliMu8JKC1GRB2XQ3Zu7Q0iduaXHGVHUWwL7tgFRuBUdUSH3VoD0iEvd+gtf0DI0rLCeTdRT1entANFAMZml2QbpYDSoVkXi4gOTHP7DfrwUkAfHL00CC89yYuYuifv8HMJ8wAzWY7YYHEAnqxDo2b30HkgzLQQds/bVQBsNQ3iyb3d5S1OdbAlBhtAgeG+yP6nWYXp9lBfGrM+D5hH6N8rtGpGbjiF+aNt/4nAbMjzsjsXZXQfDYwSsKxNayPGjJaAOQSGHj7KQ5Qt4WqCsF0q4PUl8NxOOlOjTxYA62OweQmtpAvNcUIaADFwFUGo8Sj5XqDqlv8fS2QJCu1UA8uhfQ8iFAGVmE8vK3OcJfGvA9gFajRSu6pUGGEliBGlwDryYh7LdBuukBlQi6NN47hdRU5sCcs34p5wFoTy4dTL0dtv46IKZC67+CIkVUkMsC9dNfbN7+kd82QGe2sWeyw4AqrZC63EgMLECotUNrH6qwgldVqBMRqJ8jsJ6qQDKwAo7mNXe6sbUjdnx6xbretMfAOWco9Dw3HHy+kV1Pmhz0sSMU0kqXmzbc1maJhcNDADr/IyCjZEh2uy8UjK+sYt3rbaf0gHXvAA4z0RVnMPjCqCuY2JqRm5tLoqJ4mtJfwOHMF6B14DyAr0wUcCjK62JfwD/IeBZykY1nKQAAAABJRU5ErkJggg==',
-				symbolSize: 20,
-			}
-		]
-	}
-	mapChart.setOption(option)
-});
-
-
-
-
-
 
 // 柱状图
 // 基于准备好的dom，初始化echarts实例
@@ -905,6 +825,77 @@ function lineChartFn(xlineData, linejobData, linehelpData, linetrainData) {
 	lineChart.setOption(lineOption);
 }
 
+//8.贵州区域地图
+ajaxData(mapUrl,function(res){
+	var mapData = [];
+
+	var list = res.data.list
+
+	for(var i = 0; i < list.length; i++) {
+		mapData.push({
+			name: list[i].name,
+			jm_num: list[i].jm_num*1,
+			ld_num: list[i].ld_num*1,
+			dy_num: list[i].dy_num*1,
+			lddy_num: list[i].lddy_num*1,
+			cp_num: list[i].cp_num*1
+		})
+	}
+	
+	option = {
+		series: [
+			{
+				type: 'map',
+				mapType: 'guizhou',
+				roam: false,
+				nameMap: {
+					'guizhou': '贵州'
+				},
+				zoom: 1.2,
+				itemStyle: {
+					normal: {
+						areaColor: '#52b2fe',
+						borderColor: '#6ad7ff'
+					},
+					emphasis: {
+						areaColor: 'darkorange'
+					}
+				},
+				data: mapData,
+				zlevel: 0,
+				tooltip: {
+					trigger: 'item',
+					padding: 10,
+					formatter: function(params) {
+						//console.log(params)
+						return '[	' + params.name + '	]'
+						+ '<br/>居民人数 ： ' + params.data.jm_num + ' 人' 
+						+ '<br/>流动人口 ： ' + params.data.ld_num + ' 人'
+						+ '<br/>党员总数 ： ' + params.data.dy_num + ' 人' 
+						+ '<br/>流动党员 ： ' + params.data.lddy_num + ' 人'
+						+ '<br/>非公党建单位数量 ： ' + params.data.cp_num + ' 个' 
+					}
+				},
+			},
+			{
+				name: '用户坐标',
+				type: 'scatter',
+				coordinateSystem: 'geo',
+				data: [{
+					name: '亦资街道党工委',
+					value: [104.474329, 25.708555, 100]
+				}],
+				tooltip: {
+					trigger: 'item',
+					formatter: '{b}'
+				},
+				symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACyElEQVQ4T5WVX0hTcRTHv+fu7m7ebZHmn6E0UnwRIShfErZhL1H40osFRYpKQlhgRPVSBEEPJdFThFpiERVJsCLqfTMksN4FTfujTlPS5ubc3d2Je7e5u7uJ+Xv8ne/5/M45v/M7P0KRxU1NckyWzwA4CeAQgGpdRjQH5i/MHHCo6isaH98wu5N5I+r1doHoLoDyYocZ9sLMfN05NvbMqNsCcmOjFCsrGwTQsQMo30w0LFdV9dDoqKonkbVG/f6nYG7fFSwrJhp2BIPdW8BMmk+2hVkJliMu8JKC1GRB2XQ3Zu7Q0iduaXHGVHUWwL7tgFRuBUdUSH3VoD0iEvd+gtf0DI0rLCeTdRT1entANFAMZml2QbpYDSoVkXi4gOTHP7DfrwUkAfHL00CC89yYuYuifv8HMJ8wAzWY7YYHEAnqxDo2b30HkgzLQQds/bVQBsNQ3iyb3d5S1OdbAlBhtAgeG+yP6nWYXp9lBfGrM+D5hH6N8rtGpGbjiF+aNt/4nAbMjzsjsXZXQfDYwSsKxNayPGjJaAOQSGHj7KQ5Qt4WqCsF0q4PUl8NxOOlOjTxYA62OweQmtpAvNcUIaADFwFUGo8Sj5XqDqlv8fS2QJCu1UA8uhfQ8iFAGVmE8vK3OcJfGvA9gFajRSu6pUGGEliBGlwDryYh7LdBuukBlQi6NN47hdRU5sCcs34p5wFoTy4dTL0dtv46IKZC67+CIkVUkMsC9dNfbN7+kd82QGe2sWeyw4AqrZC63EgMLECotUNrH6qwgldVqBMRqJ8jsJ6qQDKwAo7mNXe6sbUjdnx6xbretMfAOWco9Dw3HHy+kV1Pmhz0sSMU0kqXmzbc1maJhcNDADr/IyCjZEh2uy8UjK+sYt3rbaf0gHXvAA4z0RVnMPjCqCuY2JqRm5tLoqJ4mtJfwOHMF6B14DyAr0wUcCjK62JfwD/IeBZykY1nKQAAAABJRU5ErkJggg==',
+				symbolSize: 20,
+			}
+		]
+	}
+	mapChart.setOption(option)
+});
 // 贵州区域地图
 // 绘制贵州地图
 //mapFn()
