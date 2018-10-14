@@ -54,21 +54,42 @@
 					<div class="item-level">
 						<div class="item-level-one">
 							<span>党员服务量</span>
-							<span><ol class="dangyuan1"></ol><em>人</em></span>
+							<span>
+								<ol class="dangyuan1">
+									<li>
+										<span class="new">1</span>
+									</li>
+								</ol>
+								<em>人</em>
+							</span>
 						</div>
 					</div>
 
 					<div class="item-level">
 						<div class="item-level-one">
 							<span>流动党员服务量</span>
-							<span><ol class="dangyuan2"></ol><em>人</em></span>
+							<span>
+								<ol class="dangyuan2">
+									<li>
+										<span class="new">1</span>
+									</li>
+								</ol>
+								<em>人</em>
+							</span>
 						</div>
 					</div>
 
 					<div class="item-level">
 						<div class="item-level-one">
 							<span>党建联建</span>
-							<span><ol class="dangyuan3"></ol><em>个</em></span>
+							<span>
+								<ol class="dangyuan3">
+									<li>
+										<span class="new">1</span>
+									</li>
+								</ol>
+								<em>个</em>
+							</span>
 						</div>
 					</div>
 				</div>
@@ -135,7 +156,6 @@
 
 						<div class="section3-tab-content">
 							<div id="s3list1"></div>
-							<!--<ul class="section3-top-list"></ul>-->
 						</div>
 					</div>
 				</div>
@@ -213,100 +233,33 @@
 	</div>
 
 	<!--弹窗1-->
-	<div class="popup popup1">
-		<!--<div class="img-box">
-			<img src="static/images/banner.png" />
-		</div>
-		<div class="content">
-			<p>单位名称：1111111111111</p>
-			<p>单位地址：1111111111111</p>
-			<p>员工数量：1111111111111</p>
-			<p>是否有党群组织：<span style="color: #1E9FFF;">是</span></p>
-			<p>党组织介绍：1111111</p>
-		</div>-->
-	</div>
+	<div class="popup popup1"></div>
 
 	<!--弹窗2-->
-	<div class="popup popup2">
-		<!--<div class="img-box">
-			<img src="static/images/banner.png" />
-		</div>
-		<div class="content">
-			<p>学习主题：1111111111111</p>
-			<p class="party clearfix">
-				<span>党支部人数：110人</span>
-				<span>流动党员人数：110人</span>
-				<span>学习完成率：95%</span>
-			</p>
-			<div class="section-item clearfix">
-				<h2>未学习</h2>
-				<div class="section-body">
-					<p>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-					</p>
-					<p>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-					</p>
-				</div>
-			</div>
-			<div class="section-item clearfix">
-				<h2>已学习</h2>
-				<div class="section-body">
-					<p>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-					</p>
-					<p>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-						<span>战三</span>
-					</p>
-				</div>
-			</div>
-		</div>-->
-	</div>
+	<div class="popup popup2"></div>
 
 <script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="static/js/iscroll.min.js"></script>
 <script type="text/javascript" src="static/js/navbarscroll.js"></script>
+<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/common.js"></script>
 <script src="static/js/scroll.js" type="text/javascript" charset="utf-8"></script>
-<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-	// 地图切换
-	$('.map-list a').click(function() {
-		var index = $(this).index();
-		$('.map-box .map').eq(index).show().siblings().hide();
+// 地图切换
+$('.map-list a').click(function() {
+	var index = $(this).index();
+	$('.map-box .map').eq(index).show().siblings().hide();
+})
+
+// 网格地图hover
+$('.map-num a').each(function() {
+	$(this).hover(function() {
+		var index = $(this).attr('data-index');
+		$('.map-wrap img').attr('src', 'static/mapimg/' + index + '.png');
 	})
-
-	// 网格地图hover
-	$('.map-num a').each(function() {
-		$(this).hover(function() {
-			var index = $(this).attr('data-index');
-			$('.map-wrap img').attr('src', 'static/mapimg/' + index + '.png');
-		})
-	})
-
-
-			
+})
+	
 var host = 	'http://gzps.xnshequ.com/tongji_bigdata/'	
 //1.非公党建单位
 var cygjUrl = host +'cygj';
@@ -338,167 +291,220 @@ var mpdynamicUrl = host +'mpdynamic';
 
 /*数据渲染*/
 //1.非公党建单位
-ajaxData(cygjUrl,function(res){
-	var str = ''
-	for(var i = 0;i<res.data.length;i++){
-		str += '<li cpid="'+res.data[i].cp_id+'"><span class="sort">'+(i+1)+'</span><span>'+res.data[i].name+'</span><span>'+res.data[i].total+'人</span></li>'
-	}
-	$('#cygj').html(str);
-	for(var i = 0;i<3;i++){
-		$('#cygj li').eq(i).children('.sort').css('background','#E58B26');
-	}
-	$('#cygj li').click(function(){
-		console.log($(this).attr('cpid'))
-		$.ajax({
-			type:"get",
-			url:"http://gzps.xnshequ.com/tongji_bigdata/company",
-			data:{
+fgdjFn();
+setInterval(fgdjFn,5000)
+
+//2.党员服务量，流动党员服务量，党建联建
+totalFn();
+setInterval(totalFn,3000);
+
+//3.支部学习实时动态
+sbdFn();
+setInterval(totalFn,60000);
+
+//4.非公党建单位行业分类展示
+jobcateFn();
+setInterval(totalFn,300000);
+
+//5.党建线上互动实时动态
+rtdynamicFn();
+setInterval(totalFn,3000);
+
+//6.亦资街道基层党组织人力分布图
+gridFn();
+setInterval(totalFn,300000);
+
+//7.智慧亦资服务量
+channelFn();
+setInterval(totalFn,300000);
+
+//8.贵州区域地图
+
+//9.用户登录实时地图显示
+
+//1.非公党建单位
+function fgdjFn(){
+	ajaxData(cygjUrl,function(res){
+		var str = ''
+		for(var i = 0;i<res.data.length;i++){
+			str += '<li cpid="'+res.data[i].cp_id+'"><span class="sort">'+(i+1)+'</span><span>'+res.data[i].name+'</span><span>'+res.data[i].total+'人</span></li>'
+		}
+		$('#cygj').html(str);
+		for(var i = 0;i<3;i++){
+			$('#cygj li').eq(i).children('.sort').css('background','#E58B26');
+		}
+		$('#cygj li').click(function(){
+			var params = {
 				cp_id:$(this).attr('cpid')
-			},
-			success:function(res){
-				console.log(res);
-				var popStr = '';
+			}
+			fgdjxqFn(params);
+
+		});		
+	});
+}
+// 非公党建单位-列表上下滚动
+$("#s1list").myScroll({
+	speed:40, 
+	rowHeight:40
+});
+
+// 非公党建单位详情
+function fgdjxqFn(params){
+	$.ajax({
+		type:"get",
+		url:"http://gzps.xnshequ.com/tongji_bigdata/company",
+		data:params,
+		success:function(res){
+			console.log(res);
+			var popStr = '';
+			if(res.data.company_info.top_pic !=''){
 				popStr +='<div class="img-box">'
-					+'<img src="static/images/banner.png" />'
-					+'</div>'
-					+'<div class="content">'
-						+'<p>单位名称：'+res.data.company_info.name+'</p>'
-						+'<p>单位地址：'+res.data.company_info.pro_name + res.data.company_info.city_name + res.data.company_info.area_name + res.data.company_info.street_name + res.data.company_info.shequ_name + res.data.company_info.xiaoqu_name + res.data.company_info.loudong_name+'</p>'
-						+'<p>员工数量：'+res.data.company_info.staff_num+'</p>'
-						
-						if(res.data.company_info.dangzuzhi == '1'){
-							popStr +='<p>是否有党群组织：<span style="color: #1E9FFF;">是</span></p>'
-						}else{
-							popStr +='<p>是否有党群组织：<span style="color: #FF0017;">否</span></p>'
-						}
-						
-						
-						popStr +='<p>党组织介绍：'+res.data.dzjianjie.description+'</p>'
-					+'</div>'
+				+'<img src="'+res.data.company_info.top_pic+'" />'
+				+'</div>'
+			}
+			
+			popStr+='<div class="content">'
+				+'<p>单位名称：'+res.data.company_info.name+'</p>'
+				+'<p>单位地址：'+res.data.company_info.pro_name + res.data.company_info.city_name + res.data.company_info.area_name + res.data.company_info.street_name + res.data.company_info.shequ_name + res.data.company_info.xiaoqu_name + res.data.company_info.loudong_name+'</p>'
+				+'<p>员工数量：'+res.data.company_info.staff_num+'</p>'
 				
-				$('.popup1').html(popStr);
+				if(res.data.company_info.dangzuzhi == '1'){
+					popStr +='<p>是否有党群组织：<span style="color: #1E9FFF;">是</span></p>'
+				}else{
+					popStr +='<p>是否有党群组织：<span style="color: #FF0017;">否</span></p>'
+				}
 				
+				
+				popStr +='<p>党组织介绍：'+res.data.dzjianjie.description+'</p>'
+			+'</div>'
+			
+			$('.popup1').html(popStr);
+			
+			if(res.data.company_info.top_pic !=''){
 				layer.open({
 					type: 1,
-					area: ['880px', '880px'],
+					area: ['880px', '800px'],
+					title: res.data.company_info.name,
+					shade: 0.2,
+					shadeClose: true, //点击遮罩关闭
+					content: $('.popup1')
+				});
+			}else{
+				layer.open({
+					type: 1,
+					area: ['880px', '400px'],
 					title: res.data.company_info.name,
 					shade: 0.2,
 					shadeClose: true, //点击遮罩关闭
 					content: $('.popup1')
 				});
 			}
-		});
-
-	});
-	
-	// 非公党建单位-列表上下滚动
-	$("#s1list").myScroll({
-		speed:40, 
-		rowHeight:40
-	});
 			
-});
+		}
+	});
+}
+
 
 //2.党员服务量，流动党员服务量，党建联建
-ajaxData(t3Url,function(res){
-	var oldNum1 = 11
-	$('.dangyuan1').html(updateNum(oldNum1, res.data.dyfwl));
+function totalFn(){
+	ajaxData(t3Url,function(res){
+		var oldNum1 = $('.dangyuan1 .new').text();
+		$('.dangyuan1').html(updateNum(oldNum1, res.data.dyfwl));
 	
-	var oldNum2 = 11
-	$('.dangyuan2').html(updateNum(oldNum2, res.data.lddyfwl));
+		var oldNum2 = $('.dangyuan2 .new').text();
+		$('.dangyuan2').html(updateNum(oldNum2, res.data.lddyfwl));
 	
-	var oldNum3 = 11
-	$('.dangyuan3').html(updateNum(oldNum3, res.data.djlj));
-});
+		var oldNum3 = $('.dangyuan3 .new').text();
+		$('.dangyuan3').html(updateNum(oldNum3, res.data.djlj));
+	});
+}
+
 
 //3.支部学习实时动态
+
 var categoryId = 0;
-ajaxData(sbdUrl,function(res){
-	console.log(res)
-	var str = ''
-	for(var i = 0;i<res.data.length;i++){
-		str +='<li><a href="javascript:void(0)" categoryid="'+res.data[i].category_id+'">'+res.data[i].category_name+'</a></li>' 
-	}
-	$('#nav').html(str);
-
-	$('.wrapper').navbarscroll();
+function sbdFn(){
+	ajaxData(sbdUrl,function(res){
+		console.log(res)
+		var str = ''
+		for(var i = 0;i<res.data.length;i++){
+			str +='<li><a href="javascript:void(0)" categoryid="'+res.data[i].category_id+'">'+res.data[i].category_name+'</a></li>' 
+		}
+		$('#nav').html(str);
 	
-	var listStr = '';
-	for(var i = 0;i<res.data.length;i++){
-		listStr +='<ul class="section3-top-list">'
-		for(var j=0;j<res.data[i].articles.length;j++){
-			listStr +='<li aid="'+res.data[i].articles[j].a_id+'">'
-			if(j<3){
-				listStr +='<span class="sort" style="background:#E58B26">'+(j+1)+'</span>'
-			}else{
-				listStr +='<span class="sort">'+(j+1)+'</span>'
+		$('.wrapper').navbarscroll();
+		
+		var listStr = '';
+		for(var i = 0;i<res.data.length;i++){
+			listStr +='<ul class="section3-top-list">'
+			for(var j=0;j<res.data[i].articles.length;j++){
+				listStr +='<li aid="'+res.data[i].articles[j].a_id+'">'
+				if(j<3){
+					listStr +='<span class="sort" style="background:#E58B26">'+(j+1)+'</span>'
+				}else{
+					listStr +='<span class="sort">'+(j+1)+'</span>'
+					
+				}
 				
+				var title = ''
+				if(res.data[i].articles[j].title.length>10){
+					title = res.data[i].articles[j].title.substr(0,8)+'...'
+					listStr +='<span class="theme">'+title+'</span>'
+				}
+				
+				listStr +='<p><span>流动党员</span><em>'+res.data[i].articles[j].liudong_num+'人</em></p>'
+				+'<p><span>辖区党员</span><em>'+res.data[i].articles[j].feiliudong_num+'人</em></p>'
+				+'<p><span>完成率</span><em>'+res.data[i].articles[j].wancheng+'</em></p>'
+			+'</li>'
 			}
-			
-			var title = ''
-			if(res.data[i].articles[j].title.length>10){
-				title = res.data[i].articles[j].title.substr(0,8)+'...'
-				listStr +='<span class="theme">'+title+'</span>'
+			listStr +='</ul>';
+		}
+		
+		
+		$('#s3list1').html(listStr);
+		
+		$('.scroller li a').eq(0).addClass('cur').parent().siblings().children('a').removeClass('cur');
+		$('.section3-tab-content ul').eq(0).show().siblings().hide();
+		$("#s3list1").myScroll({
+			speed:40, 
+			rowHeight:50
+		});	
+		
+		
+	
+		var index = 0;
+		var timer = null;
+		timer = setInterval(function(){
+			index++;
+			//sectionUl(index);
+			if(index >$('.scroller li a').length ){
+				index = 0;
 			}
+			$('.scroller li a').eq(index).trigger("click");
+			$('.scroller li a').eq(index).bind('click',function(){
+				sectionUl(index)
+			})
 			
-			listStr +='<p><span>流动党员</span><em>'+res.data[i].articles[j].liudong_num+'人</em></p>'
-			+'<p><span>辖区党员</span><em>'+res.data[i].articles[j].feiliudong_num+'人</em></p>'
-			+'<p><span>完成率</span><em>'+res.data[i].articles[j].wancheng+'</em></p>'
-		+'</li>'
-		}
-		listStr +='</ul>';
-	}
-	
-	
-	$('#s3list1').html(listStr);
-	
-	$('.scroller li a').eq(0).addClass('cur').parent().siblings().children('a').removeClass('cur');
-	$('.section3-tab-content ul').eq(0).show().siblings().hide();
-	$("#s3list1").myScroll({
-		speed:40, 
-		rowHeight:50
-	});	
-	
-	
-
-	var index = 0;
-	var timer = null;
-	timer = setInterval(function(){
-		index++;
-		//sectionUl(index);
-		if(index >$('.scroller li a').length ){
-			index = 0;
-		}
-		$('.scroller li a').eq(index).trigger("click");
-		$('.scroller li a').eq(index).bind('click',function(){
-			sectionUl(index)
+		},2000)
+		
+		$('#section3Ul').hover(function(){
+			clearInterval(timer);
+		},function(){
+			timer;
 		})
 		
-	},2000)
-	
-	$('#section3Ul').hover(function(){
-		clearInterval(timer);
-	},function(){
-		timer;
-	})
-	
-	
-	var index = 0;
-	sectionUl(index);
-	$('.scroller li a').click(function(){
-		index = $(this).parent().index();
-		sectionUl(index)
-	})
-	
-	
-});
+		
+		var index = 0;
+		sectionUl(index);
+		$('.scroller li a').click(function(){
+			index = $(this).parent().index();
+			$('.scroller li a').eq(index).addClass('cur').parent().siblings().children('a').removeClass('cur');
+			$('.section3-tab-content ul').eq(index).show().siblings().hide();
+		})
+	});
+}
 
-function sectionUl(index){
-	$('.scroller li a').eq(index).addClass('cur').parent().siblings().children('a').removeClass('cur');
-	$('.section3-tab-content ul').eq(index).show().siblings().hide();
-	
-	
-	
+function sectionUl(){
 	// 弹窗2
 	$('.section3-top-list li').on('click', function() {
 		var aId = $(this).attr('aid');
@@ -515,63 +521,67 @@ function sectionUl(index){
 			success:function(res){
 				console.log(res);
 				var popStr = '';
-				popStr +='<div class="img-box">'
+				if(res.data.articles.top_pic !=''){
+					popStr +='<div class="img-box">'
 					+'<img src="'+res.data.articles.top_pic+'" />'
 					+'</div>'
-				+'<div class="content">'
-			+'<p>学习主题：'+res.data.articles.title+'</p>'
-			+'<p class="party clearfix">'
-			+	'<span>党支部人数：'+res.data.all_num+'人</span>'
-			+	'<span>流动党员人数：'+res.data.liudong_num+'人</span>'
-			+	'<span>学习完成率：'+res.data.wancheng+'</span>'
-			+'</p>'
-			+'<div class="section-item clearfix">'
-			+	'<h2>未学习</h2>'    
-			+	'<div class="section-body">'
-			+	'<p>'
-			
-			for(var i=0;i<res.data.weixuexi.length;i++){
-				popStr+='<span>'+res.data.weixuexi[i].real_name+'</span>'
-			}
-			
-			
-			popStr+='</p>'
-					
-			+	'</div>'
-			+'</div>'
-//			<div class="section-item clearfix">
-//				<h2>已学习</h2>
-//				<div class="section-body">
-//					<p>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//					</p>
-//					<p>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//					</p>
-//				</div>
-//			</div>
-		+'</div>'
+				}
+
+				popStr +='<div class="content">'
+				+'<p>学习主题：'+res.data.articles.title+'</p>'
+				+'<p class="party clearfix">'
+				+	'<span>党支部人数：'+res.data.all_num+'人</span>'
+				+	'<span>流动党员人数：'+res.data.liudong_num+'人</span>'
+				+	'<span>学习完成率：'+res.data.wancheng+'</span>'
+				+'</p>'
+				+'<div class="section-item clearfix">'
+				+	'<h2>未学习</h2>'    
+				+	'<div class="section-body">'
+				+	'<p>'
+				
+				for(var i=0;i<res.data.weixuexi.length;i++){
+					popStr+='<span>'+res.data.weixuexi[i].real_name+'</span>'
+				}
+				
+				
+				popStr+='</p>'	
+				+	'</div>'
+				+'</div>'
+				+'<div class="section-item clearfix">'
+				+	'<h2>未学习</h2>'    
+				+	'<div class="section-body">'
+				+	'<p>'
+				
+				for(var i=0;i<res.data.yixuexi.length;i++){
+					popStr+='<span>'+res.data.yixuexi[i].real_name+'</span>'
+				}
+	
+				popStr+='</p>'
+				+	'</div>'
+				+'</div>'
+				+'</div>'
 				
 				$('.popup2').html(popStr);
-				
-				layer.open({
-					type: 1,
-					area: ['880px', '880px'],
-					title: res.data.articles.title,
-					shade: 0,
-					shadeClose: true, //点击遮罩关闭
-					content: $('.popup2')
-				});
+				if(res.data.articles.top_pic !=''){
+					layer.open({
+						type: 1,
+						area: ['880px', '800px'],
+						title: res.data.articles.title,
+						shade: 0.2,
+						shadeClose: true, //点击遮罩关闭
+						content: $('.popup2')
+					});
+				}else{
+					layer.open({
+						type: 1,
+						area: ['880px', '400px'],
+						title: res.data.articles.title,
+						shade: 0.2,
+						shadeClose: true, //点击遮罩关闭
+						content: $('.popup2')
+					});
+				}
+			
 			}
 		});
 		
@@ -579,79 +589,85 @@ function sectionUl(index){
 }
 
 //4.非公党建单位行业分类展示
-ajaxData(jobcateUrl,function(res){
-	//console.log(res)
-	var xData = [];
-	var barData = [];
-	xData = ['生产制造', '公共服务', '科技信息', '文化教育', '能源服务']
-	barData = [res.data.fwl_count, res.data.jsl_count, res.data.xsl_count, res.data.zjl_count, res.data.qtl_count];
-	barChartFn(xData, barData)
-});
-
+function jobcateFn(){
+	ajaxData(jobcateUrl,function(res){
+		//console.log(res)
+		var xData = [];
+		var barData = [];
+		xData = ['生产制造', '公共服务', '科技信息', '文化教育', '能源服务']
+		barData = [res.data.fwl_count, res.data.jsl_count, res.data.xsl_count, res.data.zjl_count, res.data.qtl_count];
+		barChartFn(xData, barData)
+	});
+}
 
 //5.党建线上互动实时动态
-ajaxData(rtdynamicUrl,function(res){
-	var str = ''
-	for(var i = 0;i<res.data.users.length;i++){
-		var time = formatDateTime(res.data.users[i].last_time*1)
-		str += '<li><span>'+res.data.users[i].real_name+'</span><span>'+time+'</span></li>'
-	}
-	$('.section3-list').html(str);
-	//党建线上互动实时动态-列表上下滚动
-	
-	$("#s3list2").myScroll({
-		speed:60, 
-		rowHeight:40
-	});
-});
-//6.亦资街道基层党组织人力分布图
-ajaxData(gridUrl,function(res){
-	pieChart1Fn(res.data.liudongrenkou);
-	pieChart2Fn(res.data.liudongdangyuan);
-	pieChart3Fn(res.data.shop);
-	pieChart4Fn(res.data.zzmm);
-	pieChart5Fn(res.data.kunnan);
-	pieChart6Fn(res.data.daxue);
-	pieChart7Fn(res.data.sex);
-	pieChart8Fn(res.data.getjob);
-
-	// 饼图轮播
-	var n = 0;
-	var timer = null;
-	
-	timer = setInterval(moveFn, 10000);
-	function moveFn() {
-		n++;
-		$('.piechart-wrap').css({
-			'transform': 'translateX(' + -13 * n + 'rem)'
-		});
-		if(n > 2) {
-			n = 0;
+function rtdynamicFn(){
+	ajaxData(rtdynamicUrl,function(res){
+		var str = ''
+		for(var i = 0;i<res.data.users.length;i++){
+			var time = formatDateTime(res.data.users[i].last_time*1)
+			str += '<li><span>'+res.data.users[i].real_name+'</span><span>'+time+'</span></li>'
 		}
-	}
+		$('.section3-list').html(str);
+		//党建线上互动实时动态-列表上下滚动
 	
-	$('.piechart-wrap').hover(function(){
-		clearInterval(timer);
-	},function(){
+		$("#s3list2").myScroll({
+			speed:60, 
+			rowHeight:40
+		});
+	});
+}
+//6.亦资街道基层党组织人力分布图
+function gridFn(){
+	ajaxData(gridUrl,function(res){
+		pieChart1Fn(res.data.liudongrenkou);
+		pieChart2Fn(res.data.liudongdangyuan);
+		pieChart3Fn(res.data.shop);
+		pieChart4Fn(res.data.zzmm);
+		pieChart5Fn(res.data.kunnan);
+		pieChart6Fn(res.data.daxue);
+		pieChart7Fn(res.data.sex);
+		pieChart8Fn(res.data.getjob);
+
+		// 饼图轮播
+		var n = 0;
+		var timer = null;
+	
 		timer = setInterval(moveFn, 10000);
-	})
-});
+		function moveFn() {
+			n++;
+			$('.piechart-wrap').css({
+				'transform': 'translateX(' + -13 * n + 'rem)'
+			});
+			if(n > 2) {
+				n = 0;
+			}
+		}
+	
+		$('.piechart-wrap').hover(function(){
+			clearInterval(timer);
+		},function(){
+			timer = setInterval(moveFn, 10000);
+		})
+	});
+}
 
 //7.智慧亦资服务量
-ajaxData(channelUrl,function(res){
-	var data = JSON.parse(res);
-	// 折线图
-	var xlineData = data.xaxis_data,
-		linejobData = data.series_job,
-		linetrainData = data.series_train,
-		linehelpData = data.series_help;
+function channelFn(){
+	ajaxData(channelUrl,function(res){
+		var data = JSON.parse(res);
+		// 折线图
+		var xlineData = data.xaxis_data,
+			linejobData = data.series_job,
+			linetrainData = data.series_train,
+			linehelpData = data.series_help;
 		
-		lineChartFn(xlineData, linejobData, linehelpData, linetrainData);
-});
+			lineChartFn(xlineData, linejobData, linehelpData, linetrainData);
+	});
+}
 
 //8.贵州区域地图
 ajaxData(mapUrl,function(res){
-//	console.log(res);
 	var mapData = [];
 
 	var list = res.data.list
@@ -720,42 +736,12 @@ ajaxData(mapUrl,function(res){
 		]
 	}
 	mapChart.setOption(option)
-	
-});
-//9.用户登录实时地图显示
-ajaxData(mpdynamicUrl,function(res){
-	//console.log(res)
 });
 
 
 
-// ajax
-function ajaxData(url,callback){
-	$.ajax({
-		type:"get",
-		url:url,
-		success:function(res){
-			callback(res)
-		}
-	});
-}
 
-// 时间格式化
-function formatDateTime(inputTime) {
-	var date = new Date(inputTime);
-	var y = date.getFullYear();
-	var m = date.getMonth() + 1;
-	m = m < 10 ? ('0' + m) : m;
-	var d = date.getDate();
-	d = d < 10 ? ('0' + d) : d;
-	var h = date.getHours();
-	h = h < 10 ? ('0' + h) : h;
-	var minute = date.getMinutes();
-	var second = date.getSeconds();
-	minute = minute < 10 ? ('0' + minute) : minute;
-	second = second < 10 ? ('0' + second) : second;
-	return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
-}
+
 
 // 柱状图
 // 基于准备好的dom，初始化echarts实例
@@ -952,515 +938,7 @@ $.getJSON('./static/js/guizhou.json', function(data) {
 })
 
 
-// 数字滚动增加特效
-function updateNum(oldNum, newNum) {
-	//console.log(oldNum, newNum)
-	// 将数字转为字符串
-	var oldNum = oldNum.toString();
-	var newNum = newNum.toString();
 
-	numberHTML = '';
-	for(var i = newNum.length - 1; i >= 0; i--) {
-		if(oldNum[i] !== newNum[i]) {
-			if(oldNum[i] == undefined || oldNum[i] == null || oldNum[i] == "") {
-				if(newNum[i] != ",")
-					numberHTML = "<li class=\"group active\">" +
-					"<span class=\"old\">0</span>" +
-					"<span class=\"new\">" + newNum[i] + "</span></li>" + numberHTML;
-				else
-					numberHTML = "<li class=\"group active\">" +
-					"<span class=\"old\">,</span>" +
-					"<span class=\"new\">" + newNum[i] + "</span></li>" + numberHTML;
-			} else
-				numberHTML = "<li class=\"group active\">" +
-				"<span class=\"old\">" + oldNum[i] + "</span>" +
-				"<span class=\"new\">" + newNum[i] + "</span></li>" + numberHTML;
-		} else {
-			numberHTML = "<li class=\"group\">" +
-				"<span class=\"old\">" + oldNum[i] + "</span>" +
-				"<span class=\"new\">" + newNum[i] + "</span></li>" + numberHTML;
-		}
-
-	}
-	return numberHTML;
-}
-
-// 时间
-// 获取本地时间
-function timeFn() {
-	var nowdate = new Date();
-	var y = nowdate.getFullYear();
-	var m = nowdate.getMonth() + 1;
-	var d = nowdate.getDate();
-	var h = nowdate.getHours();
-	var minutes = nowdate.getMinutes();
-	var s = nowdate.getSeconds();
-	m = m < 10 ? '0' + m : m;
-	d = d < 10 ? '0' + d : d;
-	h = h < 10 ? '0' + h : h;
-	minutes = minutes < 10 ? '0' + minutes : minutes;
-	s = s < 10 ? '0' + s : s;
-	var nowTime = y + '年' + m + '月' + d + '日&nbsp;&nbsp;' + h + ':' + minutes + ':' + s;
-	$('.date').html(nowTime)
-}
-
-timeFn();
-
-setInterval(function() {
-	timeFn()
-}, 1000)
-
-// 圆环图
-// 流动人口
-function pieChart1Fn(obj) {
-	var pieChart1 = echarts.init(document.getElementById('piechart1'));
-	var pieOption1 = {
-		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#0DB7DB'],
-		legend: {
-			bottom: '0',
-			itemWidth: 10,
-			itemHeight: 10,
-			borderRadius: 10,
-			padding: [10, 30],
-			textStyle: {
-				color: '#fff',
-			},
-			data: ['流动','辖区']
-		},
-		tooltip:{
-			 trigger: 'item',
-        	formatter: "{a} <br/>{b}: {d}%"
-		},
-		series: [{
-			name: '流动人口',
-			type: 'pie',
-			radius: ['40%', '55%'],
-			center: ['50%', '40%'],
-			avoidLabelOverlap: false,
-			label: {
-				normal: {
-					position: 'outside',
-					formatter: '{d}%',
-					color: '#fff',
-				},
-			},
-			labelLine: {
-				normal: {
-					length: 0,
-					length2: 15,
-					lineStyle: {
-						color: '#fff',
-					},
-				}
-			},
-			data: [
-				{value: obj['liudong'],name: '流动'},
-				{value: obj['xiaqu'],name: '辖区'}
-			]
-		}]
-	}
-	pieChart1.setOption(pieOption1);
-}
-
-// 流动党员
-function pieChart2Fn(obj) {
-	var pieChart2 = echarts.init(document.getElementById('piechart2'));
-	var pieOption2 = {
-		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-		legend: {
-			bottom: '0',
-			itemWidth: 10,
-			itemHeight: 10,
-			borderRadius: 10,
-			padding: [10, 20],
-			textStyle: {
-				color: '#fff',
-			},
-			data: ['流动', '辖区']
-		},
-		tooltip:{
-			 trigger: 'item',
-        	formatter: "{a} <br/>{b}: {d}%"
-		},
-		series: [{
-			name: '流动党员',
-			type: 'pie',
-			radius: ['40%', '55%'],
-			center: ['50%', '40%'],
-			label: {
-				normal: {
-					//show: false,
-					position: 'outside',
-					formatter: '{d}%',
-					color: '#fff',
-
-				},
-			},
-			minAngle: 20,
-			labelLine: {
-				normal: {
-					length: 0,
-					length2: 15,
-					lineStyle: {
-						color: '#fff',
-					},
-				}
-			},
-			data: [
-				{value: obj['liudong'],name: '流动'},
-				{value: obj['xiaqu'],name: '辖区'}
-			]
-		}]
-	}
-	
-	
-	pieChart2.setOption(pieOption2);
-}
-
-// 店铺
-function pieChart3Fn(obj) {
-	var pieChart3 = echarts.init(document.getElementById('piechart3'));
-	var pieOption3 = {
-		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-		legend: {
-			bottom: '0',
-			itemWidth: 10,
-			itemHeight: 10,
-			borderRadius: 10,
-			padding: [10, 20],
-			textStyle: {
-				color: '#fff',
-			},
-			data: ['诚信','党员']
-		},
-		tooltip:{
-			 trigger: 'item',
-        	formatter: "{a} <br/>{b}: {d}%"
-		},
-		series: [{
-			name: '店铺',
-			type: 'pie',
-			radius: ['40%', '55%'],
-			center: ['50%', '40%'],
-			label: {
-				normal: {
-					position: 'outside',
-					formatter: '{d}%',
-					color: '#fff',
-
-				},
-			},
-			labelLine: {
-				normal: {
-					length: 0,
-					length2: 15,
-					lineStyle: {
-						color: '#fff',
-					},
-				}
-			},
-			minAngle: 20,
-			data: [{
-					value: obj['chengxin'],
-					name: '诚信'
-				},
-				{
-					value: obj['dangyuan'],
-					name: '党员'
-				}
-			]
-		}]
-	}
-	pieChart3.setOption(pieOption3);
-}
-
-// 政治面貌
-function pieChart4Fn(obj) {
-	var pieChart4 = echarts.init(document.getElementById('piechart4'));
-	var pieOption4 = {
-		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-		legend: {
-			bottom: '0',
-			itemWidth: 10,
-			itemHeight: 10,
-			borderRadius: 10,
-			padding: [10, 20],
-			textStyle: {
-				color: '#fff',
-			},
-			data: ['党员', '其他党派', '无党派']
-		},
-		tooltip:{
-			 trigger: 'item',
-        	formatter: "{a} <br/>{b}: {d}%"
-		},
-		series: [{
-			name: '政治面貌',
-			type: 'pie',
-			radius: ['40%', '55%'],
-			center: ['50%', '40%'],
-			label: {
-				normal: {
-					//show: false,
-					position: 'outside',
-					formatter: '{d}%',
-					color: '#fff',
-
-				},
-			},
-			labelLine: {
-				normal: {
-					length: 0,
-					length2: 15,
-					lineStyle: {
-						color: '#fff',
-					},
-				}
-			},
-			minAngle: 20,
-			data: [{
-					value: obj["dangyuan"],
-					name: '党员'
-				},
-				{
-					value: obj["qitadang"],
-					name: '其他党派'
-				},
-				{
-					value: obj["wudangpai"],
-					name: '无党派'
-				},
-
-			]
-		}]
-	}
-	pieChart4.setOption(pieOption4);
-}
-
-// 困难人员
-function pieChart5Fn(obj) {
-	var pieChart5 = echarts.init(document.getElementById('piechart5'));
-	var pieOption5 = {
-		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-		legend: {
-			bottom: '0',
-			itemWidth: 10,
-			itemHeight: 10,
-			borderRadius: 10,
-			padding: [10, 20],
-			textStyle: {
-				color: '#fff',
-			},
-			data: ['重点人群', '低保户','困难户','空巢老人']
-		},
-		tooltip:{
-			 trigger: 'item',
-        	formatter: "{a} <br/>{b}: {d}%"
-		},
-		series: [{
-			name: '困难人员',
-			type: 'pie',
-			radius: ['40%', '55%'],
-			center: ['50%', '40%'],
-			label: {
-				position: 'outside',
-				formatter: '{d}%',
-				color: '#fff',
-				align: 'left',
-				verticalAlign: 'bottom'
-			},
-			itemStyle: {
-				emphasis: {
-					shadowBlur: 10,
-					shadowOffsetX: 0,
-					shadowColor: 'rgba(0, 0, 0, 0.5)'
-				}
-			},
-			labelLine: {
-				normal: {
-					length: 0,
-					length2: 15,
-					lineStyle: {
-						color: '#fff',
-					},
-				}
-			},
-			minAngle: 20,
-			data: [
-				{value: obj["keyperson"],name: '重点人群'},
-				{value: obj["dibao"],name: '低保户'},
-				{value: obj["kunnan"],name: '困难户'},
-				{value: obj["kongchao"],name: '空巢老人'},
-				
-			]
-		}]
-	}
-	pieChart5.setOption(pieOption5);
-}
-
-// 大学生
-function pieChart6Fn(obj) {
-	var pieChart6 = echarts.init(document.getElementById('piechart6'));
-	var pieOption6 = {
-		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-		legend: {
-			bottom: '0',
-			itemWidth: 10,
-			itemHeight: 10,
-			borderRadius: 10,
-			padding: [10, 20],
-			textStyle: {
-				color: '#fff',
-			},
-			data: ['大专以上', '大专','大专以下']
-		},
-		tooltip:{
-			 trigger: 'item',
-        	formatter: "{a} <br/>{b}: {d}%"
-		},
-		series: [{
-			name: '大学生',
-			type: 'pie',
-			radius: ['40%', '55%'],
-			center: ['50%', '40%'],
-			label: {
-				position: 'outside',
-				formatter: '{d}%',
-				color: '#fff',
-				align: 'left',
-				verticalAlign: 'bottom'
-			},
-			labelLine: {
-				normal: {
-					length: 0,
-					length2: 15,
-					lineStyle: {
-						color: '#fff',
-					},
-				}
-			},
-			minAngle: 20,
-			data: [
-				{value: obj["dazhuanys"],name: '大专以上'},
-				{value: obj["dazhuan"],name: '大专'},
-				{value: obj["dazhuanyx"],name: '大专以下'},
-			]
-		}]
-	}
-	pieChart6.setOption(pieOption6);
-}
-
-// 性别
-function pieChart7Fn(obj) {
-	var pieChart7 = echarts.init(document.getElementById('piechart7'));
-	var pieOption7 = {
-		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-		legend: {
-			bottom: '0',
-			itemWidth: 10,
-			itemHeight: 10,
-			borderRadius: 10,
-			padding: [10, 20],
-			textStyle: {
-				color: '#fff',
-			},
-			data: ['男', '女']
-		},
-		tooltip:{
-			 trigger: 'item',
-        	formatter: "{a} <br/>{b}: {d}%"
-		},
-		series: [{
-			name: '性别',
-			type: 'pie',
-			radius: ['40%', '55%'],
-			center: ['50%', '40%'],
-			label: {
-				position: 'outside',
-				formatter: '{d}%',
-				color: '#fff',
-				align: 'left',
-				verticalAlign: 'bottom'
-			},
-			labelLine: {
-				normal: {
-					length: 0,
-					length2: 15,
-					lineStyle: {
-						color: '#fff',
-					},
-				}
-			},
-			minAngle: 20,
-			data: [{
-					value: obj["nan"],
-					name: '男'
-				},
-				{
-					value: obj["nv"],
-					name: '女'
-				},
-			]
-		}]
-	}
-	pieChart7.setOption(pieOption7);
-}
-
-// 就业
-function pieChart8Fn(obj) {
-	var pieChart8 = echarts.init(document.getElementById('piechart8'));
-	var pieOption8 = {
-		color: ['#FFB50A', '#8C04FA', '#10BD8F', '#10BD8F', '#0DB7DB'],
-		legend: {
-			bottom: '0',
-			itemWidth: 10,
-			itemHeight: 10,
-			borderRadius: 10,
-			padding: [10, 20],
-			textStyle: {
-				color: '#fff',
-			},
-			data: ['失业', '就业']
-		},
-		tooltip:{
-			trigger: 'item',
-        	formatter: "{a} <br/>{b}: {d}%"
-		},
-		series: [{
-			name: '就业',
-			type: 'pie',
-			radius: ['40%', '55%'],
-			center: ['50%', '40%'],
-			label: {
-				position: 'outside',
-				formatter: '{d}%',
-				color: '#fff',
-				align: 'left',
-				verticalAlign: 'bottom'
-			},
-			labelLine: {
-				normal: {
-					length: 0,
-					length2: 15,
-					lineStyle: {
-						color: '#fff',
-					},
-				}
-			},
-			minAngle: 20,
-			data: [{
-					value: obj["shiye"],
-					name: '失业'
-				},
-				{
-					value: obj["jiuye"],
-					name: '就业'
-				},
-			]
-		}]
-	}
-	pieChart8.setOption(pieOption8);
-}
 </script>
 </body>
 </html>

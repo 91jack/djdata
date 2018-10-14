@@ -575,8 +575,8 @@ ol li.active span {
 .popup .section-item .section-body p {
 	font-size: 1.4rem;
 	color: #000;
-	height:4rem;
-	line-height: 4rem;
+	/*height:4rem;*/
+	line-height: 3rem;
 	border-bottom: 0.05rem solid #DCDFE6;
 }
 .popup .section-item .section-body span {

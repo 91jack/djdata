@@ -117,7 +117,7 @@ ul,ol,li{
 	margin-left: 0.5rem;
 }
 .section-item-list li p {
-	width:18rem;
+	width:16rem;
 	float:left;
 	margin-left: 0.5rem;
 }
@@ -471,12 +471,16 @@ ol li.active span {
 .section3-ul li {
 	clear: both;
 }
+.section3-ul li p{
+	width:21rem;
+	
+}
 .section3-ul li p span:nth-child(1){
-	width:35%;
+	width:30%;
 	float:left;
 }
 .section3-ul li p span:nth-child(2){
-	width:20%;
+	width:25%;
 	float:left;
 }
 .section3-ul li p span:last-child{
