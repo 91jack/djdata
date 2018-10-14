@@ -284,7 +284,7 @@
 	</div>
 
 <script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
+<script type="text/javascript" src="static/js/iscroll.min.js"></script>
 <script type="text/javascript" src="static/js/navbarscroll.js"></script>
 <script src="static/js/common.js"></script>
 <script src="static/js/scroll.js" type="text/javascript" charset="utf-8"></script>
@@ -509,44 +509,36 @@ function sectionUl(index){
 			type:"get",
 			url:"http://gzps.xnshequ.com/tongji_bigdata/dangyuanxq",
 			data:{
-				$dz_id:categoryId,
-				$a_id:aId
+				dz_id:categoryId,
+				a_id:aId
 			},
 			success:function(res){
 				console.log(res);
 				var popStr = '';
 				popStr +='<div class="img-box">'
-					+'<img src="'+res.data.articles+'" />'
+					+'<img src="'+res.data.articles.top_pic+'" />'
 					+'</div>'
+				+'<div class="content">'
+			+'<p>学习主题：'+res.data.articles.title+'</p>'
+			+'<p class="party clearfix">'
+			+	'<span>党支部人数：'+res.data.all_num+'人</span>'
+			+	'<span>流动党员人数：'+res.data.liudong_num+'人</span>'
+			+	'<span>学习完成率：'+res.data.wancheng+'</span>'
+			+'</p>'
+			+'<div class="section-item clearfix">'
+			+	'<h2>未学习</h2>'    
+			+	'<div class="section-body">'
+			+	'<p>'
+			
+			for(var i=0;i<res.data.weixuexi.length;i++){
+				popStr+='<span>'+res.data.weixuexi[i].real_name+'</span>'
+			}
+			
+			
+			popStr+='</p>'
 					
-//				'<div class="content">'
-//			'<p>学习主题：'+res.data.articles.title+'</p>'
-//			'<p class="party clearfix">'
-//				'<span>党支部人数：'110'人</span>'
-//				'<span>流动党员人数：'110'人</span>'
-//				'<span>学习完成率：'95%'</span>'
-//			'</p>'
-//			<div class="section-item clearfix">
-//				<h2>未学习</h2>
-//				<div class="section-body">
-//					<p>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//					</p>
-//					<p>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//						<span>战三</span>
-//					</p>
-//				</div>
-//			</div>
+			+	'</div>'
+			+'</div>'
 //			<div class="section-item clearfix">
 //				<h2>已学习</h2>
 //				<div class="section-body">
@@ -575,7 +567,7 @@ function sectionUl(index){
 				layer.open({
 					type: 1,
 					area: ['880px', '880px'],
-					title: 'xxxx党组织部',
+					title: res.data.articles.title,
 					shade: 0,
 					shadeClose: true, //点击遮罩关闭
 					content: $('.popup2')
@@ -602,7 +594,7 @@ ajaxData(rtdynamicUrl,function(res){
 	var str = ''
 	for(var i = 0;i<res.data.users.length;i++){
 		var time = formatDateTime(res.data.users[i].last_time*1)
-		str += '<li><span>'+res.data.users[i].nick_name+'</span><span>'+time+'</span></li>'
+		str += '<li><span>'+res.data.users[i].real_name+'</span><span>'+time+'</span></li>'
 	}
 	$('.section3-list').html(str);
 	//党建线上互动实时动态-列表上下滚动

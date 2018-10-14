@@ -124,11 +124,12 @@ ul,ol,li{
 .section-item-list li p span {
 	display: inline-block;
 	width:30%;
+	float:left;
 	margin-right: 0.5rem;
 }
-#s3list1 li p span  {
+/*#s3list1 li p span  {
 	width:40%;
-}
+}*/
 
 .section3-list li span:last-child {
 	top:0;
@@ -300,7 +301,7 @@ ol li.active span {
 /*地图*/
 #mapchart {
 	width: 41.25rem;
-	height:33rem;
+	height:26.45rem;
 	position: absolute;
 	top: 5rem;
 	text-align: center;
@@ -470,9 +471,19 @@ ol li.active span {
 .section3-ul li {
 	clear: both;
 }
-.section3-ul li span:last-child{
-	width:50%
+.section3-ul li p span:nth-child(1){
+	width:35%;
+	float:left;
 }
+.section3-ul li p span:nth-child(2){
+	width:20%;
+	float:left;
+}
+.section3-ul li p span:last-child{
+	width:35%;
+	float:left;
+}
+
 
 .footerchart {
 	clear: both;

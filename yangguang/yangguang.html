@@ -284,7 +284,7 @@
 		</div>
 
 <script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
+<script type="text/javascript" src="static/js/iscroll.min.js"></script>
 <script type="text/javascript" src="static/js/navbarscroll.js"></script>
 <script src="static/js/common.js"></script>
 <script src="static/js/scroll.js" type="text/javascript" charset="utf-8"></script>
@@ -306,14 +306,14 @@ $('.map-num a').each(function() {
 })
 	
 var host = 	'http://gzps.xnshequ.com/tongji_bigdata/'	
-//1.实时服务动态
+//1.阳光政务实时服务动态
 var cygjUrl = host +'online';
 
-//2.党员服务量，流动党员服务量，党建联建
+//2.政务服务量、已办结量、未办结量
 var t3Url = host +'number';
 
-//3.支部学习实时动态
-var sbdUrl = host +'sbd';
+//3.网格政务服务动态
+var sbdUrl = host +'Wanggefuwu';
 
 //4.服务类型
 var jobcateUrl = host +'fuwutype';
@@ -356,39 +356,48 @@ ajaxData(cygjUrl,function(res){
 		console.log($(this).attr('data-id'))
 		$.ajax({
 			type:"get",
-			url:"http://gzps.xnshequ.com/tongji_bigdata/partyxq",
+			url:"http://gzps.xnshequ.com/tongji_bigdata/dongtaixq",
 			data:{
 				id:$(this).attr('data-id')
 			},
 			success:function(res){
 				console.log(res)
 				var popStr = '';
-				popStr +='<div class="img-box">'
-					+'<img src="'+res.data.pics+'" />'
-					+'</div>'
-					+'<div class="content">'
-						+'<p>店面名称：'+res.data.name+'</p>'
-						+'<p>店主姓名：'+res.data.fzr_name +'</p>'
-						+'<p>店面地址：'+res.data.address +'</p>'
-						+'<p>所属支部：'+res.data.shequ_name+'</p>'
-						+'<p>服务类别：'+res.data.type+'</p>'
+				popStr +=	'<div class="content">'
+						+'<p>事项名称：'+res.data.sq_name+'</p>'
+						+'<p>事项编号：'+res.data.sq_number +'</p>'
+						+'<p>接件部门：'+res.data.bumen_name +'</p>'
+						+'<p>事项类型：'+res.data.leibie_name+'</p>'
+						+'<p>办件人姓名：'+res.data.sqr_name+'</p>'
+						+'<p>所属社区：'+res.data.quyu_name+'</p>'
+						+'<p>提交时间：'+formatDateTime(res.data.add_time*1)+'</p>'
 						
-						if(res.data.company_info.dangzuzhi == '1'){
-							popStr +='<p>是否属于党员示范店：<span style="color: #1E9FFF;">是</span></p>'
-						}else{
-							popStr +='<p>是否属于党员示范店：<span style="color: #FF0017;">否</span></p>'
+						var statusText = '';
+						if(res.data.status  == '1'){
+							statusText = '未处理';
+						}else if(res.data.status  == '2'){
+							statusText = '已处理';
+						}else if(res.data.status  == '3'){
+							statusText = '正在办理';
+						}else if(res.data.status  == '4'){
+							statusText = '资料未完善';
+						}else if(res.data.status  == '5'){
+							statusText = '已办理';
+						}else if(res.data.status  == '6'){
+							statusText = '退回';
 						}
 						
+						popStr +='<p>事项状态：<span style="color: #1E9FFF;">'+statusText+'</span></p>'
 						
-						popStr +='<p>服务内容：'+res.data.content+'</p>'
+						popStr +='<p>回复内容：'+res.data.huifu+'</p>'
 					+'</div>'
 				
 				$('.popup1').html(popStr);
 				
 				layer.open({
 					type: 1,
-					area: ['880px', '880px'],
-					title: res.data.name,
+					area: ['880px', '500px'],
+					title: res.data.sq_name,
 					shade: 0.2,
 					shadeClose: true, //点击遮罩关闭
 					content: $('.popup1')
@@ -534,7 +543,7 @@ ajaxData(rtdynamicUrl,function(res){
 	var str = ''
 	for(var i = 0;i<res.data.users.length;i++){
 		var time = formatDateTime(res.data.users[i].last_time*1)
-		str += '<li><span>'+res.data.users[i].nick_name+'</span><span>'+time+'</span></li>'
+		str += '<li><span>'+res.data.users[i].real_name+'</span><span>'+time+'</span></li>'
 	}
 	$('.section3-list').html(str);
 	//党建线上互动实时动态-列表上下滚动

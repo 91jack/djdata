@@ -337,72 +337,77 @@ var mpdynamicUrl = host +'mpdynamic';
 
 /*数据渲染*/
 //1.党员示范店
-ajaxData(cygjUrl,function(res){
-	var str = ''
-	for(var i = 0;i<res.data.length;i++){
-		str += '<li data-id="'+res.data[i].id+'">'
-			+'<span class="sort">'+(i+1)+'</span>'
-			+'<p><span>'+res.data[i].name.substr(0,6) +'</span>'
-			+'<span>'+res.data[i].fzr_name.substr(0,3)+'</span>'
-			+'<span>'+res.data[i].shequ_name+'</span>'
-			+'</p></li>'
-	}
-	$('#cygj').html(str);
-	for(var i = 0;i<3;i++){
-		$('#cygj li').eq(i).children('.sort').css('background','#E58B26');
-	}
-	$('#cygj li').click(function(){
-		console.log($(this).attr('data-id'))
-		$.ajax({
-			type:"get",
-			url:"http://gzps.xnshequ.com/tongji_bigdata/partyxq",
-			data:{
-				id:$(this).attr('data-id')
-			},
-			success:function(res){
-				console.log(res)
-				var popStr = '';
-				popStr +='<div class="img-box">'
-					+'<img src="'+res.data.pics+'" />'
-					+'</div>'
-					+'<div class="content">'
-						+'<p>店面名称：'+res.data.name+'</p>'
-						+'<p>店主姓名：'+res.data.fzr_name +'</p>'
-						+'<p>店面地址：'+res.data.address +'</p>'
-						+'<p>所属支部：'+res.data.shequ_name+'</p>'
-						+'<p>服务类别：'+res.data.type+'</p>'
-						
-						if(res.data.dangyuansf == '1'){
-							popStr +='<p>是否属于党员示范店：<span style="color: #1E9FFF;">是</span></p>'
-						}else{
-							popStr +='<p>是否属于党员示范店：<span style="color: #FF0017;">否</span></p>'
-						}
+dysfdFn();
 
-						popStr +='<p>服务内容：'+res.data.content+'</p>'
-					+'</div>'
-				
-				$('.popup1').html(popStr);
-				
-				layer.open({
-					type: 1,
-					area: ['880px', '880px'],
-					title: res.data.name,
-					shade: 0.2,
-					shadeClose: true, //点击遮罩关闭
-					content: $('.popup1')
-				});
-			}
-		});
-
-	});
+function dysfdFn(){
+	ajaxData(cygjUrl,function(res){
+		var str = ''
+		for(var i = 0;i<res.data.length;i++){
+			str += '<li data-type="'+res.data[i].type+'" data-id="'+res.data[i].id+'">'
+				+'<span class="sort">'+(i+1)+'</span>'
+				+'<p><span>'+res.data[i].name.substr(0,6) +'</span>'
+				+'<span>'+res.data[i].fzr_name.substr(0,3)+'</span>'
+				+'<span>'+res.data[i].shequ_name+'</span>'
+				+'</p></li>'
+		}
+		$('#cygj').html(str);
+		for(var i = 0;i<3;i++){
+			$('#cygj li').eq(i).children('.sort').css('background','#E58B26');
+		}
+		$('#cygj li').click(function(){
+			console.log($(this).attr('data-id'))
+			$.ajax({
+				type:"get",
+				url:"http://gzps.xnshequ.com/tongji_bigdata/partyxq",
+				data:{
+					type:$(this).attr('data-type'),
+					id:$(this).attr('data-id')
+				},
+				success:function(res){
+					console.log(res)
+					var popStr = '';
+					popStr +='<div class="img-box">'
+						+'<img src="'+res.data.pics+'" />'
+						+'</div>'
+						+'<div class="content">'
+							+'<p>店面名称：'+res.data.name+'</p>'
+							+'<p>店主姓名：'+res.data.fzr_name +'</p>'
+							+'<p>店面地址：'+res.data.address +'</p>'
+							+'<p>所属支部：'+res.data.shequ_name+'</p>'
+							+'<p>服务类别：'+res.data.type+'</p>'
+							
+							if(res.data.dangyuansf == '1'){
+								popStr +='<p>是否属于党员示范店：<span style="color: #1E9FFF;">是</span></p>'
+							}else{
+								popStr +='<p>是否属于党员示范店：<span style="color: #FF0017;">否</span></p>'
+							}
 	
-	// 非公党建单位-列表上下滚动
-	$("#s1list").myScroll({
-		speed:40, 
-		rowHeight:40
+							popStr +='<p>服务内容：'+res.data.content+'</p>'
+						+'</div>'
+					
+					$('.popup1').html(popStr);
+					
+					layer.open({
+						type: 1,
+						area: ['880px', '880px'],
+						title: res.data.name,
+						shade: 0.2,
+						shadeClose: true, //点击遮罩关闭
+						content: $('.popup1')
+					});
+				}
+			});
+	
+		});
+		
+		// 非公党建单位-列表上下滚动
+		$("#s1list").myScroll({
+			speed:40, 
+			rowHeight:40
+		});
 	});
-			
-});
+}
+
 
 //2.统计总量
 ajaxData(t3Url,function(res){
@@ -498,15 +503,15 @@ ajaxData(sbdUrl,function(res){
 function listStrFn(obj,listStr){
 	listStr +='<ul class="section-item-list section3-ul">'
 	for(var j=0;j<obj.length;j++){
-		listStr +='<li data-id="'+obj[j].id+'">'
+		listStr +='<li data-type="'+obj[j].type+'" data-id="'+obj[j].id+'">'
 		if(j<3){
 			listStr +='<span class="sort" style="background:#E58B26">'+(j+1)+'</span>'
 		}else{
 			listStr +='<span class="sort">'+(j+1)+'</span>'
 		}
 		
-		listStr += '<p><span>'+obj[j].name+'</span>'
-//				+ '<span>'+obj[j].mstype+'</span>'
+		listStr += '<p><span>'+obj[j].name.substr(0,6)+'</span>'
+				+ '<span>'+obj[j].mstype+'</span>'
 				+ '<span>'+obj[j].fzr_phone+'</span>'
 				+'</p></li>'
 
@@ -522,48 +527,49 @@ function sectionUl(index){
 	// 弹窗2
 	$('#s3list1 .section3-ul>li').on('click', function(e) {
 		console.log($(this))
-//		$.ajax({
-//			type:"get",
-//			url:"http://gzps.xnshequ.com/tongji_bigdata/partyxq",
-//			data:{
-//				id:$(this).attr('data-id')
-//			},
-//			success:function(res){
-//				console.log(res)
-//				var popStr = '';
-//				popStr +='<div class="img-box">'
-//					+'<img src="'+res.data.pics+'" />'
-//					+'</div>'
-//					+'<div class="content">'
-//						+'<p>店面名称：'+res.data.name+'</p>'
-//						+'<p>店主姓名：'+res.data.fzr_name +'</p>'
-//						+'<p>店面地址：'+res.data.address +'</p>'
-//						+'<p>所属支部：'+res.data.shequ_name+'</p>'
-//						+'<p>服务类别：'+res.data.type+'</p>'
-//						+'<p>服务电话：'+res.data.fzr_phone+'</p>'
-//						
-//						if(res.data.dangyuansf == '1'){
-//							popStr +='<p>是否属于党员示范店：<span style="color: #1E9FFF;">是</span></p>'
-//						}else{
-//							popStr +='<p>是否属于党员示范店：<span style="color: #FF0017;">否</span></p>'
-//						}
-//	
-//						popStr +='<p>服务内容：'+res.data.content+'</p>'
-//					+'</div>'
-//				
-//				$('.popup2').html(popStr);
-//				
-//				layer.open({
-//					type: 1,
-//					area: ['880px', '880px'],
-//					title: res.data.name,
-//					shade: 0,
-//					shadeClose: true, //点击遮罩关闭
-//					content: $('.popup2')
-//				});
-//				
-//			}
-//		});
+		$.ajax({
+			type:"get",
+			url:"http://gzps.xnshequ.com/tongji_bigdata/partyxq",
+			data:{
+				type:$(this).attr('data-type'),
+				id:$(this).attr('data-id')
+			},
+			success:function(res){
+				console.log(res)
+				var popStr = '';
+				popStr +='<div class="img-box">'
+					+'<img src="'+res.data.pics+'" />'
+					+'</div>'
+					+'<div class="content">'
+						+'<p>店面名称：'+res.data.name+'</p>'
+						+'<p>店主姓名：'+res.data.fzr_name +'</p>'
+						+'<p>店面地址：'+res.data.address +'</p>'
+						+'<p>所属支部：'+res.data.shequ_name+'</p>'
+						+'<p>服务类别：'+res.data.type+'</p>'
+						+'<p>服务电话：'+res.data.fzr_phone+'</p>'
+						
+						if(res.data.dangyuansf == '1'){
+							popStr +='<p>是否属于党员示范店：<span style="color: #1E9FFF;">是</span></p>'
+						}else{
+							popStr +='<p>是否属于党员示范店：<span style="color: #FF0017;">否</span></p>'
+						}
+	
+						popStr +='<p>服务内容：'+res.data.content+'</p>'
+					+'</div>'
+				
+				$('.popup2').html(popStr);
+				
+				layer.open({
+					type: 1,
+					area: ['880px', '880px'],
+					title: res.data.name,
+					shade: 0,
+					shadeClose: true, //点击遮罩关闭
+					content: $('.popup2')
+				});
+				
+			}
+		});
 		
 	});	
 	
@@ -577,7 +583,7 @@ ajaxData(rtdynamicUrl,function(res){
 	var str = ''
 	for(var i = 0;i<res.data.users.length;i++){
 		var time = formatDateTime(res.data.users[i].last_time*1)
-		str += '<li><span>'+res.data.users[i].nick_name+'</span><span>'+time+'</span></li>'
+		str += '<li><span>'+res.data.users[i].real_name+'</span><span>'+time+'</span></li>'
 	}
 	$('.section3-list').html(str);
 	//党建线上互动实时动态-列表上下滚动
@@ -637,78 +643,189 @@ ajaxData(channelUrl,function(res){
 });
 
 //8.贵州区域地图
-ajaxData(mapUrl,function(res){
-//	console.log(res);
-	var mapData = [];
-
-	var list = res.data.list
-
-	for(var i = 0; i < list.length; i++) {
-		mapData.push({
-			name: list[i].name,
-			jm_num: list[i].jm_num*1,
-			ld_num: list[i].ld_num*1,
-			dy_num: list[i].dy_num*1,
-			lddy_num: list[i].lddy_num*1,
-			cp_num: list[i].cp_num*1
-		})
-	}
-	
-	option = {
-		series: [
-			{
-				type: 'map',
-				mapType: 'guizhou',
-				roam: false,
-				nameMap: {
-					'guizhou': '贵州'
-				},
-				zoom: 1.2,
-				itemStyle: {
-					normal: {
-						areaColor: '#52b2fe',
-						borderColor: '#6ad7ff'
-					},
-					emphasis: {
-						areaColor: 'darkorange'
-					}
-				},
-				data: mapData,
-				zlevel: 0,
-				tooltip: {
-					trigger: 'item',
-					padding: 10,
-					formatter: function(params) {
-						//console.log(params)
-						return '[	' + params.name + '	]'
-						+ '<br/>居民人数 ： ' + params.data.jm_num + ' 人' 
-						+ '<br/>流动人口 ： ' + params.data.ld_num + ' 人'
-						+ '<br/>党员总数 ： ' + params.data.dy_num + ' 人' 
-						+ '<br/>流动党员 ： ' + params.data.lddy_num + ' 人'
-						+ '<br/>非公党建单位数量 ： ' + params.data.cp_num + ' 个' 
-					}
-				},
-			},
-			{
-				name: '用户坐标',
-				type: 'scatter',
-				coordinateSystem: 'geo',
-				data: [{
-					name: '亦资街道党工委',
-					value: [104.474329, 25.708555, 100]
-				}],
-				tooltip: {
-					trigger: 'item',
-					formatter: '{b}'
-				},
-				symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACyElEQVQ4T5WVX0hTcRTHv+fu7m7ebZHmn6E0UnwRIShfErZhL1H40osFRYpKQlhgRPVSBEEPJdFThFpiERVJsCLqfTMksN4FTfujTlPS5ubc3d2Je7e5u7uJ+Xv8ne/5/M45v/M7P0KRxU1NckyWzwA4CeAQgGpdRjQH5i/MHHCo6isaH98wu5N5I+r1doHoLoDyYocZ9sLMfN05NvbMqNsCcmOjFCsrGwTQsQMo30w0LFdV9dDoqKonkbVG/f6nYG7fFSwrJhp2BIPdW8BMmk+2hVkJliMu8JKC1GRB2XQ3Zu7Q0iduaXHGVHUWwL7tgFRuBUdUSH3VoD0iEvd+gtf0DI0rLCeTdRT1entANFAMZml2QbpYDSoVkXi4gOTHP7DfrwUkAfHL00CC89yYuYuifv8HMJ8wAzWY7YYHEAnqxDo2b30HkgzLQQds/bVQBsNQ3iyb3d5S1OdbAlBhtAgeG+yP6nWYXp9lBfGrM+D5hH6N8rtGpGbjiF+aNt/4nAbMjzsjsXZXQfDYwSsKxNayPGjJaAOQSGHj7KQ5Qt4WqCsF0q4PUl8NxOOlOjTxYA62OweQmtpAvNcUIaADFwFUGo8Sj5XqDqlv8fS2QJCu1UA8uhfQ8iFAGVmE8vK3OcJfGvA9gFajRSu6pUGGEliBGlwDryYh7LdBuukBlQi6NN47hdRU5sCcs34p5wFoTy4dTL0dtv46IKZC67+CIkVUkMsC9dNfbN7+kd82QGe2sWeyw4AqrZC63EgMLECotUNrH6qwgldVqBMRqJ8jsJ6qQDKwAo7mNXe6sbUjdnx6xbretMfAOWco9Dw3HHy+kV1Pmhz0sSMU0kqXmzbc1maJhcNDADr/IyCjZEh2uy8UjK+sYt3rbaf0gHXvAA4z0RVnMPjCqCuY2JqRm5tLoqJ4mtJfwOHMF6B14DyAr0wUcCjK62JfwD/IeBZykY1nKQAAAABJRU5ErkJggg==',
-				symbolSize: 20,
-			}
-		]
-	}
-	mapChart.setOption(option)
-	
-});
+// 重庆区域地图
+//绘制重庆地图
+//mapFn()
+//
+//setInterval(function(){
+//	mapFn();
+//},15000)
+//
+//
+//var mapChart = echarts.init(document.getElementById('mapchart'));
+//$.getJSON('./static/js/guizhou.json', function(data) {
+//	d = [];
+//	for(var i = 0; i < data.features.length; i++) {
+//		d.push({
+//			name: data.features[i].properties.name
+//		})
+//	}
+//	mapdata = d;
+//	//注册地图
+//	echarts.registerMap('chongqing', data);
+//
+//	mapChart.setOption(option = {
+//		backgroundColor: '#0C0026',
+//		tooltip: {
+//			trigger: 'item',
+//			padding: 10,
+//			formatter: function(params) {
+//				return params.name + '<br/>' + '户籍所在地 ： ' + params.value + '人' + '<br/>现居地 ： ' + params.data.num + '人';
+//			}
+//		},
+//			
+//		geo: {
+//			map: 'chongqing',
+//			label: {
+//				emphasis: {
+//					show: true,
+//					textStyle: {
+//						color: '#fff'
+//					}
+//				}
+//			},
+//			zoom: 1.2,
+//			roam: false,
+//		},
+//		
+//	})
+//})
+//function mapFn(){
+//	
+//	$.ajax({
+//		type: "get",
+//		url: "http://tianwen.xnshequ.com/tongji_jiuye/map?jsoncallback=?",
+//		dataType: "jsonp",
+//		success: function(res) {
+//			//console.log(res)
+//			var mapData = [];
+//
+//			var list = res.data.list
+//
+//			for(var i = 0; i < list.length; i++) {
+//				mapData.push({
+//					name: list[i].name,
+//					value: list[i].hj_num * 1,
+//					num: list[i].num * 1
+//				})
+//			}
+//			
+//			option = {
+//				color:'red',
+//				visualMap: {
+//					min: 0,
+//					max: 3500,
+//					text: ['高', '低'],
+//					realtime: false,
+//					calculable: true,
+//					itemWidth: 10,
+//					inRange: {
+//						color: ['#2751e3', '#52b2fe', '#35a4fe', '#52b2fe']
+//						//color: ['#52b2fe','#35a4fe','#52b2fe','#2751e3']
+//						//color: ['#50a3ba', '#eac736', '#d94e5d']
+//					},
+//					textStyle: {
+//						color: '#fff'
+//					}
+//				},
+//				series:[{
+//		                    type: 'map',
+//		                    mapType: 'chongqing',
+//		                    roam: false,
+//		                    nameMap:{
+//		                        'cq':'重庆'
+//		                    },
+//		                    zoom: 1.2,
+//		                    itemStyle: {
+//		                        normal: {
+//		                            areaColor: '#52b2fe',
+//		                            borderColor: '#6ad7ff'
+//		                        },
+//		                        emphasis: {
+//		                            areaColor: 'darkorange'
+//		                        }
+//		                    },
+//		                    data: mapData,
+//		                    zlevel: 0,
+//		               }]
+//			} 
+//			mapChart.setOption(option)
+//		}
+//	});
+//}
+				
+//ajaxData(mapUrl,function(res){
+////	console.log(res);
+//	var mapData = [];
+//
+//	var list = res.data.list
+//
+//	for(var i = 0; i < list.length; i++) {
+//		mapData.push({
+//			name: list[i].name,
+//			jm_num: list[i].jm_num*1,
+//			ld_num: list[i].ld_num*1,
+//			dy_num: list[i].dy_num*1,
+//			lddy_num: list[i].lddy_num*1,
+//			cp_num: list[i].cp_num*1
+//		})
+//	}
+//	
+//	option = {
+//		series: [
+//			{
+//				type: 'map',
+//				mapType: 'guizhou',
+//				roam: false,
+//				nameMap: {
+//					'guizhou': '贵州'
+//				},
+//				zoom: 1.2,
+//				itemStyle: {
+//					normal: {
+//						areaColor: '#52b2fe',
+//						borderColor: '#6ad7ff'
+//					},
+//					emphasis: {
+//						areaColor: 'darkorange'
+//					}
+//				},
+//				data: mapData,
+//				zlevel: 0,
+//				tooltip: {
+//					trigger: 'item',
+//					padding: 10,
+//					formatter: function(params) {
+//						//console.log(params)
+//						return '[	' + params.name + '	]'
+//						+ '<br/>居民人数 ： ' + params.data.jm_num + ' 人' 
+//						+ '<br/>流动人口 ： ' + params.data.ld_num + ' 人'
+//						+ '<br/>党员总数 ： ' + params.data.dy_num + ' 人' 
+//						+ '<br/>流动党员 ： ' + params.data.lddy_num + ' 人'
+//						+ '<br/>非公党建单位数量 ： ' + params.data.cp_num + ' 个' 
+//					}
+//				},
+//			},
+//			{
+//				name: '用户坐标',
+//				type: 'scatter',
+//				coordinateSystem: 'geo',
+//				data: [{
+//					name: '亦资街道党工委',
+//					value: [104.474329, 25.708555, 100]
+//				}],
+//				tooltip: {
+//					trigger: 'item',
+//					formatter: '{b}'
+//				},
+//				symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACyElEQVQ4T5WVX0hTcRTHv+fu7m7ebZHmn6E0UnwRIShfErZhL1H40osFRYpKQlhgRPVSBEEPJdFThFpiERVJsCLqfTMksN4FTfujTlPS5ubc3d2Je7e5u7uJ+Xv8ne/5/M45v/M7P0KRxU1NckyWzwA4CeAQgGpdRjQH5i/MHHCo6isaH98wu5N5I+r1doHoLoDyYocZ9sLMfN05NvbMqNsCcmOjFCsrGwTQsQMo30w0LFdV9dDoqKonkbVG/f6nYG7fFSwrJhp2BIPdW8BMmk+2hVkJliMu8JKC1GRB2XQ3Zu7Q0iduaXHGVHUWwL7tgFRuBUdUSH3VoD0iEvd+gtf0DI0rLCeTdRT1entANFAMZml2QbpYDSoVkXi4gOTHP7DfrwUkAfHL00CC89yYuYuifv8HMJ8wAzWY7YYHEAnqxDo2b30HkgzLQQds/bVQBsNQ3iyb3d5S1OdbAlBhtAgeG+yP6nWYXp9lBfGrM+D5hH6N8rtGpGbjiF+aNt/4nAbMjzsjsXZXQfDYwSsKxNayPGjJaAOQSGHj7KQ5Qt4WqCsF0q4PUl8NxOOlOjTxYA62OweQmtpAvNcUIaADFwFUGo8Sj5XqDqlv8fS2QJCu1UA8uhfQ8iFAGVmE8vK3OcJfGvA9gFajRSu6pUGGEliBGlwDryYh7LdBuukBlQi6NN47hdRU5sCcs34p5wFoTy4dTL0dtv46IKZC67+CIkVUkMsC9dNfbN7+kd82QGe2sWeyw4AqrZC63EgMLECotUNrH6qwgldVqBMRqJ8jsJ6qQDKwAo7mNXe6sbUjdnx6xbretMfAOWco9Dw3HHy+kV1Pmhz0sSMU0kqXmzbc1maJhcNDADr/IyCjZEh2uy8UjK+sYt3rbaf0gHXvAA4z0RVnMPjCqCuY2JqRm5tLoqJ4mtJfwOHMF6B14DyAr0wUcCjK62JfwD/IeBZykY1nKQAAAABJRU5ErkJggg==',
+//				symbolSize: 20,
+//			}
+//		]
+//	}
+//	mapChart.setOption(option)
+//	
+//});
 //9.用户登录实时地图显示
 ajaxData(mpdynamicUrl,function(res){
 	//console.log(res)
@@ -771,7 +888,6 @@ function barChartFn(xData, barData) {
 					color: '#130C44'
 				}
 			},
-
 			axisTick: {
 				show: false,
 				alignWithLabel: true
@@ -934,7 +1050,6 @@ $.getJSON('./static/js/guizhou.json', function(data) {
 			zoom: 1.2,
 			roam: false,
 		},
-
 	})
 })
 
