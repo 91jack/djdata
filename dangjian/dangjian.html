@@ -780,7 +780,7 @@ function ajaxData(url,callback){
 
 // 时间格式化
 function formatDateTime(inputTime) {
-	var date = new Date(inputTime);
+	var date = new Date(inputTime*1000);
 	var y = date.getFullYear();
 	var m = date.getMonth() + 1;
 	m = m < 10 ? ('0' + m) : m;
