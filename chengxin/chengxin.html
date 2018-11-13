@@ -236,6 +236,9 @@
 	<!--弹窗2-->
 	<div class="popup popup2"></div>
 
+	<!--网格地图提示框-->
+	<!--<div style="width:200px;height:200px;background: #009F95;"></div>-->
+	
 <script src="static/js/common.js"></script>
 <script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
@@ -257,8 +260,11 @@ $('.map-num a').each(function() {
 	$(this).hover(function() {
 		var index = $(this).attr('data-index');
 		$('.map-wrap img').attr('src', 'static/mapimg/' + index + '.png');
+		
+		
 	})
 })
+
 
 			
 var host = 	'http://gzps.xnshequ.com/tongji_bigdata/'	
@@ -493,8 +499,8 @@ function dyDetailsFn(params,partyxqUrl){
 					type: 1,
 					area: ['880px', '800px'],
 					title: res.data.name,
-					shade: 0.2,
-					shadeClose: true, //点击遮罩关闭
+					shade: 0,
+					shadeClose: false, //点击遮罩关闭
 					content: $('.popup1')
 				});
 			}else{
@@ -502,8 +508,8 @@ function dyDetailsFn(params,partyxqUrl){
 					type: 1,
 					area: ['880px', '400px'],
 					title: res.data.name,
-					shade: 0.2,
-					shadeClose: true, //点击遮罩关闭
+					shade: 0,
+					shadeClose: false, //点击遮罩关闭
 					content: $('.popup1')
 				});
 			}
@@ -667,8 +673,8 @@ function sectionUl(){
 						type: 1,
 						area: ['880px','800px'],
 						title: res.data.name,
-						shade: 0.2,
-						shadeClose: true, //点击遮罩关闭
+						shade: 0,
+						shadeClose: false, //点击遮罩关闭
 						content: $('.popup2')
 					});
 				}else{
@@ -676,8 +682,8 @@ function sectionUl(){
 					type: 1,
 					area: ['880px','400px'],
 					title: res.data.name,
-					shade: 0.2,
-					shadeClose: true, //点击遮罩关闭
+					shade: 0,
+					shadeClose: false, //点击遮罩关闭
 					content: $('.popup2')
 				});
 				}
